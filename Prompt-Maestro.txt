@@ -1,0 +1,65 @@
+ROL: Eres un desarrollador frontend experto en BabylonJS. Vas a crear una simulación 3D del sistema solar como un único archivo HTML autocontenido.
+
+REGLA OBLIGATORIA: Antes de escribir cualquier línea de código, SIEMPRE consulta la documentación oficial usando la herramienta context7 con el identificador "/websites/babylonjs". No inventes APIs ni métodos: si dudas, consulta context7 primero.
+
+OBJETIVO:
+Crear "index.html" con todo inline (HTML + CSS + JS + imports vía CDN). Sin archivos externos ni dependencias locales.
+
+REQUISITOS TÉCNICOS:
+1. BabylonJS cargado desde CDN oficial (https://cdn.babylonjs.com/babylon.js).
+2. Usar BabylonJS para todo el render 3D (no usar three.js, ni canvas puro).
+3. El sol debe implementarse usando BABYLON.ParticleHelper (investiga sus métodos en context7: "createSystem", "createSphereEmitter", etc.).
+4. Los planetas (Mercurio, Venus, Tierra, Marte, Júpiter, Saturno, Urano, Neptuno) deben girar alrededor del sol en órbitas elípticas.
+5. Cada planeta debe tener:
+   - Esfera con color/tamaño diferenciado.
+   - Rotación sobre su propio eje (más rápida en los cercanos al sol).
+   - Inclinación axial distinta.
+6. El cometa Halley debe tener:
+   - Órbita muy excéntrica (e ≈ 0.967, período ≈ 76 años, simulado en segundos).
+   - Estela/colaa de partículas detrás del núcleo.
+   - Núcleo como esfera pequeña.
+
+ESCENA Y AMBIENTE:
+- Fondo de estrellas: usa un SkyBox o un ParticleSystem de puntos blancos estáticos (mínimo 2000 estrellas).
+- Cámara ArcRotateCamera con auto-rotación lenta, zoom con rueda del mouse y paneo con click derecho.
+- Iluminación: HemisphericLight suave + PointLight en el sol para iluminar planetas.
+
+PANEL DE CONFIGURACIÓN (UI):
+- Usar HTML/CSS overlay con sliders y checkboxes.
+- Controles obligatorios:
+  * Velocidad global de la simulación (0x a 5x).
+  * Mostrar/ocultar órbitas (líneas elípticas).
+  * Mostrar/ocultar nombres de planetas.
+  * Mostrar/ocultar cometa Halley.
+  * Tamaño relativo (realista vs exagerado para visibilidad).
+- Diseño del panel: esquina superior derecha, fondo semitransparente, fuente legible.
+
+FLUIDEZ:
+- Usar requestAnimationFrame (engine.runRenderLoop).
+- deltaTime para movimientos independientes del frame rate.
+
+ENTREGABLE:
+- Un único archivo "index.html" listo para abrir en navegador moderno (Chrome/Firefox).
+- Comentarios en español explicando cada sección.
+- Sin errores en consola.
+- Código funcional al copiar y pegar.
+
+ESTRUCTURA DEL CÓDIGO:
+1. <head>: meta, título, CSS del panel.
+2. <body>: <canvas>, panel de UI, <script>.
+3. <script>: 
+   a) Engine + Scene setup.
+   b) Cámara y luces.
+   c) Sol (ParticleHelper).
+   d) Planetas (loop con datos).
+   e) Órbitas (LinesBuilder.CreateEllipseLines o similar — verificar en context7).
+   f) Cometa Halley + cola de partículas.
+   g) Estrellas.
+   h) UI handlers.
+   i) Render loop.
+
+PROCESO DE TRABAJO:
+1. PRIMER paso: usar context7 para validar: ParticleHelper, MeshBuilder.CreateSphere, LinesBuilder, StandardMaterial, ArcRotateCamera.
+2. SEGUNDO paso: escribir el HTML/CSS del panel.
+3. TERCER paso: escribir el JS por bloques, probando mentalmente cada API consultada.
+4. CUARTO paso: verificar autocontención (todo inline, solo CDN de Babylon).
