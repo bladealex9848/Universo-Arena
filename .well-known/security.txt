@@ -1,0 +1,6 @@
+Contact: mailto:bladealex@gmail.com
+Expires: 2027-06-15T00:00:00.000Z
+Preferred-Languages: es, en
+Canonical: https://universo-arena.alexanderoviedofadul.dev/.well-known/security.txt
+# Universo-Arena es un benchmark abierto (MIT). Reporta hallazgos de seguridad
+# de forma responsable al contacto indicado.

@@ -11,6 +11,9 @@ Documentación completa del benchmark, su metodología y cómo reproducirlo o am
 | **[conclusions.md](conclusions.md)** | Análisis comparativo, conclusiones y estado del arte (versión extendida). |
 | **[contributing.md](contributing.md)** | Cómo añadir una nueva entrada y regenerar el benchmark y la galería. |
 | **[deployment.md](deployment.md)** | Infraestructura de despliegue en producción y webhook de auto-despliegue continuo (CD). |
+| **[seo-geo-2026-06-15.md](seo-geo-2026-06-15.md)** | Auditoría y mejora SEO + GEO/AEO: Open Graph/Twitter por red social, `llms.txt`, `sitemap.xml`, `robots.txt` y JSON-LD. |
+| **[security-audit-2026-06-15.md](security-audit-2026-06-15.md)** | Auditoría de ciberseguridad (websec-100): redirect HTTP→HTTPS, bloqueo de paths sensibles, headers OWASP, CSP y `security.txt`. |
+| **[pagespeed-2026-06-15.md](pagespeed-2026-06-15.md)** | Optimización PageSpeed/Lighthouse a **100/100/100/100** (Performance, Accessibility, Best Practices, SEO). |
 
 ## Enlaces rápidos
 

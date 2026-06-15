@@ -14,6 +14,13 @@
   <img alt="Licencia" src="https://img.shields.io/badge/licencia-MIT-blue">
 </p>
 
+<p align="center">
+  <img alt="PageSpeed" src="https://img.shields.io/badge/PageSpeed-100%2F100%2F100%2F100-56e0a6">
+  <img alt="Seguridad" src="https://img.shields.io/badge/headers-HSTS%20·%20CSP%20·%20COOP%2FCORP-ffd24a">
+  <img alt="LLM-friendly" src="https://img.shields.io/badge/llms.txt-✓-7c9cff">
+  <img alt="Despliegue" src="https://img.shields.io/badge/live-universo--arena.alexanderoviedofadul.dev-c08bff">
+</p>
+
 
 **Universo-Arena** es un *benchmark* abierto que enfrenta a distintos modelos de lenguaje (LLM) y agentes de codificación ante un mismo reto exigente: implementar, en **un único `index.html` autocontenido**, una **simulación 3D del Sistema Solar con BabylonJS** siguiendo al pie de la letra [`Prompt-Maestro_v2.txt`](Prompt-Maestro_v2.txt).
 
@@ -165,6 +172,18 @@ Toda la documentación vive en [`docs/`](docs/):
 | [docs/harness.md](docs/harness.md) | El arnés técnico y cómo reproducirlo. |
 | [docs/conclusions.md](docs/conclusions.md) | Análisis comparativo y estado del arte (extendido). |
 | [docs/contributing.md](docs/contributing.md) | Cómo añadir una nueva entrada. |
+| [docs/deployment.md](docs/deployment.md) | Infraestructura de despliegue y webhook de auto-deploy (CD). |
+| [docs/seo-geo-2026-06-15.md](docs/seo-geo-2026-06-15.md) | SEO + GEO/AEO: Open Graph/Twitter, `llms.txt`, `sitemap.xml`, JSON-LD. |
+| [docs/security-audit-2026-06-15.md](docs/security-audit-2026-06-15.md) | Auditoría de ciberseguridad (websec-100): headers OWASP, CSP, `security.txt`. |
+| [docs/pagespeed-2026-06-15.md](docs/pagespeed-2026-06-15.md) | PageSpeed/Lighthouse **100/100/100/100**. |
+
+### 🏅 Calidad de producción
+
+El sitio en vivo está auditado y optimizado con la familia de skills `-100`:
+
+- **PageSpeed/Lighthouse 100/100/100/100** (Performance · Accessibility · Best Practices · SEO; PSI mobile) — LCP 1.1 s, CLS 0, TBT 0 ms.
+- **Seguridad:** HTTPS forzado (308), HSTS preload-ready, CSP, COOP/CORP, Permissions-Policy, `security.txt` y bloqueo de paths sensibles. **0 violaciones CSP** verificadas en navegador real.
+- **SEO + IA:** tarjetas sociales por red (Open Graph/Twitter), `robots.txt`, `sitemap.xml`, datos estructurados JSON-LD y `llms.txt`/`llms-full.txt` para LLMs.
 
 Historial de cambios en [`CHANGELOG.md`](CHANGELOG.md).
 

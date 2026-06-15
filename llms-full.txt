@@ -1,0 +1,178 @@
+# Universo-Arena — contexto extendido para LLMs
+
+> Benchmark abierto y reproducible donde 14 combinaciones de LLM + agente de código
+> implementan el mismo reto (simulación 3D del Sistema Solar en BabylonJS, un único
+> index.html autocontenido) y se puntúan con una rúbrica de 100 puntos, ejecución real
+> en navegador y calibración adversarial. Código abierto bajo licencia MIT.
+
+Sitio: https://universo-arena.alexanderoviedofadul.dev/
+Repositorio: https://github.com/bladealex9848/Universo-Arena
+Autor: Alexander Oviedo Fadul
+Versión del benchmark: 1.0.0 (2026-06-15)
+
+## Metodología (tres señales)
+
+1. Rúbrica de 100 puntos en 10 categorías.
+2. Ejecución real en Chrome headless con SwiftShader (WebGL por software): se mide
+   número de objetos 3D renderizados, FPS y errores de consola.
+3. Calibración adversarial: las notas estáticas se corrigen con los datos de runtime.
+   Caso documentado: GLM-5.2 fue marcado erróneamente como "pantalla negra" en revisión
+   estática; la ejecución real (279 objetos, 0 errores, UI completa) lo corrigió de 38 a 89.
+
+Trampas de correctitud que deciden el ranking:
+- Sol en el FOCO de la elipse (x = a·cosθ − a·e, z = b·sinθ, b = a·√(1−e²)), no en el centro.
+- Cola del cometa Halley apuntando en sentido OPUESTO al Sol (vector cometa − Sol),
+  recalculada cada frame (cuidado con Vector3.normalize() que muta in-place).
+
+Notas: las puntuaciones reflejan una sola ejecución por entrega (no se mide varianza);
+los FPS bajo SwiftShader son una señal cualitativa, no de rendimiento real en GPU.
+
+## Categorías de la rúbrica (puntos máximos)
+- Completitud de escena: 20
+- Fidelidad orbital: 12
+- Cometa Halley: 8
+- Estética / wow: 15
+- Panel UI: 15
+- Cámara y controles: 8
+- Post-procesado: 6
+- Rendimiento: 6
+- Robustez: 5
+- Calidad de código: 5
+
+## Entregas (ordenadas por puntuación total)
+
+### 1. GPT-5.5 · Codex — 97/100 (tier S)
+Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/codex-gpt-5.5/index.html
+Líneas de código: 1496
+Desglose: Completitud de escena 19/20, Fidelidad orbital 12/12, Cometa Halley 8/8, Estética / wow 13/15, Panel UI 15/15, Cámara y controles 8/8, Post-procesado 6/6, Rendimiento 6/6, Robustez 5/5, Calidad de código 5/5
+- Fortaleza: Cola del cometa CORRECTA: dir = comet - sol (vector desde el sol hacia el cometa) recalculado cada frame en las lineas 1430-1435, con emisor Vector3 en espacio mundo y comentario que demuestra entender por que Babylon no rota las direcciones; la cola apunta de verdad en sentido opuesto al sol.
+- Fortaleza: Orbitas elipticas reales via posicionEliptica (b=a*sqrt(1-e^2), foco en el sol con x=a*cos-c), usadas tanto para el movimiento como para las lineas de orbita; velocidad Kepleriana 12/distance, doble inclinacion (orbitTilt axial via tilt, Urano a 1.57 rad).
+- Debilidad: No se evidencia consulta real a context7 mas alla de un comentario afirmativo (lineas 18-20); ademas no usa ParticleHelper.CreateSystem('sun') que el spec pedia explicitamente (la corona es un ParticleSystem manual, aceptable pero se desvia del requisito).
+- Debilidad: Estrellas: minSize/maxSize 1.2-6.0 en lugar del rango 0.3-1.5 del spec (justificado en comentario), y el numero real visible depende de emitRate x lifetime + preWarm, no se garantizan 3000+ instancias simultaneas explicitamente.
+
+### 2. Claude Opus 4.8 · Ultracode + Claude Code — 97/100 (tier S)
+Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/Opus-4.8-Ultracode-Extension-Claude-Code/index.html
+Líneas de código: 1496
+Desglose: Completitud de escena 19/20, Fidelidad orbital 12/12, Cometa Halley 8/8, Estética / wow 13/15, Panel UI 15/15, Cámara y controles 8/8, Post-procesado 6/6, Rendimiento 6/6, Robustez 5/5, Calidad de código 5/5
+- Fortaleza: Cola del cometa correctamente recalculada por frame: dir = posMundoCometa - posSol (sol en origen), emitida con potencia positiva 14-22 hacia ese vector, por lo que SIEMPRE apunta en sentido opuesto al sol; el comentario explica con precisión por qué un emisor Vector3 mantiene las direcciones en espacio mundo (lineas 1066-1090, 1430-1435)
+- Fortaleza: Orbitas elipticas reales con el sol en el FOCO via posicionEliptica (x = a*cos(t) - a*e, z = b*sin(t), b = a*sqrt(1-e^2)); las lineas de orbita usan la misma funcion, asi que coinciden con el movimiento. Velocidad orbital tipo Kepler (12/distance), orbitTilt por planeta, tilt axial por planeta (Urano 1.57 rad ~90deg), todo basado en getDeltaTime()/1000 acotado a 0.05
+- Debilidad: No se usa BABYLON.ParticleHelper.CreateSystem('sun') que el spec pide explicitamente para la corona; en su lugar se construye un ParticleSystem manual con createSphereEmitter (funciona y es mas robusto offline, pero se desvia del requisito literal)
+- Debilidad: Estrellas y nebulosas algo modestas frente al objetivo wow: estrellas con tamanos 1.2-6.0 (el spec sugiere 0.3-1.5, justificado por la escala pero se aleja del enunciado) y solo 4 nebulosas planas; sin via lactea ni capas de polvo adicionales
+
+### 3. Claude Opus 4.8 · Claude Code — 95/100 (tier S)
+Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/Opus-4.8-Claude-Code/index.html
+Líneas de código: 995
+Desglose: Completitud de escena 19/20, Fidelidad orbital 10/12, Cometa Halley 8/8, Estética / wow 13/15, Panel UI 15/15, Cámara y controles 8/8, Post-procesado 6/6, Rendimiento 6/6, Robustez 5/5, Calidad de código 5/5
+- Fortaleza: Cola del cometa CORRECTA: el vector se calcula desde el sol (origen) hacia el cometa y se normaliza, asignandose a direction1/direction2 cada frame, por lo que las particulas salen siempre en sentido OPUESTO al sol (lineas 959-964).
+- Fortaleza: Orbitas ELIPTICAS reales con el sol en un foco: ellipsePoint() usa x=c+a*cos(t), z=b*sin(t) con b=a*sqrt(1-e^2) y c=a*e; la misma funcion genera la linea de orbita y la posicion del planeta, garantizando coherencia (lineas 462-466, 626, 939).
+- Debilidad: Kepler solo parcial: la velocidad orbital es una constante hardcodeada por planeta (decreciente con la distancia) pero la velocidad ANGULAR es constante a lo largo de la elipse; no se aplica la segunda ley de Kepler (mas rapido en perihelio), por lo que el movimiento no acelera cerca del sol.
+- Debilidad: Las estrellas amarillas no se renderizan realmente: la variacion blanco/azul esta en color1/color2 pero el tono amarillo solo esta en colorDead, que nunca se aplica porque el lifetime es MAX_VALUE (las particulas no mueren).
+
+### 4. MiniMax M3 · Claude Code — 92/100 (tier S)
+Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/Minimax-M3-Claude-Code/index.html
+Líneas de código: 1062
+Desglose: Completitud de escena 19/20, Fidelidad orbital 11/12, Cometa Halley 8/8, Estética / wow 12/15, Panel UI 14/15, Cámara y controles 8/8, Post-procesado 6/6, Rendimiento 4/6, Robustez 5/5, Calidad de código 5/5
+- Fortaleza: Órbitas elípticas reales con el sol en el foco (x = a(cos θ - e), b = a·√(1-e²)) más inclinación de plano y eje axial por planeta, todo con deltaTime cap a 0.1 s
+- Fortaleza: Cola del cometa recalculada por frame en sentido correctamente OPUESTO al sol (away = posición normalizada desde el origen aplicada a direction1/2 y gravity)
+- Debilidad: Cinturón de asteroides usa proto.clone() para los 260 cuerpos en vez de instancias (createInstance/thinInstance), lo que penaliza eficiencia y draw calls; el rubric pide explícitamente instancias
+- Debilidad: Estética algo conservadora: planetas sin texturas de superficie reales salvo las bandas de Júpiter; el 'tema' (Brasa/Plasma/Escarcha/Vacío) solo repinta acentos del panel CSS, no la estética 3D de la escena
+
+### 5. Gemini 3.5 Flash · Antigravity CLI — 89/100 (tier A)
+Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/Agy-Gemini-3.5-Flash-Antigravity-CLI/index.html
+Líneas de código: 1637
+Desglose: Completitud de escena 19/20, Fidelidad orbital 9/12, Cometa Halley 8/8, Estética / wow 12/15, Panel UI 14/15, Cámara y controles 8/8, Post-procesado 6/6, Rendimiento 5/6, Robustez 4/5, Calidad de código 4/5
+- Fortaleza: La cola del cometa Halley se recalcula cada frame y apunta correctamente en sentido OPUESTO al sol: dirOpposite = pos.subtract(Vector3.Zero()).normalize() (sol en origen) escalado positivo en direction1/direction2 (linea 1610-1612)
+- Fortaleza: Orbitas ELIPTICAS reales via getOrbitPoint con x=a*cos(theta), z=b*sin(theta) y b=a*sqrt(1-e^2); velocidades por planeta inversas a la distancia (Mercurio 0.08 -> Pluton 0.004) cumpliendo Kepler simplificado; animacion basada en engine.getDeltaTime()/1000
+- Debilidad: El sol se situa en el CENTRO geometrico de la elipse, no en un foco, y el cuerpo avanza con theta lineal: no hay aceleracion real en perihelio/afelio (Kepler de segunda ley ausente), solo velocidad media inversa a distancia
+- Debilidad: Sin evidencia de consulta a context7/docs (regla absoluta del spec): no hay comentarios ni mencion; aunque las APIs usadas son correctas, no se demuestra el proceso de investigacion exigido
+
+### 6. GLM 5.2 · Claude Code — 89/100 (tier A)
+Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/GLM-5.2-Claude-Code/index.html
+Líneas de código: 1306
+Desglose: Completitud de escena 20/20, Fidelidad orbital 11/12, Cometa Halley 4/8, Estética / wow 13/15, Panel UI 15/15, Cámara y controles 8/8, Post-procesado 6/6, Rendimiento 4/6, Robustez 4/5, Calidad de código 4/5
+- Fortaleza: Escena completa verificada en runtime: 279 meshes, 0 excepciones, UI con 4 secciones operativa
+- Fortaleza: Órbitas elípticas reales con el Sol en el foco e inclinación de plano por planeta
+- Debilidad: BUG real: nucleoHalley.position.normalize() muta la posición a longitud ~1, pegando el cometa al Sol
+- Debilidad: Asteroides por .clone() en vez de instancias → 240 draw calls extra
+
+### 7. DeepSeek V4 Pro · CodeWhale — 88/100 (tier A)
+Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/codewhale-deepseek-v4-pro/index.html
+Líneas de código: 1251
+Desglose: Completitud de escena 19/20, Fidelidad orbital 11/12, Cometa Halley 8/8, Estética / wow 11/15, Panel UI 14/15, Cámara y controles 7/8, Post-procesado 6/6, Rendimiento 3/6, Robustez 4/5, Calidad de código 5/5
+- Fortaleza: Cola del cometa Halley correctamente recalculada cada frame apuntando en sentido OPUESTO al sol: usa cometPos.normalize() desde el origen (sol) como direccion del emisor (lineas 927-934), tecnicamente correcta
+- Fortaleza: Orbitas elipticas reales con semi-eje menor b=a*sqrt(1-e^2) y desplazamiento del foco cOffset=a*e tanto en las lineas de orbita (createOrbitLine) como en el movimiento (lineas 871-888); el sol queda en el foco
+- Debilidad: Cinturon de asteroides creado como 250 mallas CreateSphere independientes, cada una con su propio StandardMaterial (lineas 686-700); el spec pedia instancias. Genera ~250 draw calls y 250 materiales: gran ineficiencia de rendimiento, no usa createInstance/thinInstance ni SolidParticleSystem
+- Debilidad: Velocidad orbital constante en angulo a lo largo de cada orbita: no implementa la 2a ley de Kepler (mas rapido en perihelio); el factor Kepler solo se aplica planeta-a-planeta via orbitalSpeed
+
+### 8. Claude Sonnet 4.6 · Antigravity IDE — 86/100 (tier A)
+Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/Claude-Sonnet-4.6-Antigravity-IDE/index.html
+Líneas de código: 1592
+Desglose: Completitud de escena 18/20, Fidelidad orbital 9/12, Cometa Halley 4/8, Estética / wow 12/15, Panel UI 15/15, Cámara y controles 8/8, Post-procesado 6/6, Rendimiento 5/6, Robustez 4/5, Calidad de código 5/5
+- Fortaleza: Panel de UI completo y 100% funcional: las 4 secciones con todos los controles conectados (2 sliders + pausa, 6 checkboxes + dropdown de 6 vistas + slider de tamano, tema + bloom + color de sol, panel info con FPS/objetos/ayuda)
+- Fortaleza: Orbitas elipticas reales mediante posicionElipse (semieje mayor a, semieje menor b = a*sqrt(1-e^2)); las lineas de orbita usan la misma funcion que el movimiento, por lo que coinciden visualmente
+- Debilidad: BUG critico en la cola del cometa: dirDesdeCometa = pos.negate().normalize() apunta DESDE el cometa HACIA el sol (hacia el origen), y ese vector se usa como direccion de emision, por lo que la cola apunta hacia el sol en vez de en sentido opuesto; el comentario 'negado = lejos del sol' es erroneo. Requisito clave del spec incumplido
+- Debilidad: Fidelidad orbital parcial: el sol queda en el CENTRO geometrico de la elipse, no en un foco; la velocidad angular es constante por orbita (no hay aceleracion en perihelio tipo Kepler real); varios planetas tienen excentricidad minima (0.01-0.02) por lo que sus orbitas se ven casi circulares
+
+### 9. Kimi K2.7 · Claude Code — 80/100 (tier B)
+Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/Kimi-k.7-code-Claude-Code/index.html
+Líneas de código: 696
+Desglose: Completitud de escena 17/20, Fidelidad orbital 9/12, Cometa Halley 3/8, Estética / wow 11/15, Panel UI 15/15, Cámara y controles 7/8, Post-procesado 6/6, Rendimiento 3/6, Robustez 4/5, Calidad de código 5/5
+- Fortaleza: Panel de configuracion completo y funcional: las 4 secciones del spec con sus 2 sliders+pausa, 6 checkboxes+dropdown de 6 vistas+slider de tamano, tema+bloom+color de sol, y panel info con FPS/objetos/ayuda; todos los listeners conectados al estado y a la escena.
+- Fortaleza: Animacion correctamente independiente del frame rate usando engine.getDeltaTime()/1000 en sol, planetas, asteroides y cometa; velocidad orbital inversa a la distancia (Mercurio 4.0 -> Pluton 0.38).
+- Debilidad: BUG CRITICO en la cola del cometa: en updateHalleyPosition() el vector 'away' = position.subtract(Zero()).normalize().negate() apunta DESDE el cometa HACIA el sol; tanto direction1/2 como gravity usan ese vector, por lo que la cola apunta hacia el sol en vez de en sentido opuesto (el .negate() esta de mas). Se recalcula por frame pero en la direccion equivocada.
+- Debilidad: Asteroides creados como 240 mallas CreateSphere independientes (comparten material pero NO usan instancias/SPS), penalizando el rendimiento que el spec premia explicitamente.
+
+### 10. Kimi K2.7 · Kimi Code CLI — 79/100 (tier B)
+Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/kimi-k2.7-code-Kimi-Code-CLI/index.html
+Líneas de código: 541
+Desglose: Completitud de escena 18/20, Fidelidad orbital 9/12, Cometa Halley 4/8, Estética / wow 11/15, Panel UI 14/15, Cámara y controles 7/8, Post-procesado 6/6, Rendimiento 3/6, Robustez 4/5, Calidad de código 3/5
+- Fortaleza: Escena muy completa: sol con corona por ParticleHelper, 8 planetas + Plutón enano, cinturón de 240 asteroides, Saturno con torus de anillos, cometa Halley, 4000 estrellas y 4 nebulosas billboard; todo en un solo archivo file://.
+- Fortaleza: Post-procesado correcto y completo: DefaultRenderingPipeline con bloom (threshold/weight/kernel), GlowLayer y tone mapping/exposure/contrast, todo dentro de try/catch con degradación elegante.
+- Debilidad: BUG CRÍTICO en la cola del cometa: en updateHalleyPosition la variable 'away' se calcula como position.normalize().negate(), que apunta HACIA el sol (no en sentido opuesto). direction1/direction2/gravity usan ese vector invertido, por lo que la cola apunta hacia el sol, justo lo contrario al requisito.
+- Debilidad: Rendimiento: el cinturón crea 240 mallas independientes con MeshBuilder.CreateSphere en bucle en vez de usar instancias/thin instances; no hay instancing pese a compartir material.
+
+### 11. MiniMax M3 · mini-agent — 79/100 (tier B)
+Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/mini-agent-MiniMax-M3/index.html
+Líneas de código: 1100
+Desglose: Completitud de escena 17/20, Fidelidad orbital 9/12, Cometa Halley 3/8, Estética / wow 11/15, Panel UI 14/15, Cámara y controles 7/8, Post-procesado 6/6, Rendimiento 3/6, Robustez 4/5, Calidad de código 5/5
+- Fortaleza: Orbitas elipticas REALES con el sol en uno de los focos: x=a*cos(t)-a*e, z=b*sin(t) con b=a*sqrt(1-e^2), aplicado de forma consistente tanto al dibujar las lineas (lineas 668-673) como a posicionar los planetas en el render loop (lineas 892-893); Mercurio (e=0.20) y Pluton (e=0.45) se ven claramente elipticos.
+- Fortaleza: Panel de UI muy completo y bien cableado: las 4 secciones del spec con sus 2 sliders + pausa, 6 checkboxes + dropdown de 6 vistas + slider de tamano, tema + bloom + color del sol, y panel de info con FPS/objetos/ayuda; todos los listeners existen y modifican el estado real.
+- Debilidad: FALLO CRITICO del cometa: la cola apunta HACIA el sol, no en sentido opuesto. En linea 783 'toSun' = Vector3.Zero().subtract(position) apunta del cometa al sol, y se asigna directamente a direction1/direction2 (lineas 785-786). El comentario dice 'direccion opuesta al sol' pero el codigo emite hacia el sol; faltaria un .scale(-1).
+- Debilidad: Sin instancias para los asteroides: createAsteroidBelt crea 220 CreateSphere individuales, cada uno con su propio StandardMaterial (lineas 698-705). El spec pedia explicitamente instancias; esto es ineficiente (220 mallas + 220 materiales).
+
+### 12. DeepSeek V4 Pro · Pi Coding Agent — 78/100 (tier B)
+Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/deepseek-v4-pro-Pi-Coding-Agent/index.html
+Líneas de código: 1276
+Desglose: Completitud de escena 19/20, Fidelidad orbital 5/12, Cometa Halley 4/8, Estética / wow 12/15, Panel UI 13/15, Cámara y controles 7/8, Post-procesado 6/6, Rendimiento 3/6, Robustez 5/5, Calidad de código 4/5
+- Fortaleza: Escena muy completa: sol con corona ParticleHelper.CreateAsync (con fallback manual), 8 planetas + Plutón, 250 asteroides, anillos de Saturno (doble torus), cometa Halley, 3000 estrellas en caja 2000³ y 5 nebulosas con DynamicTexture radial
+- Fortaleza: Post-procesado solido y bien guardado: DefaultRenderingPipeline con bloom, glowLayer, tone mapping, FXAA y contraste, todo bajo if (pipeline.isSupported); el checkbox de bloom alterna bloomEnabled y glowLayerEnabled en caliente
+- Debilidad: BUG critico en la cola del cometa: en el render loop sunToComet = comet.position - origen apunta ALEJÁNDOSE del sol, pero luego tailDir = sunToComet.scale(-1) la invierte, de modo que la cola apunta HACIA el sol, justo lo OPUESTO a lo que pide el spec (la intención y el comentario son correctos, pero el signo está invertido)
+- Debilidad: Órbitas NO elípticas: 8 de los 9 cuerpos tienen eccentricity: 0.0 en el array PLANETS, por lo que tanto createOrbits como el bucle de animación generan círculos perfectos; solo Plutón (e=0.25) es elíptico. Además no hay inclinación del plano orbital (todos los planetas en y=0)
+
+### 13. Devstral · Vibe — 70/100 (tier C)
+Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/vibe-devstral/index.html
+Líneas de código: 960
+Desglose: Completitud de escena 15/20, Fidelidad orbital 9/12, Cometa Halley 3/8, Estética / wow 10/15, Panel UI 11/15, Cámara y controles 7/8, Post-procesado 6/6, Rendimiento 4/6, Robustez 2/5, Calidad de código 3/5
+- Fortaleza: Arranca y renderiza con 0 errores; sistema solar completo (8 planetas + Plutón)
+- Fortaleza: Animación basada en deltaTime; pausa y velocidades funcionales
+- Debilidad: BUG: cola del cometa apunta HACIA el sol (sunDirection invertido con .scale(-1))
+- Debilidad: BUG: mesh.diameter no existe → anillos de Saturno (NaN) y labels en y=NaN
+
+### 14. Z.ai GLM 5.2 · Claude Code — 54/100 (tier D)
+Demo en vivo: https://universo-arena.alexanderoviedofadul.dev/Zai-GLM-5.2-Claude-Code/index.html
+Líneas de código: 624
+Desglose: Completitud de escena 9/20, Fidelidad orbital 11/12, Cometa Halley 5/8, Estética / wow 7/15, Panel UI 4/15, Cámara y controles 6/8, Post-procesado 0/6, Rendimiento 4/6, Robustez 3/5, Calidad de código 5/5
+- Fortaleza: Mecanica orbital de altisima fidelidad: elipses reales con el Sol en el foco (x=a(cosE-e), z=b senE) y ecuacion de Kepler resuelta por Newton-Raphson, lo que produce variacion de velocidad tipo 2a ley de Kepler real; ademas inclinacion orbital y axial por planeta
+- Fortaleza: Animacion correctamente basada en deltaTime (performance.now() con tope de 100ms) multiplicado por la velocidad global, independiente del frame rate
+- Debilidad: Faltan elementos clave de la escena: NO hay Pluton (solo 8 planetas), NO hay cinturon de asteroides (200+), NO hay nebulosas, y las estrellas son 2400 (por debajo del minimo de 3000). Tampoco hay atmosferas en los planetas
+- Debilidad: Bug real en la cola del cometa: usa nucleo.position.normalize() que MUTA la posicion del nucleo a longitud 1 justo antes de scene.render(), colapsando visualmente el cometa cerca del Sol cada frame; ademas cola.maxSize usa length() sobre el vector ya normalizado (~1.0)
+
+## Recursos
+- Ranking (datos crudos): https://universo-arena.alexanderoviedofadul.dev/assets/benchmark.json
+- Datos de ejecución: https://universo-arena.alexanderoviedofadul.dev/assets/runtime.json
+- Documentación completa: https://github.com/bladealex9848/Universo-Arena/tree/main/docs
+- Prompt maestro del reto: https://github.com/bladealex9848/Universo-Arena/blob/main/Prompt-Maestro_v2.txt
+
+## Cómo citar
+Universo-Arena (2026). Benchmark de LLMs + agentes de código sobre una simulación 3D
+del Sistema Solar en BabylonJS. Alexander Oviedo Fadul. https://universo-arena.alexanderoviedofadul.dev/

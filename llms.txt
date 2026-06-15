@@ -1,0 +1,51 @@
+# Universo-Arena
+
+> Benchmark abierto y reproducible: 14 combinaciones de **LLM + agente de código** implementan el *mismo* reto —una simulación 3D del Sistema Solar en BabylonJS, como un único `index.html` autocontenido— y se puntúan y rankean. Licencia MIT.
+
+Sitio: https://universo-arena.alexanderoviedofadul.dev/
+Repositorio: https://github.com/bladealex9848/Universo-Arena
+Autor: Alexander Oviedo Fadul
+Idioma: español
+
+## Qué mide
+
+Cada entrega recibe el mismo prompt maestro y se evalúa con **tres señales**:
+1. Rúbrica de 100 puntos repartidos en 10 categorías (completitud de escena, fidelidad orbital, cometa Halley, estética, panel UI, cámara, post-procesado, rendimiento, robustez, calidad de código).
+2. Ejecución real en Chrome headless (SwiftShader): número de objetos 3D, FPS y errores de consola.
+3. Calibración adversarial corregida por datos de runtime.
+
+Las dos trampas de correctitud que más discriminan el ranking:
+- El Sol debe estar en el **foco** de la elipse, no en el centro (`x = a·cosθ − a·e`).
+- La **cola del cometa** debe apuntar en sentido **opuesto al Sol**, recalculada cada frame.
+
+## Ranking (puntuación total, de mayor a menor)
+
+🥇 97/100 (tier S) — GPT-5.5 · Codex — https://universo-arena.alexanderoviedofadul.dev/codex-gpt-5.5/index.html
+🥈 97/100 (tier S) — Claude Opus 4.8 · Ultracode + Claude Code — https://universo-arena.alexanderoviedofadul.dev/Opus-4.8-Ultracode-Extension-Claude-Code/index.html
+🥉 95/100 (tier S) — Claude Opus 4.8 · Claude Code — https://universo-arena.alexanderoviedofadul.dev/Opus-4.8-Claude-Code/index.html
+4. 92/100 (tier S) — MiniMax M3 · Claude Code — https://universo-arena.alexanderoviedofadul.dev/Minimax-M3-Claude-Code/index.html
+5. 89/100 (tier A) — Gemini 3.5 Flash · Antigravity CLI — https://universo-arena.alexanderoviedofadul.dev/Agy-Gemini-3.5-Flash-Antigravity-CLI/index.html
+6. 89/100 (tier A) — GLM 5.2 · Claude Code — https://universo-arena.alexanderoviedofadul.dev/GLM-5.2-Claude-Code/index.html
+7. 88/100 (tier A) — DeepSeek V4 Pro · CodeWhale — https://universo-arena.alexanderoviedofadul.dev/codewhale-deepseek-v4-pro/index.html
+8. 86/100 (tier A) — Claude Sonnet 4.6 · Antigravity IDE — https://universo-arena.alexanderoviedofadul.dev/Claude-Sonnet-4.6-Antigravity-IDE/index.html
+9. 80/100 (tier B) — Kimi K2.7 · Claude Code — https://universo-arena.alexanderoviedofadul.dev/Kimi-k.7-code-Claude-Code/index.html
+10. 79/100 (tier B) — Kimi K2.7 · Kimi Code CLI — https://universo-arena.alexanderoviedofadul.dev/kimi-k2.7-code-Kimi-Code-CLI/index.html
+11. 79/100 (tier B) — MiniMax M3 · mini-agent — https://universo-arena.alexanderoviedofadul.dev/mini-agent-MiniMax-M3/index.html
+12. 78/100 (tier B) — DeepSeek V4 Pro · Pi Coding Agent — https://universo-arena.alexanderoviedofadul.dev/deepseek-v4-pro-Pi-Coding-Agent/index.html
+13. 70/100 (tier C) — Devstral · Vibe — https://universo-arena.alexanderoviedofadul.dev/vibe-devstral/index.html
+14. 54/100 (tier D) — Z.ai GLM 5.2 · Claude Code — https://universo-arena.alexanderoviedofadul.dev/Zai-GLM-5.2-Claude-Code/index.html
+
+GPT-5.5 · Codex y Claude Opus 4.8 · Ultracode empatan en cabeza con 97/100.
+14/14 entregas arrancan y renderizan; 12/14 sin un solo error de consola.
+
+## Datos y documentación
+
+- Datos crudos del ranking: https://universo-arena.alexanderoviedofadul.dev/assets/benchmark.json
+- Datos objetivos de ejecución: https://universo-arena.alexanderoviedofadul.dev/assets/runtime.json
+- Metodología, rúbrica, resultados y conclusiones: https://github.com/bladealex9848/Universo-Arena/tree/main/docs
+- Reto implementado por todas las entregas: https://github.com/bladealex9848/Universo-Arena/blob/main/Prompt-Maestro_v2.txt
+
+## Cómo citar
+
+Universo-Arena (2026). Benchmark de LLMs + agentes de código sobre una simulación 3D
+del Sistema Solar en BabylonJS. Alexander Oviedo Fadul. https://universo-arena.alexanderoviedofadul.dev/

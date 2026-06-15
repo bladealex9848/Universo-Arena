@@ -1,0 +1,45 @@
+# robots.txt — Universo-Arena
+# https://universo-arena.alexanderoviedofadul.dev
+# Benchmark abierto: LLM + agente de código implementan el mismo reto 3D (BabylonJS).
+
+# ── Buscadores tradicionales ──────────────────────────────
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# ── Bots de búsqueda / citación de IA (queremos aparecer citados) ──
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# ── Default: todo el contenido es público y de código abierto (MIT) ──
+User-agent: *
+Allow: /
+
+# Recursos no útiles para indexar
+Disallow: /.git/
+Disallow: /.claude/
+
+Sitemap: https://universo-arena.alexanderoviedofadul.dev/sitemap.xml

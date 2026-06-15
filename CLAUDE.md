@@ -24,7 +24,13 @@ Universo-Arena/
 │   ├── runtime.json            # objective runtime data (meshes, console errors, webgl)
 │   ├── universo_arena_banner.png
 │   └── previews/<folder>.png   # real screenshot per entry
-├── docs/                       # methodology, rubric, results, harness, conclusions, contributing
+├── docs/                       # methodology, rubric, results, harness, conclusions, contributing,
+│                               #   + seo-geo / security-audit / pagespeed reports (skills -100)
+├── robots.txt · sitemap.xml    # SEO discovery (regenerate from benchmark.json)
+├── llms.txt · llms-full.txt    # GEO/AEO: resumen citable + contexto extendido para LLMs
+├── humans.txt
+├── .well-known/security.txt    # RFC 9116
+├── assets/og-image.png         # imagen social 1200×630 (Open Graph / Twitter)
 └── <Modelo>-<Agente>/index.html   # one folder per benchmark entry
 ```
 
@@ -55,6 +61,29 @@ Before writing BabylonJS code, **consult the official docs** (Context7 library i
 ## Build / runtime
 
 There is **no build step and no runtime dependencies** for the site — it's vanilla HTML/CSS/JS using modern browser features. The only tooling is the optional benchmark harness (Node + Puppeteer) used to capture screenshots; that lives in a temp dir, not in the repo.
+
+## SEO, GEO/AEO, seguridad y rendimiento (skills `-100`, 2026-06-15)
+
+El sitio en producción está auditado al máximo. Si cambias el `<head>` de la
+galería, las metas o el ranking, mantén la coherencia con estos artefactos:
+
+- **SEO/GEO:** el `<head>` de `index.html` lleva Open Graph + Twitter Card +
+  JSON-LD (`@graph`: WebSite, Dataset, ItemList, FAQPage). `robots.txt`,
+  `sitemap.xml`, `llms.txt` y `llms-full.txt` **se derivan de
+  `assets/benchmark.json`** — si cambia el ranking, regenéralos (ver
+  [`docs/seo-geo-2026-06-15.md`](docs/seo-geo-2026-06-15.md)). El `ItemList` y el
+  `llms.txt` respetan el orden del podio (empate 97: GPT-5.5 🥇, Opus Ultracode 🥈).
+- **Imagen social:** `assets/og-image.png` es **1200×630** (no el banner cuadrado).
+  Regenérala con ImageMagick si cambia el banner.
+- **Seguridad:** los headers (HSTS, CSP, COOP, CORP, Permissions-Policy), el
+  redirect HTTP→HTTPS (`308`) y el bloqueo de paths sensibles viven en el
+  **`Caddyfile` del VPS** (`/etc/caddy/Caddyfile`, vhost `universo-arena…`), NO en
+  el repo. La CSP mantiene `unsafe-eval` a propósito (BabylonJS lo requiere). Ver
+  [`docs/security-audit-2026-06-15.md`](docs/security-audit-2026-06-15.md).
+- **PageSpeed:** 100/100/100/100. El contraste de textos pequeños depende del token
+  CSS `--faint` (debe mantener ≥ 4.5:1 sobre `#0c0f1f`). Ver
+  [`docs/pagespeed-2026-06-15.md`](docs/pagespeed-2026-06-15.md).
+- **Re-auditar:** `wc360 perf <url>` (PageSpeed) y `wc360 sec <url>` (headers).
 
 ## Git
 

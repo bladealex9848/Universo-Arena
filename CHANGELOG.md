@@ -4,6 +4,46 @@ Todos los cambios notables de **Universo-Arena**. El formato sigue
 [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/) y el proyecto usa
 [Versionado Semántico](https://semver.org/lang/es/).
 
+## [Unreleased]
+
+### Añadido — SEO + GEO/AEO (2026-06-15)
+
+- **Compartición social por red:** `<head>` con **Open Graph** completo
+  (Facebook, LinkedIn, WhatsApp, Telegram, Slack, Discord) y **Twitter/X Card**
+  `summary_large_image`, con imagen social dedicada `assets/og-image.png` (1200×630).
+- **Amigable con buscadores:** `robots.txt`, `sitemap.xml` (home + 14 demos, con
+  imágenes), `canonical` y `meta robots`.
+- **Amigable con LLMs:** `llms.txt` (resumen citable < 2 000 tokens) y
+  `llms-full.txt` (contexto extendido), más política explícita de bots de
+  búsqueda/citación de IA en `robots.txt`.
+- **Datos estructurados** JSON-LD `@graph`: `WebSite`, `Dataset`, `ItemList`
+  (ranking) y `FAQPage`.
+- **`humans.txt`** y documento de auditoría [`docs/seo-geo-2026-06-15.md`](docs/seo-geo-2026-06-15.md)
+  con before/after, comandos de validación y pendientes (alta en Search Console / Bing).
+
+### Seguridad — websec-100 (2026-06-15)
+
+- **Redirect HTTP→HTTPS** explícito (`308`): el bloque `:80` global de Caddy
+  anulaba el auto-redirect y servía HTTP plano sin headers.
+- **Bloqueo de paths sensibles** (`404`): `CLAUDE.md`, `commit-simple.sh`,
+  `/.claude/*` y backups `*.bak/*.old/*.swp/*.swo/*.orig/*.rej`.
+- **Headers de seguridad** añadidos: `Permissions-Policy`,
+  `Cross-Origin-Opener-Policy`, `Cross-Origin-Resource-Policy`; CSP endurecida
+  (`form-action`, `frame-src`, `worker-src`, `manifest-src`, `media-src`,
+  `upgrade-insecure-requests`). Se conserva `unsafe-eval` (BabylonJS lo requiere).
+- **`/.well-known/security.txt`** (RFC 9116) publicado.
+- Verificado en navegador headless real: **0 violaciones CSP** en galería y demos.
+- Informe: [`docs/security-audit-2026-06-15.md`](docs/security-audit-2026-06-15.md) + snapshots `docs/websec-2026-06-15/`.
+
+### Rendimiento y accesibilidad — pagespeed-100 (2026-06-15)
+
+- **PageSpeed/Lighthouse 100/100/100/100** (Performance, Accessibility, Best
+  Practices, SEO; PSI mobile). LCP 1.1 s · CLS 0 · TBT 0 ms.
+- **Corregido contraste WCAG AA:** token CSS `--faint` `#6b78a8` → `#7884b5`
+  (4.41:1 → 5.22:1), que subió Accessibility de 91 a 100. Audit `color-contrast`
+  sin ítems pendientes.
+- Informe: [`docs/pagespeed-2026-06-15.md`](docs/pagespeed-2026-06-15.md) + snapshots `docs/pagespeed-2026-06-15/`.
+
 ## [1.0.0] — 2026-06-15
 
 Primera versión pública del benchmark, con galería web y documentación completa.
