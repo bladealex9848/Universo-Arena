@@ -60,3 +60,4 @@ There is **no build step and no runtime dependencies** for the site — it's van
 
 - The project is published at `github.com/bladealex9848/Universo-Arena`; history is on `main`.
 - Commit/push only when the user asks. End commit messages with the required `Co-Authored-By` trailer.
+- **Despliegue y CD:** El sitio web se expone en `https://universo-arena.alexanderoviedofadul.dev`. Cuenta con un auto-despliegue continuo (CD) mediante un webhook en Node.js que escucha en el puerto `3020` del VPS y actualiza automáticamente los archivos locales en la rama `main` tras recibir el evento push de GitHub.

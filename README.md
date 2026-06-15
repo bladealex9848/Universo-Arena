@@ -187,8 +187,10 @@ Universo-Arena/
 
 ## ▶️ Cómo usarlo
 
-- **Galería:** abre [`index.html`](index.html) en la raíz con doble clic.
-- **Una simulación concreta:** abre el `index.html` de su carpeta. Requiere conexión a internet la primera vez (BabylonJS por CDN).
+- **Sitio Web de Producción:** Accede a la galería en vivo en **[https://universo-arena.alexanderoviedofadul.dev](https://universo-arena.alexanderoviedofadul.dev)**.
+- **Galería local:** abre [`index.html`](index.html) en la raíz con doble clic.
+- **Una simulación concreta:** abre el `index.html` de su carpeta. Requiere conexión a internet (BabylonJS por CDN).
+- **Despliegue y Webhook (CD):** El proyecto cuenta con integración y despliegue continuo mediante webhook. Cualquier push en `main` actualiza los archivos automáticamente. Ver detalles en [`docs/deployment.md`](docs/deployment.md).
 - **Documentación y reproducibilidad:** ver [`docs/`](docs/).
 
 ## 📜 Licencia y créditos

@@ -10,6 +10,7 @@ Documentación completa del benchmark, su metodología y cómo reproducirlo o am
 | **[harness.md](harness.md)** | El arnés técnico: pipeline multi-agente, capturas con Chrome headless y reproducibilidad. |
 | **[conclusions.md](conclusions.md)** | Análisis comparativo, conclusiones y estado del arte (versión extendida). |
 | **[contributing.md](contributing.md)** | Cómo añadir una nueva entrada y regenerar el benchmark y la galería. |
+| **[deployment.md](deployment.md)** | Infraestructura de despliegue en producción y webhook de auto-despliegue continuo (CD). |
 
 ## Enlaces rápidos
 

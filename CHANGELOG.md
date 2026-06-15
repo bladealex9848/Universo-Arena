@@ -24,6 +24,8 @@ Primera versión pública del benchmark, con galería web y documentación compl
   por entrega, arnés técnico/reproducibilidad, conclusiones y guía de contribución.
 - **Datos crudos** versionados: [`assets/benchmark.json`](assets/benchmark.json) y
   [`assets/runtime.json`](assets/runtime.json), más capturas en `assets/previews/`.
+- **Despliegue y auto-despliegue continuo (CD):** Publicado el benchmark en producción en `https://universo-arena.alexanderoviedofadul.dev` mediante el servidor web Caddy e implementado un webhook en NodeJS (puerto 3020) con firma criptográfica de seguridad en GitHub para actualizaciones automáticas en caliente.
+- **Documentación de despliegue:** Creado [`docs/deployment.md`](docs/deployment.md) detallando la infraestructura y pasos para configurar el webhook de integración continua.
 - **Banner** del proyecto y scaffolding GitHub (`LICENSE` MIT, `.gitignore`, `CLAUDE.md`).
 
 ### Resultados destacados
