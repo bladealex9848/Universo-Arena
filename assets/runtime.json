@@ -1,0 +1,146 @@
+[
+  {
+    "folder": "Agy-Gemini-3.5-Flash-Antigravity-CLI",
+    "webgl": true,
+    "babylon": true,
+    "meshes": 291,
+    "fps": 11,
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "errorsSample": []
+  },
+  {
+    "folder": "Claude-Sonnet-4.6-Antigravity-IDE",
+    "webgl": true,
+    "babylon": true,
+    "meshes": 263,
+    "fps": 11,
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "errorsSample": []
+  },
+  {
+    "folder": "GLM-5.2-Claude-Code",
+    "webgl": true,
+    "babylon": true,
+    "meshes": 279,
+    "fps": 7,
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "errorsSample": []
+  },
+  {
+    "folder": "Kimi-k.7-code-Claude-Code",
+    "webgl": true,
+    "babylon": true,
+    "meshes": 277,
+    "fps": 10,
+    "consoleErrors": 1,
+    "pageErrors": 0,
+    "errorsSample": [
+      "No se pudo crear ParticleHelper del sol: JSHandle@error"
+    ]
+  },
+  {
+    "folder": "Minimax-M3-Claude-Code",
+    "webgl": true,
+    "babylon": true,
+    "meshes": 299,
+    "fps": 7,
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "errorsSample": []
+  },
+  {
+    "folder": "Opus-4.8-Claude-Code",
+    "webgl": true,
+    "babylon": true,
+    "meshes": 260,
+    "fps": 7,
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "errorsSample": []
+  },
+  {
+    "folder": "Opus-4.8-Ultracode-Extension-Claude-Code",
+    "webgl": true,
+    "babylon": true,
+    "meshes": 302,
+    "fps": 8,
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "errorsSample": []
+  },
+  {
+    "folder": "Zai-GLM-5.2-Claude-Code",
+    "webgl": true,
+    "babylon": true,
+    "meshes": 29,
+    "fps": 17,
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "errorsSample": []
+  },
+  {
+    "folder": "codewhale-deepseek-v4-pro",
+    "webgl": true,
+    "babylon": true,
+    "meshes": 288,
+    "fps": 9,
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "errorsSample": []
+  },
+  {
+    "folder": "codex-gpt-5.5",
+    "webgl": true,
+    "babylon": true,
+    "meshes": 302,
+    "fps": 8,
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "errorsSample": []
+  },
+  {
+    "folder": "deepseek-v4-pro-Pi-Coding-Agent",
+    "webgl": true,
+    "babylon": true,
+    "meshes": 289,
+    "fps": 10,
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "errorsSample": []
+  },
+  {
+    "folder": "kimi-k2.7-code-Kimi-Code-CLI",
+    "webgl": true,
+    "babylon": true,
+    "meshes": 277,
+    "fps": 10,
+    "consoleErrors": 1,
+    "pageErrors": 0,
+    "errorsSample": [
+      "No se pudo crear ParticleHelper del sol: JSHandle@error"
+    ]
+  },
+  {
+    "folder": "mini-agent-MiniMax-M3",
+    "webgl": true,
+    "babylon": true,
+    "meshes": 260,
+    "fps": 7,
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "errorsSample": []
+  },
+  {
+    "folder": "vibe-devstral",
+    "webgl": true,
+    "babylon": true,
+    "meshes": 234,
+    "fps": 8,
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "errorsSample": []
+  }
+]

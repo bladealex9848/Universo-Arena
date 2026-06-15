@@ -1,0 +1,20 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*~
+
+# Dependencias / build (no usadas: el proyecto es estático, pero por si acaso)
+node_modules/
+dist/
+build/
+*.log
+
+# Temporales
+.cache/
+tmp/
