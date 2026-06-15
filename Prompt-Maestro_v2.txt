@@ -1,0 +1,309 @@
+═══════════════════════════════════════════════════════════════════
+PROMPT v2 — SIMULACIÓN 3D DE UNIVERSO CON BABYLONJS
+═══════════════════════════════════════════════════════════════════
+
+ROL:
+Eres un desarrollador frontend senior y artista técnico 3D especializado
+en BabylonJS. Creas experiencias web 3D inmersivas, performantes y
+visualmente impactantes.
+
+REGLA ABSOLUTA (NO NEGOCIABLE):
+Antes de escribir CUALQUIER línea de código, debes consultar la
+documentación oficial usando la herramienta context7 con el
+identificador "/websites/babylonjs" o "websites/babylonjs". 
+NUNCA inventes APIs, métodos, parámetros o signatures. 
+Si dudas de cualquier cosa, consulta context7 PRIMERO.
+Métodos críticos que DEBES validar antes de usar:
+  - BABYLON.ParticleHelper.CreateSystem (tipos: "sun", "galaxy", etc.)
+  - BABYLON.ParticleSystem (constructor, emitter, capacity)
+  - BABYLON.MeshBuilder.CreateSphere / CreateBox / CreateLines
+  - BABYLON.StandardMaterial (emissiveColor, diffuseTexture)
+  - BABYLON.ArcRotateCamera + autoRotationBehavior
+  - BABYLON.HemisphericLight + PointLight
+  - BABYLON.DynamicTexture (para labels, estrellas procedurales)
+  - BABYLON.Color3 / Color4
+  - BABYLON.Vector3
+  - BABYLON.DefaultRenderingPipeline (para bloom/glow post-procesado)
+
+═══════════════════════════════════════════════════════════════════
+OBJETIVO
+═══════════════════════════════════════════════════════════════════
+Crear UN ÚNICO archivo "index.html" completamente autocontenido
+(HTML + CSS + JS + cualquier dependencia vía CDN oficial).
+Sin archivos externos, sin assets locales, sin servidor.
+Abrir con doble click y que funcione.
+
+═══════════════════════════════════════════════════════════════════
+ESCENA — UNIVERSO COMPLETO
+═══════════════════════════════════════════════════════════════════
+
+1. SOL CENTRAL
+   - Núcleo: esfera con material emissive amarillo-naranja.
+   - Usar BABYLON.ParticleHelper.CreateSystem("sun") para la corona.
+   - Animación: rotación lenta sobre eje Y.
+   - Pulsado sutil de escala (1.0 ↔ 1.05 cada 3 seg).
+   - PointLight emanando desde su posición.
+
+2. SISTEMA SOLAR (8 planetas + 1 planeta enano + cinturón de asteroides)
+   Cada planeta debe tener:
+     ✓ Esfera 3D con tamaño y color únicos
+     ✓ Rotación propia sobre eje inclinado (eje axial distinto por planeta)
+     ✓ Órbita elíptica alrededor del sol (no círculo perfecto)
+     ✓ Velocidad orbital inversamente proporcional a distancia (Kepler simplificado)
+     ✓ Plano orbital ligeramente inclinado respecto al ecuador solar
+     ✓ Label/nombre flotante billboard encima del planeta
+     ✓ (Opcional avanzado) Atmósfera: sphere ligeramente mayor con
+       material semitransparente emisivo azul/blanco
+
+   Planetas a incluir:
+     • Mercurio (gris, rápido, sin atmósfera)
+     • Venus (amarillo-naranja, retrógrado lento)
+     • Tierra (azul+verde, atmósfera azul brillante)
+     • Marte (rojo, atmósfera sutil naranja)
+     • Cinturón de asteroides (anillo de 200+ esferas pequeñas)
+     • Júpiter (bandas horizontales, gran tamaño)
+     • Saturno (con anillos — torus alrededor)
+     • Urano (azul-verde pálido, inclinado 90°)
+     • Neptuno (azul profundo)
+     • Plutón (pequeño, gris, órbita muy excéntrica)
+
+3. COMETA HALLEY
+   - Órbita muy excéntrica (e=0.967 real, exagerar a 0.85 visualmente).
+   - Núcleo: esfera pequeña azul-blanca.
+   - Cola: BABYLON.ParticleSystem con 1000+ partículas.
+   - La cola SIEMPRE debe apuntar en dirección opuesta al sol
+     (calcular vector normalizado desde cometa hacia sol).
+   - Color de cola: blanco cerca del núcleo, azul-cian al final, fade a transparente.
+   - Período orbital visible: ~15-20 segundos para una vuelta completa.
+
+4. ESTRELLA DE FONDO (Skybox procedural)
+   - 3000+ estrellas estáticas usando BABYLON.ParticleSystem con
+     emitRate alto y lifetime casi infinito.
+   - Distribución uniforme en una caja 2000x2000x2000.
+   - Variación de tamaños (0.3 a 1.5) y tonos (blanco, azul, amarillo).
+   - Sin movimiento (estrellas fijas).
+
+5. NEBULOSAS Y PROFUNDIDAD (capas extra)
+   - 3-5 "manchas" de nebulosa usando planos con DynamicTexture
+     procedural (gradientes radiales rosados/morados/azules).
+   - Planos enormes (500x500) muy distantes (radio 1500+).
+   - BillboardMode_ALL para siempre mirar a cámara.
+   - Alpha blending para efecto atmosférico.
+
+═══════════════════════════════════════════════════════════════════
+CÁMARA E ILUMINACIÓN
+═══════════════════════════════════════════════════════════════════
+
+CÁMARA:
+  - BABYLON.ArcRotateCamera apuntando al origen (sol).
+  - Controles:
+    * Click izquierdo + drag → rotar
+    * Rueda → zoom (con wheelPrecision)
+    * Click derecho + drag → pan
+  - Auto-rotación lenta (idleRotationSpeed = 0.03).
+  - Límites: lowerRadiusLimit=30, upperRadiusLimit=2000.
+  - Sensibilidad适中 (suave, no brusca).
+
+ILUMINACIÓN:
+  - BABYLON.HemisphericLight tenue (intensity 0.1) para que el lado
+    oscuro de los planetas no sea negro absoluto.
+  - BABYLON.PointLight en el origen (sol) con intensity alta (2.0),
+    color cálido (1, 0.95, 0.85).
+  - Los planetas usan materiales con specular bajo para realismo.
+
+POST-PROCESADO (BONUS的高级):
+  - BABYLON.DefaultRenderingPipeline con:
+    * bloomEnabled = true (umbral bajo para resaltar el sol)
+    * glowLayer (para soles y cometas)
+    * imageProcessing.toneMappingEnabled = true
+  - Verificar en context7: DefaultRenderingPipeline constructor
+    y parámetros exactos.
+
+═══════════════════════════════════════════════════════════════════
+ANIMACIONES (todas basadas en deltaTime)
+═══════════════════════════════════════════════════════════════════
+
+- Sol: rotación Y continua + pulsado de escala (sin/cos).
+- Planetas: orbitAngle += deltaTime * orbitalSpeed * globalSpeed.
+- Planetas: rotación propia += deltaTime * 1.5 * globalSpeed.
+- Halley: fase += deltaTime * (2π/period) * globalSpeed.
+- Estela de Halley: dirección recalculada cada frame (siempre opuesta al sol).
+- Auto-rotación cámara: gestionada por Babylon (useAutoRotationBehavior).
+- Órbitas: estáticas (solo se muestra/ocultan).
+- Asteroides: movimiento lento + rotación aleatoria sobre sí mismos.
+
+REGLA: SIEMPRE multiplicar velocidades por engine.getDeltaTime() / 1000
+para que la animación sea independiente del frame rate.
+
+═══════════════════════════════════════════════════════════════════
+PANEL DE CONFIGURACIÓN (UI)
+═══════════════════════════════════════════════════════════════════
+
+Diseño:
+  - Esquina superior derecha, ancho 300px.
+  - Fondo: rgba(10, 15, 30, 0.85) con backdrop-filter blur.
+  - Borde: 1px rgba(120, 160, 255, 0.3).
+  - Fuente: system-ui, 13px, color claro.
+  - Scroll si el contenido excede la altura.
+
+SECCIÓN 1 — TIEMPO Y VELOCIDAD
+  - Slider: Velocidad global (0x a 10x, step 0.1).
+  - Slider: Velocidad orbital individual (multiplicador 0.1x a 3x).
+  - Botón: "Pausar/Reanudar" (toggle).
+
+SECCIÓN 2 — VISUALIZACIÓN
+  - Checkbox: Mostrar órbitas.
+  - Checkbox: Mostrar nombres de planetas.
+  - Checkbox: Mostrar cometa Halley.
+  - Checkbox: Mostrar cola del cometa.
+  - Checkbox: Mostrar cinturón de asteroides.
+  - Checkbox: Mostrar nebulosas de fondo.
+  - Selector (dropdown): Vista de cámara
+    * "Sistema Solar" (default, distancia 180).
+    * "Sol cercano" (zoom al sol).
+    * "Tierra" (zoom a la Tierra).
+    * "Saturno" (zoom a Saturno con anillos visibles).
+    * "Panorámica" (muy lejos, vista general).
+    * "Halley" (seguir cometa).
+  - Slider: Tamaño relativo (0.5x a 3x, escala todos los planetas).
+
+SECCIÓN 3 — ESTÉTICA
+  - Selector de tema (futurista/clásico/oscuro).
+  - Checkbox: Activar bloom/glow post-procesado.
+  - Selector de color del sol (blanco/amarillo/naranja/rojo).
+
+SECCIÓN 4 — INFORMACIÓN
+  - Panel pequeño (esquina inferior izquierda) con:
+    * FPS actual.
+    * Número de objetos en escena.
+    * "Click izq: rotar | Rueda: zoom | Click der: pan".
+
+═══════════════════════════════════════════════════════════════════
+ESTRUCTURA DEL CÓDIGO (orden estricto)
+═══════════════════════════════════════════════════════════════════
+
+<HEAD>
+  - Meta charset, viewport, title descriptivo.
+  - <style> completo con:
+    * Reset CSS (margin, padding, box-sizing).
+    * Estilos del canvas (#renderCanvas: 100vw, 100vh).
+    * Estilos del panel (#panel: posición, fondo, blur).
+    * Estilos de sliders/checkboxes/dropdowns.
+    * Scrollbar personalizado (opcional).
+    * Media query para pantallas < 600px (panel colapsable).
+
+<BODY>
+  - <canvas id="renderCanvas">
+  - <div id="panel"> con todas las secciones.
+  - <div id="info"> con ayuda de controles.
+  - <script src="CDN babylon.js">
+  - <script> con toda la lógica.
+
+<SCRIPT> — orden interno:
+  1. Constantes y datos (PLANETS array con todos los datos).
+  2. Engine + Scene + clearColor.
+  3. Camera (ArcRotateCamera + behaviors).
+  4. Lights (Hemi + PointLight).
+  5. Helper functions:
+     - makeLabelTexture(text)
+     - makeFlareTexture(color)
+     - makeNebulaTexture(color1, color2)
+  6. createStars() → ParticleSystem.
+  7. createSun() → Mesh + ParticleHelper.
+  8. createPlanets(PLANETS) → loop con MeshBuilder.CreateSphere.
+  9. createOrbits(PLANETS) → loop con MeshBuilder.CreateLines.
+  10. createAsteroidBelt() → 200+ esferas pequeñas.
+  11. createSaturnRings(planet) → torus o dos anillos planos.
+  12. createHalley() → Mesh + ParticleSystem cola.
+  13. createNebulas() → planos con DynamicTexture.
+  14. setupPostProcessing() → DefaultRenderingPipeline + GlowLayer.
+  15. setupUI() → listeners para todos los controles.
+  16. Render loop (scene.onBeforeRenderObservable).
+  17. engine.runRenderLoop + resize listener.
+
+═══════════════════════════════════════════════════════════════════
+PROCESO DE TRABAJO (seguir en este orden)
+═══════════════════════════════════════════════════════════════════
+
+PASO 1 — INVESTIGACIÓN (no saltar):
+  Usar context7 para validar TODAS estas APIs:
+    □ ParticleHelper.CreateSystem y sus tipos disponibles
+    □ ParticleSystem constructor signature y propiedades clave
+    □ MeshBuilder.CreateSphere y CreateLines signatures
+    □ DefaultRenderingPipeline constructor y métodos
+    □ ArcRotateCamera.autoRotationBehavior métodos exactos
+  Si context7 devuelve información parcial, reformular la consulta.
+
+PASO 2 — DATOS:
+  Crear el array PLANETS con datos realistas:
+    { name, distance, size, color[], speed, tilt, hasRings?, ringColor? }
+
+PASO 3 — HTML/CSS DEL PANEL:
+  Escribir primero solo el HTML del panel con valores placeholder.
+  Verificar visualmente que el panel se vea bien antes de continuar.
+
+PASO 4 — ESCENA BASE:
+  Engine + Scene + Camera + Lights. Probar que renderiza el fondo.
+
+PASO 5 — SOL Y ESTRELLAS:
+  ParticleHelper para el sol. ParticleSystem para estrellas.
+  Verificar que ambos coexisten sin errors en consola.
+
+PASO 6 — PLANETAS Y ÓRBITAS:
+  Loop sobre PLANETS. Cada planeta con su órbita.
+  Verificar que las órbitas son visibles y los planetas se mueven.
+
+PASO 7 — DETALLES VISUALES:
+  Saturno con anillos. Asteroides. Atmósferas.
+
+PASO 8 — COMETA HALLEY:
+  Órbita excéntrica + cola direccional.
+  Verificar que la cola siempre apunta lejos del sol.
+
+PASO 9 — NEBULOSAS Y POST-PRO:
+  Planos de nebulosa. DefaultRenderingPipeline.
+
+PASO 10 — UI:
+  Conectar cada control a su efecto. Verificar todos los toggles.
+
+PASO 11 — VERIFICACIÓN FINAL:
+  □ No hay errores en consola del navegador.
+  □ Todo el código está inline (solo CDN de Babylon).
+  □ Los comentarios están en español.
+  □ El archivo se llama exactamente "index.html".
+  □ Funciona al abrir directamente (file://) en Chrome/Firefox.
+  □ Animación fluida (60fps objetivo) en hardware medio.
+  □ Todas las features de UI funcionan.
+
+═══════════════════════════════════════════════════════════════════
+REQUISITOS DE CALIDAD
+═══════════════════════════════════════════════════════════════════
+
+- Código modular con funciones claramente separadas.
+- Comentarios JSDoc-style en español en cada función.
+- Variables con nombres descriptivos (no abreviaturas crípticas).
+- Constantes en MAYÚSCULAS_SNAKE_CASE para datos inmutables.
+- Sin código muerto ni console.log() de debug (excepto errores reales).
+- Manejo de errores con try/catch donde pueda fallar (ej. ParticleHelper).
+- Performance: no crear meshes nuevos cada frame, solo transformar.
+- Si una feature avanzada falla (ej. bloom), degradar gracefully
+  sin romper el resto.
+
+═══════════════════════════════════════════════════════════════════
+ENTREGABLE FINAL
+═══════════════════════════════════════════════════════════════════
+
+Un único archivo "index.html" que:
+  1. Se abre con doble click en navegador.
+  2. Muestra un universo 3D completo con sol, 8+1 planetas,
+     cinturón de asteroides, Saturno con anillos, cometa Halley
+     con cola, 3000+ estrellas de fondo, y nebulosas.
+  3. Panel de configuración completamente funcional con todas
+     las secciones descritas.
+  4. Cámara orbital con auto-rotación y controles suaves.
+  5. Iluminación realista con bloom/glow opcional.
+  6. Sin errores en consola.
+  7. Animación fluida a 60fps.
+  8. Estéticamente impactante (no solo funcional).
+
+═══════════════════════════════════════════════════════════════════
