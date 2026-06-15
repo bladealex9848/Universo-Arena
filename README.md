@@ -6,6 +6,14 @@
 
 ### Un mismo prompt. 14 combinaciones de LLM + agente de código. Una sola pasada. ¿Quién construye el mejor universo 3D?
 
+<p align="center">
+  <img alt="Entregas" src="https://img.shields.io/badge/entregas-14-7c9cff">
+  <img alt="Ganador" src="https://img.shields.io/badge/%F0%9F%A5%87-GPT--5.5%20·%20Codex%20(97)-ffd24a">
+  <img alt="Sin errores" src="https://img.shields.io/badge/sin%20errores-12%2F14-56e0a6">
+  <img alt="Tecnología" src="https://img.shields.io/badge/BabylonJS-WebGL-bb464b">
+  <img alt="Licencia" src="https://img.shields.io/badge/licencia-MIT-blue">
+</p>
+
 
 **Universo-Arena** es un *benchmark* abierto que enfrenta a distintos modelos de lenguaje (LLM) y agentes de codificación ante un mismo reto exigente: implementar, en **un único `index.html` autocontenido**, una **simulación 3D del Sistema Solar con BabylonJS** siguiendo al pie de la letra [`Prompt-Maestro_v2.txt`](Prompt-Maestro_v2.txt).
 
@@ -145,16 +153,34 @@ Por último, este ejercicio deja una lección sobre **cómo se deben medir** los
 
 ---
 
+## 📚 Documentación
+
+Toda la documentación vive en [`docs/`](docs/):
+
+| Documento | Contenido |
+|:--|:--|
+| [docs/methodology.md](docs/methodology.md) | Cómo se evaluó (las tres señales) y sus límites. |
+| [docs/rubric.md](docs/rubric.md) | La rúbrica de 100 puntos y las dos "trampas" de corrección. |
+| [docs/results.md](docs/results.md) | Ficha detallada de las 14 entregas. |
+| [docs/harness.md](docs/harness.md) | El arnés técnico y cómo reproducirlo. |
+| [docs/conclusions.md](docs/conclusions.md) | Análisis comparativo y estado del arte (extendido). |
+| [docs/contributing.md](docs/contributing.md) | Cómo añadir una nueva entrada. |
+
+Historial de cambios en [`CHANGELOG.md`](CHANGELOG.md).
+
 ## 📁 Estructura del repositorio
 
 ```
 Universo-Arena/
 ├── index.html                  ← 🌐 galería interactiva de resultados (ábrela)
 ├── README.md                   ← este documento
+├── CHANGELOG.md · CLAUDE.md · LICENSE
 ├── Prompt-Maestro_v2.txt       ← el reto que todos implementaron
+├── docs/                       ← metodología, rúbrica, resultados, arnés, conclusiones
 ├── assets/
-│   ├── benchmark.json          ← data del benchmark (notas, features, runtime)
+│   ├── benchmark.json          ← fuente de verdad del benchmark (notas, features, runtime)
 │   ├── runtime.json            ← datos objetivos de ejecución (meshes, errores)
+│   ├── universo_arena_banner.png
 │   └── previews/*.png          ← capturas reales de cada simulación
 └── <Modelo>-<Agente>/index.html   ← una carpeta por entrega (14)
 ```
@@ -163,6 +189,7 @@ Universo-Arena/
 
 - **Galería:** abre [`index.html`](index.html) en la raíz con doble clic.
 - **Una simulación concreta:** abre el `index.html` de su carpeta. Requiere conexión a internet la primera vez (BabylonJS por CDN).
+- **Documentación y reproducibilidad:** ver [`docs/`](docs/).
 
 ## 📜 Licencia y créditos
 
