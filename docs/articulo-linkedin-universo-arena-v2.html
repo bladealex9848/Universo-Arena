@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌌 Le di el mismo reto a 14 inteligencias artificiales. Tres días después, EE. UU. apagó la mejor del mundo.</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--stroke:rgba(140,170,255,.16);--dim:#aab6dd;--accent:#7c9cff;--accent2:#c08bff;--panel:rgba(18,22,44,.5)}
+body{background:#05060f;color:#eaf0ff;font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;line-height:1.7;
+ background-image:radial-gradient(60% 50% at 15% 0%,rgba(124,156,255,.16),transparent 60%),radial-gradient(50% 45% at 90% 5%,rgba(192,139,255,.14),transparent 60%);background-attachment:fixed}
+.wrap{max-width:720px;margin:0 auto;padding:24px 22px 80px}
+.cover{width:100%;border-radius:18px;border:1px solid var(--stroke);margin:8px 0 26px;box-shadow:0 24px 70px rgba(0,0,0,.5)}
+h1{font-size:clamp(26px,5vw,38px);font-weight:900;letter-spacing:-.02em;line-height:1.14;margin-bottom:22px;
+ background:linear-gradient(110deg,#fff,var(--accent) 60%,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:clamp(18px,2.6vw,22px);font-weight:800;margin:30px 0 12px;color:#fff;padding-bottom:7px;border-bottom:1px solid var(--stroke)}
+p{margin:0 0 15px;color:var(--dim);font-size:clamp(15px,1.7vw,17px)}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(124,156,255,.35)}a:hover{color:#fff}
+ul.bul{list-style:none;margin:0 0 16px;display:flex;flex-direction:column;gap:10px}
+ul.bul li{background:var(--panel);border:1px solid var(--stroke);border-radius:12px;padding:12px 15px;color:#e7ecff;font-size:15.5px}
+.tags{color:var(--accent);font-weight:600;font-size:14px}
+.meta{color:#7b88b8;font-size:13px;margin-bottom:16px}.meta b{color:var(--dim)}
+.bar{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:11px 0;backdrop-filter:blur(10px)}
+.brand{font-weight:800;display:flex;align-items:center;gap:9px}.brand .dot{width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#ffd24a 35%,#ff7a3c 70%);box-shadow:0 0 14px rgba(255,170,60,.6)}
+.btn{border:1px solid var(--stroke);background:rgba(124,156,255,.14);color:#fff;border-radius:999px;padding:9px 16px;font-size:13.5px;font-weight:700;cursor:pointer}
+.btn:hover{background:rgba(124,156,255,.3)}
+.count{font-size:12px;color:#7b88b8;margin:6px 0 22px}
+.foot{margin-top:36px;padding-top:18px;border-top:1px solid var(--stroke);color:#7b88b8;font-size:13px}.foot a{border:none}
+</style></head><body><div class="wrap">
+<div class="bar"><a class="brand" href="https://universo-arena.alexanderoviedofadul.dev"><span class="dot"></span>Universo-Arena</a>
+<button class="btn" id="copy">📋 Copiar para LinkedIn</button></div>
+<img class="cover" src="../assets/universo_arena_banner.png" alt="Universo-Arena">
+<div class="meta"><b>Alexander Oviedo Fadul</b> · Post para LinkedIn (≤3.000 caracteres)</div>
+<h1>🌌 Le di el mismo reto a 14 inteligencias artificiales. Tres días después, EE. UU. apagó la mejor del mundo.</h1>
+<p>El 9 de junio Anthropic lanzó Claude Fable 5, su modelo más capaz. El 12, una directiva de control de exportaciones de EE. UU. obligó a suspenderlo para cualquier ciudadano extranjero. Como no se puede filtrar por nacionalidad en tiempo real, lo desactivaron para todo el planeta.</p>
+<p>Yo soy colombiano. Soy ese &quot;ciudadano extranjero&quot;. El mejor modelo del momento se volvió inaccesible en un fin de semana.</p>
+<p>Y esa misma semana terminé un experimento que respondía, sin querer, a una pregunta incómoda: ¿de verdad necesitamos a Fable 5?</p>
+<h2>🛰️ El experimento</h2>
+<p>Le di el MISMO prompt exigente —una simulación 3D del Sistema Solar en BabylonJS, en un único index.html— a 14 combinaciones de modelo + agente de código. Una sola pasada cada una. Y no me quedé en leer el código: abrí las 14 en un navegador real y medí objetos, FPS y errores de consola.</p>
+<h2>📊 Lo que encontré</h2>
+<ul class="bul"><li>14/14 arrancaron. 12/14, sin un solo error de consola.</li><li>Empate en cabeza: GPT-5.5 (Codex) y Claude Opus 4.8, 97/100.</li><li>️ El bug más común: la cola del cometa apuntando hacia el Sol (signo de vector invertido).</li><li>El mismo modelo cambia de liga según el agente: MiniMax M3 saltó de 79 a 92.</li></ul>
+<h2>⚠️ La pregunta incómoda</h2>
+<p>El modelo que se cayó no era imprescindible. Si 12 de 14 ya hacen trabajo excelente —y el que empató primero fue Opus 4.8, justo el modelo que Fable 5 venía a reemplazar—, depender de un único &quot;mejor modelo&quot; es un espejismo. Y caro: quien construyó todo sobre Fable 5 amaneció sin producto.</p>
+<h2>🛡️ Mi postura</h2>
+<p>La resiliencia no es tener el mejor modelo. Es no necesitar a ninguno en particular. Por eso construí MALLO, un orquestador multi-agente con fallback. Irónicamente, hasta la API de Fable 5 trae fallback incorporado.</p>
+<p>Esto no es anti-Anthropic: todo el experimento lo armé con Opus 4.8 + Claude Code. Bienvenido todo lo nuevo, siempre que no sea mi único punto de fallo.</p>
+<h2>👀 Míralo tú mismo</h2>
+<p>🌌 Galería: <a href="https://universo-arena.alexanderoviedofadul.dev" target="_blank" rel="noopener">https://universo-arena.alexanderoviedofadul.dev</a></p>
+<p>💻 Repo: <a href="https://github.com/bladealex9848/Universo-Arena" target="_blank" rel="noopener">https://github.com/bladealex9848/Universo-Arena</a></p>
+<p>¿Estás construyendo sobre un solo proveedor? Y tu cometa… ¿apunta para el lado correcto? 👇</p>
+<p class="tags">#InteligenciaArtificial #MultiAgente #LLM #LegalTech #Colombia</p>
+<div class="count" id="cc"></div>
+<div class="foot">🌌 <a href="https://universo-arena.alexanderoviedofadul.dev">universo-arena.alexanderoviedofadul.dev</a> · 💻 <a href="https://github.com/bladealex9848/Universo-Arena">github.com/bladealex9848/Universo-Arena</a></div>
+</div><script>
+const TXT="🌌 Le di el mismo reto a 14 inteligencias artificiales. Tres días después, EE. UU. apagó la mejor del mundo.\n\nEl 9 de junio Anthropic lanzó Claude Fable 5, su modelo más capaz. El 12, una directiva de control de exportaciones de EE. UU. obligó a suspenderlo para cualquier ciudadano extranjero. Como no se puede filtrar por nacionalidad en tiempo real, lo desactivaron para todo el planeta.\n\nYo soy colombiano. Soy ese \"ciudadano extranjero\". El mejor modelo del momento se volvió inaccesible en un fin de semana.\n\nY esa misma semana terminé un experimento que respondía, sin querer, a una pregunta incómoda: ¿de verdad necesitamos a Fable 5?\n\n🛰️ El experimento\nLe di el MISMO prompt exigente —una simulación 3D del Sistema Solar en BabylonJS, en un único index.html— a 14 combinaciones de modelo + agente de código. Una sola pasada cada una. Y no me quedé en leer el código: abrí las 14 en un navegador real y medí objetos, FPS y errores de consola.\n\n📊 Lo que encontré\n🔹 14/14 arrancaron. 12/14, sin un solo error de consola.\n🥇 Empate en cabeza: GPT-5.5 (Codex) y Claude Opus 4.8, 97/100.\n☄️ El bug más común: la cola del cometa apuntando hacia el Sol (signo de vector invertido).\n🧰 El mismo modelo cambia de liga según el agente: MiniMax M3 saltó de 79 a 92.\n\n⚠️ La pregunta incómoda\nEl modelo que se cayó no era imprescindible. Si 12 de 14 ya hacen trabajo excelente —y el que empató primero fue Opus 4.8, justo el modelo que Fable 5 venía a reemplazar—, depender de un único \"mejor modelo\" es un espejismo. Y caro: quien construyó todo sobre Fable 5 amaneció sin producto.\n\n🛡️ Mi postura\nLa resiliencia no es tener el mejor modelo. Es no necesitar a ninguno en particular. Por eso construí MALLO, un orquestador multi-agente con fallback. Irónicamente, hasta la API de Fable 5 trae fallback incorporado.\n\nEsto no es anti-Anthropic: todo el experimento lo armé con Opus 4.8 + Claude Code. Bienvenido todo lo nuevo, siempre que no sea mi único punto de fallo.\n\n👀 Míralo tú mismo\n🌌 Galería: https://universo-arena.alexanderoviedofadul.dev\n💻 Repo: https://github.com/bladealex9848/Universo-Arena\n\n¿Estás construyendo sobre un solo proveedor? Y tu cometa… ¿apunta para el lado correcto? 👇\n\n#InteligenciaArtificial #MultiAgente #LLM #LegalTech #Colombia";
+const n=[...TXT].length;document.getElementById('cc').textContent='📏 '+TXT.length+' caracteres (límite LinkedIn: 3.000)';
+document.getElementById('copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(TXT);const b=document.getElementById('copy');b.textContent='✅ ¡Copiado!';setTimeout(()=>b.textContent='📋 Copiar para LinkedIn',2000);}catch(e){alert('Copia manual: selecciona el texto.');}});
+</script></body></html>
