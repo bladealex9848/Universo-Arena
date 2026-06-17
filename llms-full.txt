@@ -1,6 +1,6 @@
 # Universo-Arena — contexto extendido para LLMs
 
-> Benchmark abierto y reproducible donde 14 combinaciones de LLM + agente de código
+> Benchmark abierto y reproducible donde 17 combinaciones de LLM + agente de código
 > implementan el mismo reto (simulación 3D del Sistema Solar en BabylonJS, un único
 > index.html autocontenido) y se puntúan con una rúbrica de 100 puntos, ejecución real
 > en navegador y calibración adversarial. Código abierto bajo licencia MIT.

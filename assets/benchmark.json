@@ -122,6 +122,69 @@
     "rank": 2
   },
   {
+    "folder": "Opencode-GLM-5.2",
+    "modelo": "GLM 5.2",
+    "agente": "OpenCode",
+    "color": "#2dd4bf",
+    "total": 95,
+    "tier": "S",
+    "scores": {
+      "completitudEscena": 19,
+      "fidelidadOrbital": 12,
+      "cometaHalley": 8,
+      "esteticaWow": 13,
+      "panelUI": 14,
+      "camaraControles": 8,
+      "postProcesado": 6,
+      "rendimiento": 6,
+      "robustez": 4,
+      "calidadCodigo": 5
+    },
+    "lineas": 1080,
+    "features": {
+      "sol": true,
+      "planetas8": true,
+      "plutonEnano": true,
+      "cinturonAsteroides": true,
+      "saturnoAnillos": true,
+      "halleyCola": true,
+      "colaOpuestaAlSol": true,
+      "estrellas3000": true,
+      "nebulosas": true,
+      "orbitasElipticas": true,
+      "bloomGlow": true,
+      "panelCompleto": true,
+      "vistasCamara": true,
+      "deltaTime": true,
+      "instanciasAsteroides": true,
+      "consultaContext7": false
+    },
+    "fortalezas": [
+      "Cola del cometa correcta: Vector3.Normalize estático (no muta la posición), Sol en el origen, recalculada por frame",
+      "Órbitas elípticas con el Sol en el foco (x=a·cosθ−a·e, b=a√(1−e²)); misma fórmula en la línea y el movimiento",
+      "Cinturón con createInstance reales (220 instancias comparten geometría); nada se crea en el render loop",
+      "Post-procesado completo (bloom + tone mapping + vignette + FXAA) y GlowLayer, en try/catch con degradación",
+      "Muy concisa y limpia, JSDoc en español, IIFE con 'use strict'"
+    ],
+    "debilidades": [
+      "Al ocultar el cometa, la cola no se detiene: las partículas vivas siguen ~2 s",
+      "El checkbox de bloom apaga también tone mapping y vignette, no solo el bloom",
+      "Etiquetas/atmósfera son hijas del mesh escalado: la etiqueta flota lejos en Júpiter/Saturno",
+      "Las 3000+ estrellas tardan ~1 s en llenarse por la rampa de emisión",
+      "Sin evidencia verificable de consulta a context7"
+    ],
+    "riesgo": "bajo",
+    "veredicto": "Sobresaliente y muy concisa (1080 líneas): Sol en el foco y cola del cometa opuesta al Sol con Vector3.Normalize estático (sin mutar), instancing real, post-procesado completo y código limpio. Verificada: 263 objetos, 0 errores. Nota ajustada de 99 a 95 por defectos menores.",
+    "runtime": {
+      "meshes": 263,
+      "fps": 6,
+      "consoleErrors": 0,
+      "webgl": true
+    },
+    "preview": "assets/previews/Opencode-GLM-5.2.png",
+    "rank": 3
+  },
+  {
     "folder": "Opus-4.8-Claude-Code",
     "modelo": "Claude Opus 4.8",
     "agente": "Claude Code",
@@ -181,7 +244,70 @@
       "webgl": true
     },
     "preview": "assets/previews/Opus-4.8-Claude-Code.png",
-    "rank": 3
+    "rank": 4
+  },
+  {
+    "folder": "Antigravity-Gemini-3.5-High",
+    "modelo": "Gemini 3.5 (High)",
+    "agente": "Antigravity",
+    "color": "#5b8def",
+    "total": 92,
+    "tier": "S",
+    "scores": {
+      "completitudEscena": 18,
+      "fidelidadOrbital": 12,
+      "cometaHalley": 8,
+      "esteticaWow": 11,
+      "panelUI": 15,
+      "camaraControles": 7,
+      "postProcesado": 6,
+      "rendimiento": 6,
+      "robustez": 4,
+      "calidadCodigo": 5
+    },
+    "lineas": 1533,
+    "features": {
+      "sol": true,
+      "planetas8": true,
+      "plutonEnano": true,
+      "cinturonAsteroides": true,
+      "saturnoAnillos": true,
+      "halleyCola": true,
+      "colaOpuestaAlSol": true,
+      "estrellas3000": true,
+      "nebulosas": true,
+      "orbitasElipticas": true,
+      "bloomGlow": true,
+      "panelCompleto": true,
+      "vistasCamara": true,
+      "deltaTime": true,
+      "instanciasAsteroides": true,
+      "consultaContext7": false
+    },
+    "fortalezas": [
+      "Cola del cometa correcta con normalizeToNew (sin mutar), recalculada por frame; modula tamaño según distancia al Sol",
+      "Órbitas elípticas con el Sol en el foco; misma fórmula en línea y movimiento; Kepler + inclinación axial por planeta",
+      "Asteroides con thinInstanceSetBuffer (1 malla base + 220 instancias): óptimo en rendimiento",
+      "Panel UI completo con 6 vistas de cámara y transición suave; post-pro bloom+glow+ACES en try/catch",
+      "Código modular y limpio, JSDoc en español"
+    ],
+    "debilidades": [
+      "Júpiter sin bandas horizontales (color plano), pese a pedirlo el spec",
+      "Estrellas justo en el piso de 3000 (3×1000); estética buena pero no espectacular",
+      "Anillos de Saturno como disco plano (CreateDisc), no torus",
+      "Corona del Sol depende de ParticleHelper.CreateAsync (red), con fallback; pulso del Sol por performance.now, no deltaTime",
+      "Contador de objetos aproximado; sin evidencia de consulta a context7"
+    ],
+    "riesgo": "bajo",
+    "veredicto": "Muy completa y pulida (1533 líneas): cola opuesta al Sol (normalizeToNew), elipses al foco y asteroides con thin instances, panel completo y post-pro real. Verificada: renderiza con 0 errores. Nota ajustada de 95 a 92 por Júpiter sin bandas y detalles del spec.",
+    "runtime": {
+      "meshes": 42,
+      "fps": 9,
+      "consoleErrors": 0,
+      "webgl": true
+    },
+    "preview": "assets/previews/Antigravity-Gemini-3.5-High.png",
+    "rank": 5
   },
   {
     "folder": "Minimax-M3-Claude-Code",
@@ -242,7 +368,7 @@
       "webgl": true
     },
     "preview": "assets/previews/Minimax-M3-Claude-Code.png",
-    "rank": 4
+    "rank": 6
   },
   {
     "folder": "Agy-Gemini-3.5-Flash-Antigravity-CLI",
@@ -303,7 +429,7 @@
       "webgl": true
     },
     "preview": "assets/previews/Agy-Gemini-3.5-Flash-Antigravity-CLI.png",
-    "rank": 5
+    "rank": 7
   },
   {
     "folder": "GLM-5.2-Claude-Code",
@@ -364,7 +490,70 @@
       "webgl": true
     },
     "preview": "assets/previews/GLM-5.2-Claude-Code.png",
-    "rank": 6
+    "rank": 8
+  },
+  {
+    "folder": "Zcode-GML-5.2-Max",
+    "modelo": "GLM 5.2 (Max)",
+    "agente": "Zcode",
+    "color": "#38bdf8",
+    "total": 89,
+    "tier": "A",
+    "scores": {
+      "completitudEscena": 18,
+      "fidelidadOrbital": 9,
+      "cometaHalley": 8,
+      "esteticaWow": 11,
+      "panelUI": 15,
+      "camaraControles": 7,
+      "postProcesado": 6,
+      "rendimiento": 6,
+      "robustez": 4,
+      "calidadCodigo": 5
+    },
+    "lineas": 1275,
+    "features": {
+      "sol": true,
+      "planetas8": true,
+      "plutonEnano": true,
+      "cinturonAsteroides": true,
+      "saturnoAnillos": true,
+      "halleyCola": true,
+      "colaOpuestaAlSol": true,
+      "estrellas3000": true,
+      "nebulosas": true,
+      "orbitasElipticas": true,
+      "bloomGlow": true,
+      "panelCompleto": true,
+      "vistasCamara": true,
+      "deltaTime": true,
+      "instanciasAsteroides": true,
+      "consultaContext7": false
+    },
+    "fortalezas": [
+      "Cola del cometa correcta (cometa−Sol, .subtract no muta, .clone antes de asignar), recalculada por frame",
+      "Órbitas elípticas con el Sol en el foco; misma fórmula en línea y movimiento",
+      "Asteroides con createInstance reales (220, prototipo oculto)",
+      "Panel UI con las 4 secciones completas y funcionales; post-pro + GlowLayer + ACES en try/catch",
+      "Animación basada en deltaTime en todo el loop"
+    ],
+    "debilidades": [
+      "La inclinación del plano orbital está en los datos pero se anula a y=0 en dibujo y movimiento: órbitas coplanares (incumple el spec)",
+      "El seguimiento de cámara para Tierra/Saturno está anidado bajo if(showHalley): ocultar el cometa lo congela",
+      "Vistas de cámara apuntan a mesh.position (origen local) en vez de pivot.position",
+      "Contador de objetos aproximado/hardcodeado (244 vs 262 reales)",
+      "Sin evidencia de consulta a context7"
+    ],
+    "riesgo": "bajo",
+    "veredicto": "Completa y bien estructurada (1275 líneas): cola opuesta al Sol (cometa−Sol con .clone()) y elipses al foco, con instancing real y post-pro. Verificada: 262 objetos, 0 errores. Nota ajustada de 92 a 89 porque la inclinación del plano orbital queda anulada (y=0).",
+    "runtime": {
+      "meshes": 262,
+      "fps": 6,
+      "consoleErrors": 0,
+      "webgl": true
+    },
+    "preview": "assets/previews/Zcode-GML-5.2-Max.png",
+    "rank": 9
   },
   {
     "folder": "codewhale-deepseek-v4-pro",
@@ -425,7 +614,7 @@
       "webgl": true
     },
     "preview": "assets/previews/codewhale-deepseek-v4-pro.png",
-    "rank": 7
+    "rank": 10
   },
   {
     "folder": "Claude-Sonnet-4.6-Antigravity-IDE",
@@ -486,7 +675,7 @@
       "webgl": true
     },
     "preview": "assets/previews/Claude-Sonnet-4.6-Antigravity-IDE.png",
-    "rank": 8
+    "rank": 11
   },
   {
     "folder": "Kimi-k.7-code-Claude-Code",
@@ -547,7 +736,7 @@
       "webgl": true
     },
     "preview": "assets/previews/Kimi-k.7-code-Claude-Code.png",
-    "rank": 9
+    "rank": 12
   },
   {
     "folder": "kimi-k2.7-code-Kimi-Code-CLI",
@@ -608,7 +797,7 @@
       "webgl": true
     },
     "preview": "assets/previews/kimi-k2.7-code-Kimi-Code-CLI.png",
-    "rank": 10
+    "rank": 13
   },
   {
     "folder": "mini-agent-MiniMax-M3",
@@ -669,7 +858,7 @@
       "webgl": true
     },
     "preview": "assets/previews/mini-agent-MiniMax-M3.png",
-    "rank": 11
+    "rank": 14
   },
   {
     "folder": "deepseek-v4-pro-Pi-Coding-Agent",
@@ -730,7 +919,7 @@
       "webgl": true
     },
     "preview": "assets/previews/deepseek-v4-pro-Pi-Coding-Agent.png",
-    "rank": 12
+    "rank": 15
   },
   {
     "folder": "vibe-devstral",
@@ -791,7 +980,7 @@
       "webgl": true
     },
     "preview": "assets/previews/vibe-devstral.png",
-    "rank": 13
+    "rank": 16
   },
   {
     "folder": "Zai-GLM-5.2-Claude-Code",
@@ -852,6 +1041,6 @@
       "webgl": true
     },
     "preview": "assets/previews/Zai-GLM-5.2-Claude-Code.png",
-    "rank": 14
+    "rank": 17
   }
 ]

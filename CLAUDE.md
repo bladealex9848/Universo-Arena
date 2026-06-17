@@ -56,7 +56,7 @@ Before writing BabylonJS code, **consult the official docs** (Context7 library i
 - **Verify a single sim:** `open "<folder>/index.html"` (macOS) and check the browser console.
 - **Regenerate screenshots + runtime data:** see [`docs/harness.md`](docs/harness.md) (Puppeteer + system Chrome, headless WebGL via SwiftShader). Outputs `assets/previews/*.png` and `assets/runtime.json`.
 - **After changing `benchmark.json`:** regenerate README tables + `docs/results.md`, and re-inject the JSON into the root `index.html`.
-- **Add a new entry:** follow [`docs/contributing.md`](docs/contributing.md).
+- **Add a new entry:** follow [`docs/contributing.md`](docs/contributing.md). The benchmark currently holds **17 entries**. When scoring new ones, **verify each score against the runtime** before integrating: jurors tend to run ~3-4 points generous, so re-check against the actual execution (meshes, console errors, screenshot) and do not let an un-calibrated score leapfrog the calibrated leaders. See the 2nd-batch record [`docs/segunda-tanda-2026-06-17.md`](docs/segunda-tanda-2026-06-17.md) for the procedure.
 
 ## Build / runtime
 

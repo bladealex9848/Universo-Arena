@@ -30,12 +30,30 @@
     </image:image>
   </url>
   <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/Opencode-GLM-5.2/index.html</loc>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Opencode-GLM-5.2.png</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/Opus-4.8-Claude-Code/index.html</loc>
     <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Opus-4.8-Claude-Code.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/Antigravity-Gemini-3.5-High/index.html</loc>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Antigravity-Gemini-3.5-High.png</image:loc>
     </image:image>
   </url>
   <url>
@@ -63,6 +81,15 @@
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/GLM-5.2-Claude-Code.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/Zcode-GML-5.2-Max/index.html</loc>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Zcode-GML-5.2-Max.png</image:loc>
     </image:image>
   </url>
   <url>

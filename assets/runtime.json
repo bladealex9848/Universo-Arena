@@ -142,5 +142,35 @@
     "consoleErrors": 0,
     "pageErrors": 0,
     "errorsSample": []
+  },
+  {
+    "folder": "Antigravity-Gemini-3.5-High",
+    "webgl": true,
+    "babylon": true,
+    "meshes": 42,
+    "fps": 9,
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "errorsSample": []
+  },
+  {
+    "folder": "Opencode-GLM-5.2",
+    "webgl": true,
+    "babylon": true,
+    "meshes": 263,
+    "fps": 6,
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "errorsSample": []
+  },
+  {
+    "folder": "Zcode-GML-5.2-Max",
+    "webgl": true,
+    "babylon": true,
+    "meshes": 262,
+    "fps": 6,
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "errorsSample": []
   }
 ]

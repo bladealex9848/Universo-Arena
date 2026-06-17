@@ -29,7 +29,7 @@ El mismo LLM rinde distinto según su andamiaje (planificación, consulta de doc
 |:--|:--|:--|
 | **MiniMax M3** | **92** (Claude Code) | 79 (mini-agent) |
 | **Kimi K2.7** | 80 (Claude Code) | 79 (Kimi Code CLI, con error de consola) |
-| **GLM 5.2** | 89 (Claude Code) | 54 (otra ejecución / variante) |
+| **GLM 5.2** | **95** (OpenCode) · 89 (Claude Code) · 89 (Zcode·Max) | 54 (Z.ai) |
 
 El andamiaje no es un detalle: es un **multiplicador** que puede mover una entrega un tier entero.
 
@@ -47,7 +47,7 @@ La revisión estática declaró "pantalla negra / no arranca" a `GLM-5.2-Claude-
 
 ## Conclusiones
 
-- **El listón base es altísimo:** las **14** entregas arrancan y renderizan una escena WebGL compleja (≈1.1k líneas) en una sola pasada, y **12 de 14 con cero errores de consola**.
+- **El listón base es altísimo:** las **17** entregas arrancan y renderizan una escena WebGL compleja (≈1.1k líneas) en una sola pasada, y **15 de 17 con cero errores de consola**.
 - **La frontera ya no es "¿funciona?" sino "¿acierta los detalles difíciles?":** foco orbital, signo de un vector, *instancing*, degradación elegante.
 - **El andamiaje del agente es un multiplicador**, no un detalle.
 - **Evaluar agentes exige ejecutarlos:** la revisión estática y la ejecución real discrepan, y la verdad está en el *runtime*.

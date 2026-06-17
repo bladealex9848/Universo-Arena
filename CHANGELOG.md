@@ -6,6 +6,27 @@ Todos los cambios notables de **Universo-Arena**. El formato sigue
 
 ## [Unreleased]
 
+### Añadido — Segunda tanda: 14 → 17 entradas (2026-06-17)
+
+- **3 entradas nuevas** integradas en el benchmark y la galería:
+  `Opencode-GLM-5.2` (GLM 5.2 · OpenCode, **95**, 🥉 #3), `Antigravity-Gemini-3.5-High`
+  (Gemini 3.5 High · Antigravity, **92**, #5) y `Zcode-GML-5.2-Max`
+  (GLM 5.2 Max · Zcode, **89**, #9). Las tres aciertan los puntos críticos
+  (cola opuesta al Sol, elipses al foco, *instancing*) con **0 errores de consola**.
+- **Re-ranking completo a 17 entradas** preservando el empate de cabeza (97):
+  🥇 GPT-5.5 · Codex y 🥈 Claude Opus 4.8 · Ultracode. Ahora **15/17** sin errores.
+- **Calibración verificada por *runtime***: los jurados de esta tanda puntuaban
+  ~3-4 pts generoso; tras verificación adversarial se ajustaron 99→95, 95→92, 92→89,
+  para no destronar el 97 calibrado sin re-baremar. Registro en
+  [`docs/segunda-tanda-2026-06-17.md`](docs/segunda-tanda-2026-06-17.md).
+- **Hallazgo:** **GLM 5.2** queda representado por 4 combinaciones con dispersión
+  de **41 puntos** según el agente (OpenCode 95 · Claude Code 89 · Zcode 89 · Z.ai 54):
+  el andamiaje del agente pesa tanto como el modelo base.
+- **Artefactos regenerados** desde `assets/benchmark.json`: `index.html` (17 fichas,
+  contadores dinámicos, JSON-LD/metas), `README.md`, `docs/results.md`,
+  `docs/conclusions.md`, `docs/methodology.md`, `sitemap.xml`, `llms.txt`,
+  `llms-full.txt` y 3 capturas en `assets/previews/`.
+
 ### Añadido — SEO + GEO/AEO (2026-06-15)
 
 - **Compartición social por red:** `<head>` con **Open Graph** completo
