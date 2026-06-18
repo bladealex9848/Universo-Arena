@@ -6,6 +6,26 @@ Todos los cambios notables de **Universo-Arena**. El formato sigue
 
 ## [Unreleased]
 
+### Añadido — Tercera tanda: 17 → 19 entradas (2026-06-18)
+
+- **2 entradas nuevas** integradas en el benchmark y la galería:
+  `Opencode-Minimax-M3` (MiniMax M3 · OpenCode, **95**, #4) y `Pi-DeepSeek-v4-pro`
+  (DeepSeek V4 Pro · Pi, **88**, #12). Ambas aciertan los puntos críticos
+  (cola opuesta al Sol, elipses al foco, *instancing*) con **0 errores de consola**.
+- **Re-ranking completo a 19 entradas**; se mantiene el empate de cabeza (97):
+  🥇 GPT-5.5 · Codex y 🥈 Claude Opus 4.8 · Ultracode. Ahora **17/19** sin errores.
+- **Calibración sin recortes:** los jurados se instruyeron estrictos desde el inicio
+  y sus notas (95, 88) quedaron confirmadas por la ejecución real (264 y 301 objetos),
+  sin contradicciones. Registro en
+  [`docs/tercera-tanda-2026-06-18.md`](docs/tercera-tanda-2026-06-18.md).
+- **Hallazgos:** **OpenCode** suma dos 95 (GLM 5.2 y MiniMax M3) — agente muy fuerte;
+  y `Pi-DeepSeek-v4-pro` (88) **resuelve** las trampas (cola anti-solar + foco elíptico)
+  que `deepseek-v4-pro-Pi-Coding-Agent` (78) había fallado.
+- **Artefactos regenerados** desde `assets/benchmark.json`: `index.html` (19 fichas,
+  contadores dinámicos, JSON-LD/metas), `README.md`, `docs/results.md`,
+  `docs/conclusions.md`, `docs/methodology.md`, `sitemap.xml`, `llms.txt`,
+  `llms-full.txt` y 2 capturas en `assets/previews/`.
+
 ### Añadido — Segunda tanda: 14 → 17 entradas (2026-06-17)
 
 - **3 entradas nuevas** integradas en el benchmark y la galería:

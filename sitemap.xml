@@ -39,6 +39,15 @@
     </image:image>
   </url>
   <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/Opencode-Minimax-M3/index.html</loc>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Opencode-Minimax-M3.png</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/Opus-4.8-Claude-Code/index.html</loc>
     <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
@@ -99,6 +108,15 @@
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/codewhale-deepseek-v4-pro.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/Pi-DeepSeek-v4-pro/index.html</loc>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Pi-DeepSeek-v4-pro.png</image:loc>
     </image:image>
   </url>
   <url>

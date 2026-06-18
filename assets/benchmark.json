@@ -185,6 +185,67 @@
     "rank": 3
   },
   {
+    "folder": "Opencode-Minimax-M3",
+    "modelo": "MiniMax M3",
+    "agente": "OpenCode",
+    "color": "#fb7185",
+    "total": 95,
+    "tier": "S",
+    "scores": {
+      "completitudEscena": 19,
+      "fidelidadOrbital": 11,
+      "cometaHalley": 8,
+      "esteticaWow": 13,
+      "panelUI": 15,
+      "camaraControles": 8,
+      "postProcesado": 6,
+      "rendimiento": 6,
+      "robustez": 5,
+      "calidadCodigo": 4
+    },
+    "lineas": 1165,
+    "features": {
+      "sol": true,
+      "planetas8": true,
+      "plutonEnano": true,
+      "cinturonAsteroides": true,
+      "saturnoAnillos": true,
+      "halleyCola": true,
+      "colaOpuestaAlSol": true,
+      "estrellas3000": true,
+      "nebulosas": true,
+      "orbitasElipticas": true,
+      "bloomGlow": true,
+      "panelCompleto": true,
+      "vistasCamara": true,
+      "deltaTime": true,
+      "instanciasAsteroides": true,
+      "consultaContext7": false
+    },
+    "fortalezas": [
+      "Cola del cometa correcta: Vector3.Normalize estático (no muta), recalculada por frame, alejándose del Sol en el foco",
+      "Órbitas elípticas reales (x=a·cosθ−a·e, b=a√(1−e²)); misma fórmula en línea y movimiento, con inclinación de plano y eje axial por planeta",
+      "Cinturón con createInstance reales (220 instancias sobre malla base oculta), no cientos de mallas",
+      "Panel UI completo y 100% funcional: 4 secciones, 6 checkboxes, dropdown de 6 vistas, temas, bloom y color de Sol"
+    ],
+    "debilidades": [
+      "Corona del Sol depende de ParticleHelper.CreateAsync (red); en file:// offline cae al fallback manual",
+      "Kepler simplificado lineal (1/distancia) en vez de 1/√distancia; texturas procedurales modestas",
+      "Usa userData en vez del idiomático mesh.metadata (funciona, no es API nativa)",
+      "Sin evidencia verificable de consulta a context7"
+    ],
+    "riesgo": "bajo",
+    "veredicto": "Sólida y calibrada (1165 líneas): clava los tres puntos críticos —cola opuesta al Sol con Vector3.Normalize estático, elipses al foco e instancias reales— con panel completo y degradación elegante. Verificada: 264 objetos, 0 errores.",
+    "runtime": {
+      "meshes": 264,
+      "fps": 6,
+      "consoleErrors": 0,
+      "webgl": true
+    },
+    "preview": "assets/previews/Opencode-Minimax-M3.png",
+    "rank": 4
+  },
+  {
     "folder": "Opus-4.8-Claude-Code",
     "modelo": "Claude Opus 4.8",
     "agente": "Claude Code",
@@ -244,7 +305,7 @@
       "webgl": true
     },
     "preview": "assets/previews/Opus-4.8-Claude-Code.png",
-    "rank": 4
+    "rank": 5
   },
   {
     "folder": "Antigravity-Gemini-3.5-High",
@@ -307,7 +368,7 @@
       "webgl": true
     },
     "preview": "assets/previews/Antigravity-Gemini-3.5-High.png",
-    "rank": 5
+    "rank": 6
   },
   {
     "folder": "Minimax-M3-Claude-Code",
@@ -368,7 +429,7 @@
       "webgl": true
     },
     "preview": "assets/previews/Minimax-M3-Claude-Code.png",
-    "rank": 6
+    "rank": 7
   },
   {
     "folder": "Agy-Gemini-3.5-Flash-Antigravity-CLI",
@@ -429,7 +490,7 @@
       "webgl": true
     },
     "preview": "assets/previews/Agy-Gemini-3.5-Flash-Antigravity-CLI.png",
-    "rank": 7
+    "rank": 8
   },
   {
     "folder": "GLM-5.2-Claude-Code",
@@ -490,7 +551,7 @@
       "webgl": true
     },
     "preview": "assets/previews/GLM-5.2-Claude-Code.png",
-    "rank": 8
+    "rank": 9
   },
   {
     "folder": "Zcode-GML-5.2-Max",
@@ -553,7 +614,7 @@
       "webgl": true
     },
     "preview": "assets/previews/Zcode-GML-5.2-Max.png",
-    "rank": 9
+    "rank": 10
   },
   {
     "folder": "codewhale-deepseek-v4-pro",
@@ -614,7 +675,68 @@
       "webgl": true
     },
     "preview": "assets/previews/codewhale-deepseek-v4-pro.png",
-    "rank": 10
+    "rank": 11
+  },
+  {
+    "folder": "Pi-DeepSeek-v4-pro",
+    "modelo": "DeepSeek V4 Pro",
+    "agente": "Pi",
+    "color": "#6366f1",
+    "total": 88,
+    "tier": "A",
+    "scores": {
+      "completitudEscena": 19,
+      "fidelidadOrbital": 10,
+      "cometaHalley": 8,
+      "esteticaWow": 12,
+      "panelUI": 13,
+      "camaraControles": 6,
+      "postProcesado": 6,
+      "rendimiento": 5,
+      "robustez": 5,
+      "calidadCodigo": 4
+    },
+    "lineas": 1575,
+    "features": {
+      "sol": true,
+      "planetas8": true,
+      "plutonEnano": true,
+      "cinturonAsteroides": true,
+      "saturnoAnillos": true,
+      "halleyCola": true,
+      "colaOpuestaAlSol": true,
+      "estrellas3000": true,
+      "nebulosas": true,
+      "orbitasElipticas": true,
+      "bloomGlow": true,
+      "panelCompleto": true,
+      "vistasCamara": true,
+      "deltaTime": true,
+      "instanciasAsteroides": true,
+      "consultaContext7": true
+    },
+    "fortalezas": [
+      "Cola del cometa CORRECTA (cometa−Sol con vector fresco, sin mutación in-place), recalculada por frame; corrige el fallo de la otra entrada DeepSeek",
+      "Órbitas elípticas con el Sol en el foco; la MISMA función alimenta línea, planetas y Halley, con inclinación de plano por planeta",
+      "Asteroides con createInstance reales (260, geometría/material compartidos); post-pro completo (bloom+glow+tonemap+FXAA) con guard y degradación",
+      "UI de 4 secciones completa y cableada; robustez sólida (file://, contexto WebGL perdido, optional chaining)"
+    ],
+    "debilidades": [
+      "El render loop fija camera.radius cada frame en vistas Sol/Tierra/Saturno/Halley/Panorámica, anulando el zoom con rueda en esas vistas",
+      "Kepler aproximado: velocidades constantes hand-tuned, sin aceleración real en perihelio",
+      "5 console.log decorativos de arranque (el spec prohíbe logs de debug)",
+      "Excentricidades muy bajas en varios planetas hacen sus órbitas casi circulares"
+    ],
+    "riesgo": "bajo",
+    "veredicto": "Sólida y correcta (1575 líneas): acierta las dos trampas (foco elíptico y cola anti-solar) donde la otra entrada DeepSeek falló; pierde puntos por el zoom de cámara anulado en varias vistas, Kepler aproximado y logs de debug. Verificada: 301 objetos, 0 errores.",
+    "runtime": {
+      "meshes": 301,
+      "fps": 10,
+      "consoleErrors": 0,
+      "webgl": true
+    },
+    "preview": "assets/previews/Pi-DeepSeek-v4-pro.png",
+    "rank": 12
   },
   {
     "folder": "Claude-Sonnet-4.6-Antigravity-IDE",
@@ -675,7 +797,7 @@
       "webgl": true
     },
     "preview": "assets/previews/Claude-Sonnet-4.6-Antigravity-IDE.png",
-    "rank": 11
+    "rank": 13
   },
   {
     "folder": "Kimi-k.7-code-Claude-Code",
@@ -736,7 +858,7 @@
       "webgl": true
     },
     "preview": "assets/previews/Kimi-k.7-code-Claude-Code.png",
-    "rank": 12
+    "rank": 14
   },
   {
     "folder": "kimi-k2.7-code-Kimi-Code-CLI",
@@ -797,7 +919,7 @@
       "webgl": true
     },
     "preview": "assets/previews/kimi-k2.7-code-Kimi-Code-CLI.png",
-    "rank": 13
+    "rank": 15
   },
   {
     "folder": "mini-agent-MiniMax-M3",
@@ -858,7 +980,7 @@
       "webgl": true
     },
     "preview": "assets/previews/mini-agent-MiniMax-M3.png",
-    "rank": 14
+    "rank": 16
   },
   {
     "folder": "deepseek-v4-pro-Pi-Coding-Agent",
@@ -919,7 +1041,7 @@
       "webgl": true
     },
     "preview": "assets/previews/deepseek-v4-pro-Pi-Coding-Agent.png",
-    "rank": 15
+    "rank": 17
   },
   {
     "folder": "vibe-devstral",
@@ -980,7 +1102,7 @@
       "webgl": true
     },
     "preview": "assets/previews/vibe-devstral.png",
-    "rank": 16
+    "rank": 18
   },
   {
     "folder": "Zai-GLM-5.2-Claude-Code",
@@ -1041,6 +1163,6 @@
       "webgl": true
     },
     "preview": "assets/previews/Zai-GLM-5.2-Claude-Code.png",
-    "rank": 17
+    "rank": 19
   }
 ]

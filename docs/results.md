@@ -2,7 +2,7 @@
 
 Ficha completa de cada combinación **modelo + agente**, con su desglose de rúbrica, datos de ejecución real (Chrome headless), fortalezas, debilidades y veredicto. Datos crudos en [`../assets/benchmark.json`](../assets/benchmark.json).
 
-> Orden por puntuación final (0–100). El nombre de la carpeta indica el modelo y el agente usados. 🆕 = entrada añadida en la 2.ª tanda.
+> Orden por puntuación final (0–100). El nombre de la carpeta indica el modelo y el agente usados. 🆕 = entrada de tanda posterior.
 
 
 ---
@@ -95,7 +95,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 3. GLM 5.2 · OpenCode 🆕 — **95/100** · Tier S
+## 3. GLM 5.2 · OpenCode — **95/100** · Tier S
 
 📁 [`Opencode-GLM-5.2/`](../Opencode-GLM-5.2/index.html) · 1080 líneas · runtime: **263 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -141,7 +141,51 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 4. Claude Opus 4.8 · Claude Code — **95/100** · Tier S
+## 4. MiniMax M3 · OpenCode 🆕 — **95/100** · Tier S
+
+📁 [`Opencode-Minimax-M3/`](../Opencode-Minimax-M3/index.html) · 1165 líneas · runtime: **264 objetos**, **0 errores de consola**, WebGL ✓
+
+
+> _Sólida y calibrada (1165 líneas): clava los tres puntos críticos —cola opuesta al Sol con Vector3.Normalize estático, elipses al foco e instancias reales— con panel completo y degradación elegante. Verificada: 264 objetos, 0 errores._
+
+
+**Desglose de rúbrica**
+
+| Categoría | Puntos |
+|:--|:--:|
+| Completitud de escena | 19 / 20 |
+| Fidelidad orbital | 11 / 12 |
+| Cometa Halley | 8 / 8 |
+| Estética / wow | 13 / 15 |
+| Panel UI | 15 / 15 |
+| Cámara y controles | 8 / 8 |
+| Post-procesado | 6 / 6 |
+| Rendimiento | 6 / 6 |
+| Robustez | 5 / 5 |
+| Calidad de código | 4 / 5 |
+| **Total** | **95 / 100** |
+
+
+**Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ✅ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ✅ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ❌ Consulta docs
+
+
+**Fortalezas**
+
+- Cola del cometa correcta: Vector3.Normalize estático (no muta), recalculada por frame, alejándose del Sol en el foco
+- Órbitas elípticas reales (x=a·cosθ−a·e, b=a√(1−e²)); misma fórmula en línea y movimiento, con inclinación de plano y eje axial por planeta
+- Cinturón con createInstance reales (220 instancias sobre malla base oculta), no cientos de mallas
+- Panel UI completo y 100% funcional: 4 secciones, 6 checkboxes, dropdown de 6 vistas, temas, bloom y color de Sol
+
+**Debilidades**
+
+- Corona del Sol depende de ParticleHelper.CreateAsync (red); en file:// offline cae al fallback manual
+- Kepler simplificado lineal (1/distancia) en vez de 1/√distancia; texturas procedurales modestas
+- Usa userData en vez del idiomático mesh.metadata (funciona, no es API nativa)
+- Sin evidencia verificable de consulta a context7
+
+---
+
+## 5. Claude Opus 4.8 · Claude Code — **95/100** · Tier S
 
 📁 [`Opus-4.8-Claude-Code/`](../Opus-4.8-Claude-Code/index.html) · 995 líneas · runtime: **260 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -186,7 +230,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 5. Gemini 3.5 (High) · Antigravity 🆕 — **92/100** · Tier S
+## 6. Gemini 3.5 (High) · Antigravity — **92/100** · Tier S
 
 📁 [`Antigravity-Gemini-3.5-High/`](../Antigravity-Gemini-3.5-High/index.html) · 1533 líneas · runtime: **42 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -232,7 +276,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 6. MiniMax M3 · Claude Code — **92/100** · Tier S
+## 7. MiniMax M3 · Claude Code — **92/100** · Tier S
 
 📁 [`Minimax-M3-Claude-Code/`](../Minimax-M3-Claude-Code/index.html) · 1062 líneas · runtime: **299 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -276,7 +320,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 7. Gemini 3.5 Flash · Antigravity CLI — **89/100** · Tier A
+## 8. Gemini 3.5 Flash · Antigravity CLI — **89/100** · Tier A
 
 📁 [`Agy-Gemini-3.5-Flash-Antigravity-CLI/`](../Agy-Gemini-3.5-Flash-Antigravity-CLI/index.html) · 1637 líneas · runtime: **291 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -320,7 +364,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 8. GLM 5.2 · Claude Code — **89/100** · Tier A
+## 9. GLM 5.2 · Claude Code — **89/100** · Tier A
 
 📁 [`GLM-5.2-Claude-Code/`](../GLM-5.2-Claude-Code/index.html) · 1306 líneas · runtime: **279 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -364,7 +408,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 9. GLM 5.2 (Max) · Zcode 🆕 — **89/100** · Tier A
+## 10. GLM 5.2 (Max) · Zcode — **89/100** · Tier A
 
 📁 [`Zcode-GML-5.2-Max/`](../Zcode-GML-5.2-Max/index.html) · 1275 líneas · runtime: **262 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -410,7 +454,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 10. DeepSeek V4 Pro · CodeWhale — **88/100** · Tier A
+## 11. DeepSeek V4 Pro · CodeWhale — **88/100** · Tier A
 
 📁 [`codewhale-deepseek-v4-pro/`](../codewhale-deepseek-v4-pro/index.html) · 1251 líneas · runtime: **288 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -454,7 +498,51 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 11. Claude Sonnet 4.6 · Antigravity IDE — **86/100** · Tier A
+## 12. DeepSeek V4 Pro · Pi 🆕 — **88/100** · Tier A
+
+📁 [`Pi-DeepSeek-v4-pro/`](../Pi-DeepSeek-v4-pro/index.html) · 1575 líneas · runtime: **301 objetos**, **0 errores de consola**, WebGL ✓
+
+
+> _Sólida y correcta (1575 líneas): acierta las dos trampas (foco elíptico y cola anti-solar) donde la otra entrada DeepSeek falló; pierde puntos por el zoom de cámara anulado en varias vistas, Kepler aproximado y logs de debug. Verificada: 301 objetos, 0 errores._
+
+
+**Desglose de rúbrica**
+
+| Categoría | Puntos |
+|:--|:--:|
+| Completitud de escena | 19 / 20 |
+| Fidelidad orbital | 10 / 12 |
+| Cometa Halley | 8 / 8 |
+| Estética / wow | 12 / 15 |
+| Panel UI | 13 / 15 |
+| Cámara y controles | 6 / 8 |
+| Post-procesado | 6 / 6 |
+| Rendimiento | 5 / 6 |
+| Robustez | 5 / 5 |
+| Calidad de código | 4 / 5 |
+| **Total** | **88 / 100** |
+
+
+**Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ✅ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ✅ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ✅ Consulta docs
+
+
+**Fortalezas**
+
+- Cola del cometa CORRECTA (cometa−Sol con vector fresco, sin mutación in-place), recalculada por frame; corrige el fallo de la otra entrada DeepSeek
+- Órbitas elípticas con el Sol en el foco; la MISMA función alimenta línea, planetas y Halley, con inclinación de plano por planeta
+- Asteroides con createInstance reales (260, geometría/material compartidos); post-pro completo (bloom+glow+tonemap+FXAA) con guard y degradación
+- UI de 4 secciones completa y cableada; robustez sólida (file://, contexto WebGL perdido, optional chaining)
+
+**Debilidades**
+
+- El render loop fija camera.radius cada frame en vistas Sol/Tierra/Saturno/Halley/Panorámica, anulando el zoom con rueda en esas vistas
+- Kepler aproximado: velocidades constantes hand-tuned, sin aceleración real en perihelio
+- 5 console.log decorativos de arranque (el spec prohíbe logs de debug)
+- Excentricidades muy bajas en varios planetas hacen sus órbitas casi circulares
+
+---
+
+## 13. Claude Sonnet 4.6 · Antigravity IDE — **86/100** · Tier A
 
 📁 [`Claude-Sonnet-4.6-Antigravity-IDE/`](../Claude-Sonnet-4.6-Antigravity-IDE/index.html) · 1592 líneas · runtime: **263 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -498,7 +586,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 12. Kimi K2.7 · Claude Code — **80/100** · Tier B
+## 14. Kimi K2.7 · Claude Code — **80/100** · Tier B
 
 📁 [`Kimi-k.7-code-Claude-Code/`](../Kimi-k.7-code-Claude-Code/index.html) · 696 líneas · runtime: **277 objetos**, **1 errores de consola**, WebGL ✓
 
@@ -542,7 +630,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 13. Kimi K2.7 · Kimi Code CLI — **79/100** · Tier B
+## 15. Kimi K2.7 · Kimi Code CLI — **79/100** · Tier B
 
 📁 [`kimi-k2.7-code-Kimi-Code-CLI/`](../kimi-k2.7-code-Kimi-Code-CLI/index.html) · 541 líneas · runtime: **277 objetos**, **1 errores de consola**, WebGL ✓
 
@@ -586,7 +674,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 14. MiniMax M3 · mini-agent — **79/100** · Tier B
+## 16. MiniMax M3 · mini-agent — **79/100** · Tier B
 
 📁 [`mini-agent-MiniMax-M3/`](../mini-agent-MiniMax-M3/index.html) · 1100 líneas · runtime: **260 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -630,7 +718,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 15. DeepSeek V4 Pro · Pi Coding Agent — **78/100** · Tier B
+## 17. DeepSeek V4 Pro · Pi Coding Agent — **78/100** · Tier B
 
 📁 [`deepseek-v4-pro-Pi-Coding-Agent/`](../deepseek-v4-pro-Pi-Coding-Agent/index.html) · 1276 líneas · runtime: **289 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -674,7 +762,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 16. Devstral · Vibe — **70/100** · Tier C
+## 18. Devstral · Vibe — **70/100** · Tier C
 
 📁 [`vibe-devstral/`](../vibe-devstral/index.html) · 960 líneas · runtime: **234 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -718,7 +806,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 17. Z.ai GLM 5.2 · Claude Code — **54/100** · Tier D
+## 19. Z.ai GLM 5.2 · Claude Code — **54/100** · Tier D
 
 📁 [`Zai-GLM-5.2-Claude-Code/`](../Zai-GLM-5.2-Claude-Code/index.html) · 624 líneas · runtime: **29 objetos**, **0 errores de consola**, WebGL ✓
 
