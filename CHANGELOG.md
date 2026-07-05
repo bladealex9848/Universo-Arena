@@ -6,6 +6,33 @@ Todos los cambios notables de **Universo-Arena**. El formato sigue
 
 ## [Unreleased]
 
+### Añadido — Cuarta tanda: 19 → 23 entradas (2026-07-05)
+
+- **4 entradas nuevas** integradas en el benchmark y la galería:
+  `Mimo-V2.5-Pro-MimoCode` (MiMo v2.5 Pro · MiMoCode, **95**, #6, integrada al pasar
+  de 19→20) y las tres de esta tanda —`Fable-5-Claude-Code-Ultracode`
+  (Claude Fable 5 · Ultracode + Claude Code, **95**, #7),
+  `Mimo-V2.5-Pro-Claude-Code` (MiMo v2.5 Pro · Claude Code, **90**, #10) y
+  `Mimo-V2.5-Pro-OpenCode` (MiMo v2.5 Pro · OpenCode, **89**, #14). Todas aciertan los
+  puntos críticos (cola opuesta al Sol, elipses al foco, *instancing*) con
+  **0 errores de consola**.
+- **Re-ranking completo a 23 entradas** preservando el empate de cabeza (97):
+  🥇 GPT-5.5 · Codex y 🥈 Claude Opus 4.8 · Ultracode. Ahora **21/23** sin errores y
+  **media 87** (subió de 86).
+- **Calibración estricta verificada por *runtime***: las notas (95, 90, 89) quedaron
+  confirmadas por la ejecución real (310, 260, 263 objetos; 0 errores) sin
+  contradicciones. Ninguna nota nueva alcanza el 97 calibrado. Registro en
+  [`docs/cuarta-tanda-2026-07-05.md`](docs/cuarta-tanda-2026-07-05.md).
+- **Hallazgos:** **Fable 5 · Ultracode** aporta la **mejor mecánica orbital del campo**
+  (Kepler 1ª+2ª+3ª ley por Newton-Raphson, aceleración real en perihelio), única en el
+  benchmark; no llega al 97 porque las vistas de cámara de seguimiento no hacen *zoom*.
+  Y **MiMo v2.5 Pro** queda representado por 3 agentes con dispersión de 6 puntos
+  (MiMoCode 95 · Claude Code 90 · OpenCode 89): el andamiaje decide de nuevo.
+- **Artefactos regenerados** desde `assets/benchmark.json`: `index.html` (23 fichas,
+  contadores dinámicos, JSON-LD `ItemList`/metas), `README.md`, `docs/results.md`,
+  `docs/conclusions.md`, `docs/methodology.md`, `docs/README.md`, `sitemap.xml`,
+  `llms.txt`, `llms-full.txt`, `assets/runtime.json` y 3 capturas en `assets/previews/`.
+
 ### Añadido — Tercera tanda: 17 → 19 entradas (2026-06-18)
 
 - **2 entradas nuevas** integradas en el benchmark y la galería:

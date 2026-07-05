@@ -182,4 +182,40 @@
       <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Zai-GLM-5.2-Claude-Code.png</image:loc>
     </image:image>
   </url>
+  <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/Mimo-V2.5-Pro-MimoCode/index.html</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Mimo-V2.5-Pro-MimoCode.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/Fable-5-Claude-Code-Ultracode/index.html</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Fable-5-Claude-Code-Ultracode.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/Mimo-V2.5-Pro-Claude-Code/index.html</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Mimo-V2.5-Pro-Claude-Code.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/Mimo-V2.5-Pro-OpenCode/index.html</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Mimo-V2.5-Pro-OpenCode.png</image:loc>
+    </image:image>
+  </url>
 </urlset>

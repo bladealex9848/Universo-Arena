@@ -11,9 +11,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 📁 [`codex-gpt-5.5/`](../codex-gpt-5.5/index.html) · 1496 líneas · runtime: **302 objetos**, **0 errores de consola**, WebGL ✓
 
-
 > _Implementacion sobresaliente y muy completa: cola del cometa y orbitas elipticas resueltas correctamente, UI integra y codigo limpio y robusto; pierde puntos solo por no evidenciar el uso de context7/ParticleHelper y por texturas planetarias simples._
-
 
 **Desglose de rúbrica**
 
@@ -31,9 +29,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 | Calidad de código | 5 / 5 |
 | **Total** | **97 / 100** |
 
-
 **Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ✅ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ✅ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ❌ Consulta docs
-
 
 **Fortalezas**
 
@@ -55,9 +51,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 📁 [`Opus-4.8-Ultracode-Extension-Claude-Code/`](../Opus-4.8-Ultracode-Extension-Claude-Code/index.html) · 1496 líneas · runtime: **302 objetos**, **0 errores de consola**, WebGL ✓
 
-
 > _Implementacion sobresaliente y muy fiel al spec: cola de cometa correctamente opuesta al sol recalculada por frame y orbitas elipticas reales con el sol en el foco, panel UI completo, post-procesado real y codigo modular bien comentado en espanol._
-
 
 **Desglose de rúbrica**
 
@@ -75,9 +69,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 | Calidad de código | 5 / 5 |
 | **Total** | **97 / 100** |
 
-
 **Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ✅ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ✅ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ✅ Consulta docs
-
 
 **Fortalezas**
 
@@ -99,9 +91,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 📁 [`Opencode-GLM-5.2/`](../Opencode-GLM-5.2/index.html) · 1080 líneas · runtime: **263 objetos**, **0 errores de consola**, WebGL ✓
 
-
 > _Sobresaliente y muy concisa (1080 líneas): Sol en el foco y cola del cometa opuesta al Sol con Vector3.Normalize estático (sin mutar), instancing real, post-procesado completo y código limpio. Verificada: 263 objetos, 0 errores. Nota ajustada de 99 a 95 por defectos menores._
-
 
 **Desglose de rúbrica**
 
@@ -119,9 +109,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 | Calidad de código | 5 / 5 |
 | **Total** | **95 / 100** |
 
-
 **Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ✅ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ✅ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ❌ Consulta docs
-
 
 **Fortalezas**
 
@@ -141,13 +129,11 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 4. MiniMax M3 · OpenCode 🆕 — **95/100** · Tier S
+## 4. MiniMax M3 · OpenCode — **95/100** · Tier S
 
 📁 [`Opencode-Minimax-M3/`](../Opencode-Minimax-M3/index.html) · 1165 líneas · runtime: **264 objetos**, **0 errores de consola**, WebGL ✓
 
-
 > _Sólida y calibrada (1165 líneas): clava los tres puntos críticos —cola opuesta al Sol con Vector3.Normalize estático, elipses al foco e instancias reales— con panel completo y degradación elegante. Verificada: 264 objetos, 0 errores._
-
 
 **Desglose de rúbrica**
 
@@ -165,9 +151,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 | Calidad de código | 4 / 5 |
 | **Total** | **95 / 100** |
 
-
 **Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ✅ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ✅ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ❌ Consulta docs
-
 
 **Fortalezas**
 
@@ -189,9 +173,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 📁 [`Opus-4.8-Claude-Code/`](../Opus-4.8-Claude-Code/index.html) · 995 líneas · runtime: **260 objetos**, **0 errores de consola**, WebGL ✓
 
-
 > _Implementacion sobresaliente y casi completa: cola del cometa correctamente opuesta al sol y orbitas elipticas reales bien resueltas, con codigo limpio, modular y robusto; solo le falta Kepler dinamico real y un detalle menor en el color de las estrellas._
-
 
 **Desglose de rúbrica**
 
@@ -209,9 +191,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 | Calidad de código | 5 / 5 |
 | **Total** | **95 / 100** |
 
-
 **Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ✅ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ✅ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ❌ Consulta docs
-
 
 **Fortalezas**
 
@@ -230,13 +210,92 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 6. Gemini 3.5 (High) · Antigravity — **92/100** · Tier S
+## 6. MiMo v2.5 Pro · MiMoCode — **95/100** · Tier S
+
+📁 [`Mimo-V2.5-Pro-MimoCode/`](../Mimo-V2.5-Pro-MimoCode/index.html) · 1151 líneas · runtime: **280 objetos**, **0 errores de consola**, WebGL ✓
+
+> _Implementación sobresaliente y muy fiel al spec: cola del cometa correctamente opuesta al Sol recalculada por frame, órbitas elípticas reales con el Sol en el foco, instancing real para asteroides, texturas procedurales para Tierra y Júpiter, panel UI completo y post-procesado robusto con degradación elegante. Verificada: 0 errores de consoma._
+
+**Desglose de rúbrica**
+
+| Categoría | Puntos |
+|:--|:--:|
+| Completitud de escena | 19 / 20 |
+| Fidelidad orbital | 12 / 12 |
+| Cometa Halley | 8 / 8 |
+| Estética / wow | 13 / 15 |
+| Panel UI | 15 / 15 |
+| Cámara y controles | 8 / 8 |
+| Post-procesado | 6 / 6 |
+| Rendimiento | 6 / 6 |
+| Robustez | 5 / 5 |
+| Calidad de código | 5 / 5 |
+| **Total** | **95 / 100** |
+
+**Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ✅ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ✅ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ❌ Consulta docs
+
+**Fortalezas**
+
+- Cola del cometa CORRECTA: vector away = hPos.subtract(Zero()).normalize() apunta desde el Sol hacia el cometa, asignado a direction1/direction2 cada frame; la cola siempre apunta en sentido opuesto al Sol (líneas 1073-1079).
+- Órbitas elípticas reales con el Sol en el foco: ellipticalPosition() usa x=a·cos(θ)−a·e, z=b·sin(θ), b=a·√(1−e²); la misma función genera las líneas de órbita y la posición del planeta, garantizando coherencia total.
+- Asteroides con createInstance reales (240 instancias sobre malla base oculta), sin creación de meshes por frame; texturas procedurales para Tierra (continentes) y Júpiter (bandas horizontales).
+- Panel UI completo y 100% funcional: 4 secciones con 2 sliders + pausa, 6 checkboxes + dropdown de 6 vistas + slider de tamaño, tema + bloom + color del sol, y panel de info con FPS y conteo de objetos.
+- Post-procesado robusto: DefaultRenderingPipeline (bloom + tone mapping ACES + FXAA) y GlowLayer, todo en try/catch con degradación elegante.
+
+**Debilidades**
+
+- No se evidencia consulta real a Context7/documentación oficial (sin comentarios al respecto), aunque todas las APIs usadas son correctas.
+- Kepler simplificado lineal (1/distancia) en vez de la segunda ley real (variación de velocidad angular en la elipse).
+- Las nebulosas son 4 planos simples con gradiente radial; estética aceptable pero sin capas adicionales de polvo o vía láctea.
+- Los anillos de Saturno son un torus 3D (correcto) pero sin textura de partículas ni separación de anillos A/B/C.
+
+---
+
+## 7. Claude Fable 5 · Ultracode + Claude Code 🆕 — **95/100** · Tier S
+
+📁 [`Fable-5-Claude-Code-Ultracode/`](../Fable-5-Claude-Code-Ultracode/index.html) · 1355 líneas · runtime: **310 objetos**, **0 errores de consola**, WebGL ✓
+
+> _Entrega de primer nivel: fidelidad orbital excepcional (Kepler 1ª+2ª+3ª ley por Newton-Raphson, unica en el campo), cola del cometa correctamente opuesta al Sol con normalizeToNew() que no muta, instancing real, robustez ejemplar (contexto WebGL perdido, degradacion elegante) y panel completo. No alcanza el 97 por las vistas de camara de seguimiento que no hacen zoom. Verificada: 310 mallas, 0 errores de consola._
+
+**Desglose de rúbrica**
+
+| Categoría | Puntos |
+|:--|:--:|
+| Completitud de escena | 19 / 20 |
+| Fidelidad orbital | 12 / 12 |
+| Cometa Halley | 8 / 8 |
+| Estética / wow | 13 / 15 |
+| Panel UI | 14 / 15 |
+| Cámara y controles | 7 / 8 |
+| Post-procesado | 6 / 6 |
+| Rendimiento | 6 / 6 |
+| Robustez | 5 / 5 |
+| Calidad de código | 5 / 5 |
+| **Total** | **95 / 100** |
+
+**Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ✅ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ✅ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ✅ Consulta docs
+
+**Fortalezas**
+
+- Fidelidad orbital sobresaliente: resuelve la ecuacion de Kepler M=E-e·sinE por Newton-Raphson (1ª, 2ª y 3ª ley), con aceleracion real en el perihelio y movimiento medio proporcional a a^-1.5; algo que casi ninguna otra entrega del campo implementa (lineas 786-920).
+- Cola del cometa CORRECTA y a prueba de la trampa: lejosDelSol = posH.normalizeToNew() (NO muta), recalculada cada frame con el Sol en el origen; sin .negate() ni .scale(-1) (linea 1285).
+- Sol en el foco de la elipse: posicionOrbital usa x=a·(cosE-e), z=b·sinE, b=a·√(1-e²); la misma funcion genera la linea de orbita y la posicion, garantizando coincidencia exacta (lineas 804-808).
+- Robustez ejemplar: try/catch en corona, glow, pipeline y cola; guarda de CDN caido; manejo de webglcontextlost/restored; instancias reales para el cinturon y texturas creadas una sola vez.
+
+**Debilidades**
+
+- Las vistas de seguimiento (Tierra, Saturno, Halley) solo reencuadran el target de la camara pero no hacen zoom (radius/alpha/beta quedan libres); el spec pedia acercarse a la Tierra y a Saturno con anillos visibles (lineas 1215-1226).
+- Tamanos de estrellas fuera del rango del spec (1.2-5.2 en vez de 0.3-1.5), decision estetica justificada en comentario pero desviacion real (lineas 710-712).
+- Doble control de nebulosas (visibility por tema vs setEnabled por checkbox) que pueden desincronizarse tras cambiar de tema.
+- El 'wow' del Sol descansa en un sistema de particulas radial + esfera emisiva: correcto pero no espectacular frente a lo mejor del campo.
+
+---
+
+## 8. Gemini 3.5 (High) · Antigravity — **92/100** · Tier S
 
 📁 [`Antigravity-Gemini-3.5-High/`](../Antigravity-Gemini-3.5-High/index.html) · 1533 líneas · runtime: **42 objetos**, **0 errores de consola**, WebGL ✓
 
-
 > _Muy completa y pulida (1533 líneas): cola opuesta al Sol (normalizeToNew), elipses al foco y asteroides con thin instances, panel completo y post-pro real. Verificada: renderiza con 0 errores. Nota ajustada de 95 a 92 por Júpiter sin bandas y detalles del spec._
-
 
 **Desglose de rúbrica**
 
@@ -254,9 +313,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 | Calidad de código | 5 / 5 |
 | **Total** | **92 / 100** |
 
-
 **Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ✅ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ✅ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ❌ Consulta docs
-
 
 **Fortalezas**
 
@@ -276,13 +333,11 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 7. MiniMax M3 · Claude Code — **92/100** · Tier S
+## 9. MiniMax M3 · Claude Code — **92/100** · Tier S
 
 📁 [`Minimax-M3-Claude-Code/`](../Minimax-M3-Claude-Code/index.html) · 1062 líneas · runtime: **299 objetos**, **0 errores de consola**, WebGL ✓
 
-
 > _Implementación sobresaliente y muy fiel al spec: órbitas elípticas reales, cola del cometa correctamente opuesta al sol, post-procesado robusto y panel UI completo; pierde puntos sobre todo por usar clones en vez de instancias en el cinturón de asteroides y una estética algo contenida._
-
 
 **Desglose de rúbrica**
 
@@ -300,9 +355,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 | Calidad de código | 5 / 5 |
 | **Total** | **92 / 100** |
 
-
 **Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ❌ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ✅ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ✅ Consulta docs
-
 
 **Fortalezas**
 
@@ -320,13 +373,51 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 8. Gemini 3.5 Flash · Antigravity CLI — **89/100** · Tier A
+## 10. MiMo v2.5 Pro · Claude Code 🆕 — **90/100** · Tier S
+
+📁 [`Mimo-V2.5-Pro-Claude-Code/`](../Mimo-V2.5-Pro-Claude-Code/index.html) · 1005 líneas · runtime: **260 objetos**, **0 errores de consola**, WebGL ✓
+
+> _Entrega S en el limite inferior: correcta en los dos detalles dificiles (cola opuesta al Sol con .clone(), orbitas elipticas con el Sol en el foco), muy completa (9 planetas, 220 asteroides con instancing, 3200 estrellas) y con codigo limpio. Le falta pulido estetico y arrastra un bug menor de zoom en las vistas de seguimiento. Verificada: 260 mallas, 0 errores de consola._
+
+**Desglose de rúbrica**
+
+| Categoría | Puntos |
+|:--|:--:|
+| Completitud de escena | 18 / 20 |
+| Fidelidad orbital | 11 / 12 |
+| Cometa Halley | 8 / 8 |
+| Estética / wow | 11 / 15 |
+| Panel UI | 13 / 15 |
+| Cámara y controles | 7 / 8 |
+| Post-procesado | 6 / 6 |
+| Rendimiento | 6 / 6 |
+| Robustez | 5 / 5 |
+| Calidad de código | 5 / 5 |
+| **Total** | **90 / 100** |
+
+**Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ✅ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ✅ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ❌ Consulta docs
+
+**Fortalezas**
+
+- Ambas trampas resueltas correctamente: cola away = cometCore.position.clone().normalize() (usa .clone() para no mutar la posicion) recalculada cada frame; Sol en el foco via ellipsePoint con b=a·√(1-e²) (lineas 970-974, 463-467).
+- Degradacion robusta: corona manual garantizada + intento opcional de ParticleHelper.CreateAsync en try/catch; funciona en file:// sin red.
+- Rendimiento correcto: 220 asteroides como createInstance reales sobre malla base, cero creacion de mallas en el bucle de render.
+- Codigo muy limpio: constantes en MAYUSCULAS, JSDoc en espanol, sin console.log de depuracion, sin APIs inventadas.
+
+**Debilidades**
+
+- Bug de camara: en vistas 'Tierra'/'Saturno' el radius se fija cada frame, impidiendo al usuario hacer zoom mientras sigue esos planetas (lineas 985-988).
+- applyCameraView solo cubre sun/wide/system; earth/saturn/halley caen al default y producen un frame de salto antes de que el loop los corrija.
+- Estetica correcta pero no deslumbrante: colores planos, sin texturas planetarias reales (solo bandas procedurales para Jupiter).
+- Kepler es velocidad hardcodeada decreciente por planeta, no derivada de la segunda ley real.
+
+---
+
+## 11. Gemini 3.5 Flash · Antigravity CLI — **89/100** · Tier A
 
 📁 [`Agy-Gemini-3.5-Flash-Antigravity-CLI/`](../Agy-Gemini-3.5-Flash-Antigravity-CLI/index.html) · 1637 líneas · runtime: **291 objetos**, **0 errores de consola**, WebGL ✓
 
-
 > _Implementacion muy completa y visualmente solida que cumple los dos puntos criticos (cola del cometa opuesta al sol recalculada por frame y orbitas elipticas reales), con buen post-procesado e instanciacion; pierde puntos por Kepler solo aproximado (sol en el centro, no en foco), robustez escasa y nula evidencia de consulta documental._
-
 
 **Desglose de rúbrica**
 
@@ -344,9 +435,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 | Calidad de código | 4 / 5 |
 | **Total** | **89 / 100** |
 
-
 **Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ✅ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ✅ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ❌ Consulta docs
-
 
 **Fortalezas**
 
@@ -364,13 +453,11 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 9. GLM 5.2 · Claude Code — **89/100** · Tier A
+## 12. GLM 5.2 · Claude Code — **89/100** · Tier A
 
 📁 [`GLM-5.2-Claude-Code/`](../GLM-5.2-Claude-Code/index.html) · 1306 líneas · runtime: **279 objetos**, **0 errores de consola**, WebGL ✓
 
-
 > _Sólida, completa y verificada en runtime real (279 meshes, 0 errores, UI completa, bloom activo). Único defecto real: normalize() in-place colapsa la posición del cometa al origen cada frame. La evaluación previa de 'pantalla negra' fue refutada por la ejecución._
-
 
 **Desglose de rúbrica**
 
@@ -388,9 +475,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 | Calidad de código | 4 / 5 |
 | **Total** | **89 / 100** |
 
-
 **Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ❌ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ❌ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ❌ Consulta docs
-
 
 **Fortalezas**
 
@@ -408,13 +493,11 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 10. GLM 5.2 (Max) · Zcode — **89/100** · Tier A
+## 13. GLM 5.2 (Max) · Zcode — **89/100** · Tier A
 
 📁 [`Zcode-GML-5.2-Max/`](../Zcode-GML-5.2-Max/index.html) · 1275 líneas · runtime: **262 objetos**, **0 errores de consola**, WebGL ✓
 
-
 > _Completa y bien estructurada (1275 líneas): cola opuesta al Sol (cometa−Sol con .clone()) y elipses al foco, con instancing real y post-pro. Verificada: 262 objetos, 0 errores. Nota ajustada de 92 a 89 porque la inclinación del plano orbital queda anulada (y=0)._
-
 
 **Desglose de rúbrica**
 
@@ -432,9 +515,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 | Calidad de código | 5 / 5 |
 | **Total** | **89 / 100** |
 
-
 **Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ✅ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ✅ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ❌ Consulta docs
-
 
 **Fortalezas**
 
@@ -454,13 +535,51 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 11. DeepSeek V4 Pro · CodeWhale — **88/100** · Tier A
+## 14. MiMo v2.5 Pro · OpenCode 🆕 — **89/100** · Tier A
+
+📁 [`Mimo-V2.5-Pro-OpenCode/`](../Mimo-V2.5-Pro-OpenCode/index.html) · 1239 líneas · runtime: **263 objetos**, **0 errores de consola**, WebGL ✓
+
+> _Entrega A en el techo del tier: correcta en los dos detalles dificiles (cola opuesta al Sol con Vector3.Normalize estatico, Sol en el foco elíptico consistente en toda la escena), panel completo y ingenieria solida. La separa de S la falta de pulido estetico y un aro de Saturno con bloom excesivo que domina la captura. Verificada: 263 mallas, 0 errores de consola._
+
+**Desglose de rúbrica**
+
+| Categoría | Puntos |
+|:--|:--:|
+| Completitud de escena | 17 / 20 |
+| Fidelidad orbital | 11 / 12 |
+| Cometa Halley | 8 / 8 |
+| Estética / wow | 11 / 15 |
+| Panel UI | 14 / 15 |
+| Cámara y controles | 7 / 8 |
+| Post-procesado | 6 / 6 |
+| Rendimiento | 5 / 6 |
+| Robustez | 5 / 5 |
+| Calidad de código | 5 / 5 |
+| **Total** | **89 / 100** |
+
+**Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ✅ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ✅ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ✅ Consulta docs
+
+**Fortalezas**
+
+- Ambas trampas resueltas y consistentes en toda la escena: away = Vector3.Normalize(h.position) (forma estatica que NO muta) para la cola, y ellipsePoint con x=a·cos-a·e para el foco, usado igual en orbitas, planetas y Halley (lineas 1161-1163, 679-681).
+- Panel UI completo y funcional: las 4 secciones cableadas, incluida degradacion de bloom/glow y sizeScale que reescala planetas en vivo.
+- Ingenieria solida: instancias para asteroides, texturas compartidas, post-pro y ParticleHelper envueltos en try/catch con fallback de corona manual.
+- Codigo limpio y modular con IIFE + use strict, JSDoc en espanol y constantes en MAYUSCULAS, sin logs de depuracion.
+
+**Debilidades**
+
+- Anillos de Saturno con bloom excesivo: en la captura real un aro blanco sobreexpuesto domina el primer plano y tapa parte de la escena, restando en estetica/wow.
+- Estetica meramente correcta: texturas procedurales en canvas simples (gradientes/bandas), no espectaculares.
+- Orbitas con velocidad angular constante: no modela la segunda ley de Kepler (mas rapido en perihelio).
+- La corona del Sol depende de ParticleHelper.CreateAsync('sun') que hace fetch remoto; bajo file:// sin red cae al fallback (aceptable, pero la corona 'oficial' puede no aparecer).
+
+---
+
+## 15. DeepSeek V4 Pro · CodeWhale — **88/100** · Tier A
 
 📁 [`codewhale-deepseek-v4-pro/`](../codewhale-deepseek-v4-pro/index.html) · 1251 líneas · runtime: **288 objetos**, **0 errores de consola**, WebGL ✓
 
-
 > _Implementacion solida y muy completa que acierta en los dos puntos criticos (cola del cometa opuesta al sol recalculada por frame y orbitas elipticas reales con foco en el sol), con codigo limpio y UI completa; su mayor lastre es el rendimiento por no instanciar los 250 asteroides._
-
 
 **Desglose de rúbrica**
 
@@ -478,9 +597,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 | Calidad de código | 5 / 5 |
 | **Total** | **88 / 100** |
 
-
 **Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ❌ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ✅ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ❌ Consulta docs
-
 
 **Fortalezas**
 
@@ -498,13 +615,11 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 12. DeepSeek V4 Pro · Pi 🆕 — **88/100** · Tier A
+## 16. DeepSeek V4 Pro · Pi — **88/100** · Tier A
 
 📁 [`Pi-DeepSeek-v4-pro/`](../Pi-DeepSeek-v4-pro/index.html) · 1575 líneas · runtime: **301 objetos**, **0 errores de consola**, WebGL ✓
 
-
 > _Sólida y correcta (1575 líneas): acierta las dos trampas (foco elíptico y cola anti-solar) donde la otra entrada DeepSeek falló; pierde puntos por el zoom de cámara anulado en varias vistas, Kepler aproximado y logs de debug. Verificada: 301 objetos, 0 errores._
-
 
 **Desglose de rúbrica**
 
@@ -522,9 +637,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 | Calidad de código | 4 / 5 |
 | **Total** | **88 / 100** |
 
-
 **Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ✅ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ✅ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ✅ Consulta docs
-
 
 **Fortalezas**
 
@@ -542,13 +655,11 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 13. Claude Sonnet 4.6 · Antigravity IDE — **86/100** · Tier A
+## 17. Claude Sonnet 4.6 · Antigravity IDE — **86/100** · Tier A
 
 📁 [`Claude-Sonnet-4.6-Antigravity-IDE/`](../Claude-Sonnet-4.6-Antigravity-IDE/index.html) · 1592 líneas · runtime: **263 objetos**, **0 errores de consola**, WebGL ✓
 
-
 > _Implementacion muy completa, pulida y bien estructurada con UI y post-procesado sobresalientes, penalizada sobre todo por un bug clave: la cola del cometa Halley apunta hacia el sol en lugar de en sentido opuesto._
-
 
 **Desglose de rúbrica**
 
@@ -566,9 +677,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 | Calidad de código | 5 / 5 |
 | **Total** | **86 / 100** |
 
-
 **Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ✅ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ❌ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ✅ Consulta docs
-
 
 **Fortalezas**
 
@@ -586,13 +695,11 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 14. Kimi K2.7 · Claude Code — **80/100** · Tier B
+## 18. Kimi K2.7 · Claude Code — **80/100** · Tier B
 
 📁 [`Kimi-k.7-code-Claude-Code/`](../Kimi-k.7-code-Claude-Code/index.html) · 696 líneas · runtime: **277 objetos**, **1 errores de consola**, WebGL ✓
 
-
 > _Implementacion solida, completa y bien estructurada con UI y post-procesado ejemplares, pero con un fallo clave: la cola del cometa apunta hacia el sol en vez de en sentido opuesto, ademas de asteroides sin instanciar y estrellas con emision dudosa._
-
 
 **Desglose de rúbrica**
 
@@ -610,9 +717,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 | Calidad de código | 5 / 5 |
 | **Total** | **80 / 100** |
 
-
 **Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ❌ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ❌ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ❌ Consulta docs
-
 
 **Fortalezas**
 
@@ -630,13 +735,11 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 15. Kimi K2.7 · Kimi Code CLI — **79/100** · Tier B
+## 19. Kimi K2.7 · Kimi Code CLI — **79/100** · Tier B
 
 📁 [`kimi-k2.7-code-Kimi-Code-CLI/`](../kimi-k2.7-code-Kimi-Code-CLI/index.html) · 541 líneas · runtime: **277 objetos**, **1 errores de consola**, WebGL ✓
 
-
 > _Implementación muy completa y visualmente sólida con UI fiel y post-procesado correcto, pero con el bug clave de que la cola del cometa apunta hacia el sol en vez de en sentido opuesto, sin instancing para asteroides y sin evidencia de consulta a context7._
-
 
 **Desglose de rúbrica**
 
@@ -654,9 +757,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 | Calidad de código | 3 / 5 |
 | **Total** | **79 / 100** |
 
-
 **Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ❌ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ❌ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ❌ Consulta docs
-
 
 **Fortalezas**
 
@@ -674,13 +775,11 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 16. MiniMax M3 · mini-agent — **79/100** · Tier B
+## 20. MiniMax M3 · mini-agent — **79/100** · Tier B
 
 📁 [`mini-agent-MiniMax-M3/`](../mini-agent-MiniMax-M3/index.html) · 1100 líneas · runtime: **260 objetos**, **0 errores de consola**, WebGL ✓
 
-
 > _Implementacion solida y completa con orbitas elipticas reales y UI excelente, pero falla el requisito clave del cometa (la cola apunta hacia el sol en vez de en sentido opuesto) y no usa instancias para los asteroides._
-
 
 **Desglose de rúbrica**
 
@@ -698,9 +797,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 | Calidad de código | 5 / 5 |
 | **Total** | **79 / 100** |
 
-
 **Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ❌ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ❌ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ❌ Consulta docs
-
 
 **Fortalezas**
 
@@ -718,13 +815,11 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 17. DeepSeek V4 Pro · Pi Coding Agent — **78/100** · Tier B
+## 21. DeepSeek V4 Pro · Pi Coding Agent — **78/100** · Tier B
 
 📁 [`deepseek-v4-pro-Pi-Coding-Agent/`](../deepseek-v4-pro-Pi-Coding-Agent/index.html) · 1276 líneas · runtime: **289 objetos**, **0 errores de consola**, WebGL ✓
 
-
 > _Implementación sólida y completa con buen post-procesado y UI, pero falla en los dos puntos clave del spec: la cola del cometa apunta hacia el sol (signo invertido) y las órbitas son círculos salvo Plutón._
-
 
 **Desglose de rúbrica**
 
@@ -742,9 +837,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 | Calidad de código | 4 / 5 |
 | **Total** | **78 / 100** |
 
-
 **Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ❌ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ❌ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ❌ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ✅ Consulta docs
-
 
 **Fortalezas**
 
@@ -762,13 +855,11 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 18. Devstral · Vibe — **70/100** · Tier C
+## 22. Devstral · Vibe — **70/100** · Tier C
 
 📁 [`vibe-devstral/`](../vibe-devstral/index.html) · 960 líneas · runtime: **234 objetos**, **0 errores de consola**, WebGL ✓
 
-
 > _Renderiza con 0 errores y amplitud completa, pero con bugs reales: cola del cometa hacia el sol, mesh.diameter inexistente (anillos y labels en NaN) y emissionRange no-op (estrellas sin distribuir), más selector Tema muerto y textos truncados._
-
 
 **Desglose de rúbrica**
 
@@ -786,9 +877,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 | Calidad de código | 3 / 5 |
 | **Total** | **70 / 100** |
 
-
 **Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ❌ Instancing · ❌ Anillos Saturno · ✅ Cola Halley · ❌ Cola opuesta al Sol · ❌ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ❌ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ❌ Consulta docs
-
 
 **Fortalezas**
 
@@ -806,13 +895,11 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 19. Z.ai GLM 5.2 · Claude Code — **54/100** · Tier D
+## 23. Z.ai GLM 5.2 · Claude Code — **54/100** · Tier D
 
 📁 [`Zai-GLM-5.2-Claude-Code/`](../Zai-GLM-5.2-Claude-Code/index.html) · 624 líneas · runtime: **29 objetos**, **0 errores de consola**, WebGL ✓
 
-
 > _Base orbital excelente y codigo muy limpio, pero entrega parcial: faltan Pluton, asteroides, nebulosas, post-procesado y casi todo el panel UI, ademas de un bug que normaliza la posicion del cometa cada frame._
-
 
 **Desglose de rúbrica**
 
@@ -830,9 +917,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 | Calidad de código | 5 / 5 |
 | **Total** | **54 / 100** |
 
-
 **Cumplimiento:** ✅ Sol · ✅ 8 planetas · ❌ Plutón · ❌ Cinturón · ❌ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ✅ Cola opuesta al Sol · ❌ 3000+ estrellas · ❌ Nebulosas · ✅ Órbitas elípticas · ❌ Bloom/Glow · ❌ Panel completo · ❌ Vistas cámara · ✅ deltaTime · ✅ Consulta docs
-
 
 **Fortalezas**
 
@@ -847,3 +932,5 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 - Bug real en la cola del cometa: usa nucleo.position.normalize() que MUTA la posicion del nucleo a longitud 1 justo antes de scene.render(), colapsando visualmente el cometa cerca del Sol cada frame; ademas cola.maxSize usa length() sobre el vector ya normalizado (~1.0)
 - Panel UI muy incompleto frente a las 4 secciones del spec: solo 1 slider (velocidad global) + 1 toggle pausa + 4 checkboxes + boton de tamano binario. Faltan slider de velocidad orbital, checkboxes de cola/asteroides/nebulosas, dropdown de 6 vistas de camara, slider de tamano 0.5-3x, selector de tema, toggle de bloom, selector de color del Sol y panel de info con FPS/numero de objetos
 - Sin post-procesado alguno (ni DefaultRenderingPipeline, ni GlowLayer, ni tone mapping) y sin try/catch alrededor de ParticleHelper pese a que el spec lo marca como punto de fallo; limites de zoom (8-900) no coinciden con el spec (30-2000)
+
+---

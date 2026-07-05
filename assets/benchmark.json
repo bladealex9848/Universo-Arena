@@ -308,6 +308,129 @@
     "rank": 5
   },
   {
+    "folder": "Mimo-V2.5-Pro-MimoCode",
+    "modelo": "MiMo v2.5 Pro",
+    "agente": "MiMoCode",
+    "color": "#ff6b35",
+    "total": 95,
+    "tier": "S",
+    "scores": {
+      "completitudEscena": 19,
+      "fidelidadOrbital": 12,
+      "cometaHalley": 8,
+      "esteticaWow": 13,
+      "panelUI": 15,
+      "camaraControles": 8,
+      "postProcesado": 6,
+      "rendimiento": 6,
+      "robustez": 5,
+      "calidadCodigo": 5
+    },
+    "lineas": 1151,
+    "features": {
+      "sol": true,
+      "planetas8": true,
+      "plutonEnano": true,
+      "cinturonAsteroides": true,
+      "saturnoAnillos": true,
+      "halleyCola": true,
+      "colaOpuestaAlSol": true,
+      "estrellas3000": true,
+      "nebulosas": true,
+      "orbitasElipticas": true,
+      "bloomGlow": true,
+      "panelCompleto": true,
+      "vistasCamara": true,
+      "deltaTime": true,
+      "instanciasAsteroides": true,
+      "consultaContext7": false
+    },
+    "fortalezas": [
+      "Cola del cometa CORRECTA: vector away = hPos.subtract(Zero()).normalize() apunta desde el Sol hacia el cometa, asignado a direction1/direction2 cada frame; la cola siempre apunta en sentido opuesto al Sol (líneas 1073-1079).",
+      "Órbitas elípticas reales con el Sol en el foco: ellipticalPosition() usa x=a·cos(θ)−a·e, z=b·sin(θ), b=a·√(1−e²); la misma función genera las líneas de órbita y la posición del planeta, garantizando coherencia total.",
+      "Asteroides con createInstance reales (240 instancias sobre malla base oculta), sin creación de meshes por frame; texturas procedurales para Tierra (continentes) y Júpiter (bandas horizontales).",
+      "Panel UI completo y 100% funcional: 4 secciones con 2 sliders + pausa, 6 checkboxes + dropdown de 6 vistas + slider de tamaño, tema + bloom + color del sol, y panel de info con FPS y conteo de objetos.",
+      "Post-procesado robusto: DefaultRenderingPipeline (bloom + tone mapping ACES + FXAA) y GlowLayer, todo en try/catch con degradación elegante."
+    ],
+    "debilidades": [
+      "No se evidencia consulta real a Context7/documentación oficial (sin comentarios al respecto), aunque todas las APIs usadas son correctas.",
+      "Kepler simplificado lineal (1/distancia) en vez de la segunda ley real (variación de velocidad angular en la elipse).",
+      "Las nebulosas son 4 planos simples con gradiente radial; estética aceptable pero sin capas adicionales de polvo o vía láctea.",
+      "Los anillos de Saturno son un torus 3D (correcto) pero sin textura de partículas ni separación de anillos A/B/C."
+    ],
+    "riesgo": "bajo",
+    "veredicto": "Implementación sobresaliente y muy fiel al spec: cola del cometa correctamente opuesta al Sol recalculada por frame, órbitas elípticas reales con el Sol en el foco, instancing real para asteroides, texturas procedurales para Tierra y Júpiter, panel UI completo y post-procesado robusto con degradación elegante. Verificada: 0 errores de consoma.",
+    "runtime": {
+      "meshes": 280,
+      "fps": 8,
+      "consoleErrors": 0,
+      "webgl": true
+    },
+    "preview": "assets/previews/Mimo-V2.5-Pro-MimoCode.png",
+    "rank": 6
+  },
+  {
+    "folder": "Fable-5-Claude-Code-Ultracode",
+    "modelo": "Claude Fable 5",
+    "agente": "Ultracode + Claude Code",
+    "color": "#cc785c",
+    "total": 95,
+    "tier": "S",
+    "scores": {
+      "completitudEscena": 19,
+      "fidelidadOrbital": 12,
+      "cometaHalley": 8,
+      "esteticaWow": 13,
+      "panelUI": 14,
+      "camaraControles": 7,
+      "postProcesado": 6,
+      "rendimiento": 6,
+      "robustez": 5,
+      "calidadCodigo": 5
+    },
+    "lineas": 1355,
+    "features": {
+      "sol": true,
+      "planetas8": true,
+      "plutonEnano": true,
+      "cinturonAsteroides": true,
+      "saturnoAnillos": true,
+      "halleyCola": true,
+      "colaOpuestaAlSol": true,
+      "estrellas3000": true,
+      "nebulosas": true,
+      "orbitasElipticas": true,
+      "bloomGlow": true,
+      "panelCompleto": true,
+      "vistasCamara": true,
+      "deltaTime": true,
+      "instanciasAsteroides": true,
+      "consultaContext7": true
+    },
+    "fortalezas": [
+      "Fidelidad orbital sobresaliente: resuelve la ecuacion de Kepler M=E-e·sinE por Newton-Raphson (1ª, 2ª y 3ª ley), con aceleracion real en el perihelio y movimiento medio proporcional a a^-1.5; algo que casi ninguna otra entrega del campo implementa (lineas 786-920).",
+      "Cola del cometa CORRECTA y a prueba de la trampa: lejosDelSol = posH.normalizeToNew() (NO muta), recalculada cada frame con el Sol en el origen; sin .negate() ni .scale(-1) (linea 1285).",
+      "Sol en el foco de la elipse: posicionOrbital usa x=a·(cosE-e), z=b·sinE, b=a·√(1-e²); la misma funcion genera la linea de orbita y la posicion, garantizando coincidencia exacta (lineas 804-808).",
+      "Robustez ejemplar: try/catch en corona, glow, pipeline y cola; guarda de CDN caido; manejo de webglcontextlost/restored; instancias reales para el cinturon y texturas creadas una sola vez."
+    ],
+    "debilidades": [
+      "Las vistas de seguimiento (Tierra, Saturno, Halley) solo reencuadran el target de la camara pero no hacen zoom (radius/alpha/beta quedan libres); el spec pedia acercarse a la Tierra y a Saturno con anillos visibles (lineas 1215-1226).",
+      "Tamanos de estrellas fuera del rango del spec (1.2-5.2 en vez de 0.3-1.5), decision estetica justificada en comentario pero desviacion real (lineas 710-712).",
+      "Doble control de nebulosas (visibility por tema vs setEnabled por checkbox) que pueden desincronizarse tras cambiar de tema.",
+      "El 'wow' del Sol descansa en un sistema de particulas radial + esfera emisiva: correcto pero no espectacular frente a lo mejor del campo."
+    ],
+    "riesgo": "bajo",
+    "veredicto": "Entrega de primer nivel: fidelidad orbital excepcional (Kepler 1ª+2ª+3ª ley por Newton-Raphson, unica en el campo), cola del cometa correctamente opuesta al Sol con normalizeToNew() que no muta, instancing real, robustez ejemplar (contexto WebGL perdido, degradacion elegante) y panel completo. No alcanza el 97 por las vistas de camara de seguimiento que no hacen zoom. Verificada: 310 mallas, 0 errores de consola.",
+    "runtime": {
+      "meshes": 310,
+      "fps": 4,
+      "consoleErrors": 0,
+      "webgl": true
+    },
+    "preview": "assets/previews/Fable-5-Claude-Code-Ultracode.png",
+    "rank": 7
+  },
+  {
     "folder": "Antigravity-Gemini-3.5-High",
     "modelo": "Gemini 3.5 (High)",
     "agente": "Antigravity",
@@ -368,7 +491,7 @@
       "webgl": true
     },
     "preview": "assets/previews/Antigravity-Gemini-3.5-High.png",
-    "rank": 6
+    "rank": 8
   },
   {
     "folder": "Minimax-M3-Claude-Code",
@@ -429,7 +552,68 @@
       "webgl": true
     },
     "preview": "assets/previews/Minimax-M3-Claude-Code.png",
-    "rank": 7
+    "rank": 9
+  },
+  {
+    "folder": "Mimo-V2.5-Pro-Claude-Code",
+    "modelo": "MiMo v2.5 Pro",
+    "agente": "Claude Code",
+    "color": "#ff9838",
+    "total": 90,
+    "tier": "S",
+    "scores": {
+      "completitudEscena": 18,
+      "fidelidadOrbital": 11,
+      "cometaHalley": 8,
+      "esteticaWow": 11,
+      "panelUI": 13,
+      "camaraControles": 7,
+      "postProcesado": 6,
+      "rendimiento": 6,
+      "robustez": 5,
+      "calidadCodigo": 5
+    },
+    "lineas": 1005,
+    "features": {
+      "sol": true,
+      "planetas8": true,
+      "plutonEnano": true,
+      "cinturonAsteroides": true,
+      "saturnoAnillos": true,
+      "halleyCola": true,
+      "colaOpuestaAlSol": true,
+      "estrellas3000": true,
+      "nebulosas": true,
+      "orbitasElipticas": true,
+      "bloomGlow": true,
+      "panelCompleto": true,
+      "vistasCamara": true,
+      "deltaTime": true,
+      "instanciasAsteroides": true,
+      "consultaContext7": false
+    },
+    "fortalezas": [
+      "Ambas trampas resueltas correctamente: cola away = cometCore.position.clone().normalize() (usa .clone() para no mutar la posicion) recalculada cada frame; Sol en el foco via ellipsePoint con b=a·√(1-e²) (lineas 970-974, 463-467).",
+      "Degradacion robusta: corona manual garantizada + intento opcional de ParticleHelper.CreateAsync en try/catch; funciona en file:// sin red.",
+      "Rendimiento correcto: 220 asteroides como createInstance reales sobre malla base, cero creacion de mallas en el bucle de render.",
+      "Codigo muy limpio: constantes en MAYUSCULAS, JSDoc en espanol, sin console.log de depuracion, sin APIs inventadas."
+    ],
+    "debilidades": [
+      "Bug de camara: en vistas 'Tierra'/'Saturno' el radius se fija cada frame, impidiendo al usuario hacer zoom mientras sigue esos planetas (lineas 985-988).",
+      "applyCameraView solo cubre sun/wide/system; earth/saturn/halley caen al default y producen un frame de salto antes de que el loop los corrija.",
+      "Estetica correcta pero no deslumbrante: colores planos, sin texturas planetarias reales (solo bandas procedurales para Jupiter).",
+      "Kepler es velocidad hardcodeada decreciente por planeta, no derivada de la segunda ley real."
+    ],
+    "riesgo": "bajo",
+    "veredicto": "Entrega S en el limite inferior: correcta en los dos detalles dificiles (cola opuesta al Sol con .clone(), orbitas elipticas con el Sol en el foco), muy completa (9 planetas, 220 asteroides con instancing, 3200 estrellas) y con codigo limpio. Le falta pulido estetico y arrastra un bug menor de zoom en las vistas de seguimiento. Verificada: 260 mallas, 0 errores de consola.",
+    "runtime": {
+      "meshes": 260,
+      "fps": 4,
+      "consoleErrors": 0,
+      "webgl": true
+    },
+    "preview": "assets/previews/Mimo-V2.5-Pro-Claude-Code.png",
+    "rank": 10
   },
   {
     "folder": "Agy-Gemini-3.5-Flash-Antigravity-CLI",
@@ -490,7 +674,7 @@
       "webgl": true
     },
     "preview": "assets/previews/Agy-Gemini-3.5-Flash-Antigravity-CLI.png",
-    "rank": 8
+    "rank": 11
   },
   {
     "folder": "GLM-5.2-Claude-Code",
@@ -551,7 +735,7 @@
       "webgl": true
     },
     "preview": "assets/previews/GLM-5.2-Claude-Code.png",
-    "rank": 9
+    "rank": 12
   },
   {
     "folder": "Zcode-GML-5.2-Max",
@@ -614,7 +798,68 @@
       "webgl": true
     },
     "preview": "assets/previews/Zcode-GML-5.2-Max.png",
-    "rank": 10
+    "rank": 13
+  },
+  {
+    "folder": "Mimo-V2.5-Pro-OpenCode",
+    "modelo": "MiMo v2.5 Pro",
+    "agente": "OpenCode",
+    "color": "#ffb454",
+    "total": 89,
+    "tier": "A",
+    "scores": {
+      "completitudEscena": 17,
+      "fidelidadOrbital": 11,
+      "cometaHalley": 8,
+      "esteticaWow": 11,
+      "panelUI": 14,
+      "camaraControles": 7,
+      "postProcesado": 6,
+      "rendimiento": 5,
+      "robustez": 5,
+      "calidadCodigo": 5
+    },
+    "lineas": 1239,
+    "features": {
+      "sol": true,
+      "planetas8": true,
+      "plutonEnano": true,
+      "cinturonAsteroides": true,
+      "saturnoAnillos": true,
+      "halleyCola": true,
+      "colaOpuestaAlSol": true,
+      "estrellas3000": true,
+      "nebulosas": true,
+      "orbitasElipticas": true,
+      "bloomGlow": true,
+      "panelCompleto": true,
+      "vistasCamara": true,
+      "deltaTime": true,
+      "instanciasAsteroides": true,
+      "consultaContext7": true
+    },
+    "fortalezas": [
+      "Ambas trampas resueltas y consistentes en toda la escena: away = Vector3.Normalize(h.position) (forma estatica que NO muta) para la cola, y ellipsePoint con x=a·cos-a·e para el foco, usado igual en orbitas, planetas y Halley (lineas 1161-1163, 679-681).",
+      "Panel UI completo y funcional: las 4 secciones cableadas, incluida degradacion de bloom/glow y sizeScale que reescala planetas en vivo.",
+      "Ingenieria solida: instancias para asteroides, texturas compartidas, post-pro y ParticleHelper envueltos en try/catch con fallback de corona manual.",
+      "Codigo limpio y modular con IIFE + use strict, JSDoc en espanol y constantes en MAYUSCULAS, sin logs de depuracion."
+    ],
+    "debilidades": [
+      "Anillos de Saturno con bloom excesivo: en la captura real un aro blanco sobreexpuesto domina el primer plano y tapa parte de la escena, restando en estetica/wow.",
+      "Estetica meramente correcta: texturas procedurales en canvas simples (gradientes/bandas), no espectaculares.",
+      "Orbitas con velocidad angular constante: no modela la segunda ley de Kepler (mas rapido en perihelio).",
+      "La corona del Sol depende de ParticleHelper.CreateAsync('sun') que hace fetch remoto; bajo file:// sin red cae al fallback (aceptable, pero la corona 'oficial' puede no aparecer)."
+    ],
+    "riesgo": "bajo",
+    "veredicto": "Entrega A en el techo del tier: correcta en los dos detalles dificiles (cola opuesta al Sol con Vector3.Normalize estatico, Sol en el foco elíptico consistente en toda la escena), panel completo y ingenieria solida. La separa de S la falta de pulido estetico y un aro de Saturno con bloom excesivo que domina la captura. Verificada: 263 mallas, 0 errores de consola.",
+    "runtime": {
+      "meshes": 263,
+      "fps": 4,
+      "consoleErrors": 0,
+      "webgl": true
+    },
+    "preview": "assets/previews/Mimo-V2.5-Pro-OpenCode.png",
+    "rank": 14
   },
   {
     "folder": "codewhale-deepseek-v4-pro",
@@ -675,7 +920,7 @@
       "webgl": true
     },
     "preview": "assets/previews/codewhale-deepseek-v4-pro.png",
-    "rank": 11
+    "rank": 15
   },
   {
     "folder": "Pi-DeepSeek-v4-pro",
@@ -736,7 +981,7 @@
       "webgl": true
     },
     "preview": "assets/previews/Pi-DeepSeek-v4-pro.png",
-    "rank": 12
+    "rank": 16
   },
   {
     "folder": "Claude-Sonnet-4.6-Antigravity-IDE",
@@ -797,7 +1042,7 @@
       "webgl": true
     },
     "preview": "assets/previews/Claude-Sonnet-4.6-Antigravity-IDE.png",
-    "rank": 13
+    "rank": 17
   },
   {
     "folder": "Kimi-k.7-code-Claude-Code",
@@ -858,7 +1103,7 @@
       "webgl": true
     },
     "preview": "assets/previews/Kimi-k.7-code-Claude-Code.png",
-    "rank": 14
+    "rank": 18
   },
   {
     "folder": "kimi-k2.7-code-Kimi-Code-CLI",
@@ -919,7 +1164,7 @@
       "webgl": true
     },
     "preview": "assets/previews/kimi-k2.7-code-Kimi-Code-CLI.png",
-    "rank": 15
+    "rank": 19
   },
   {
     "folder": "mini-agent-MiniMax-M3",
@@ -980,7 +1225,7 @@
       "webgl": true
     },
     "preview": "assets/previews/mini-agent-MiniMax-M3.png",
-    "rank": 16
+    "rank": 20
   },
   {
     "folder": "deepseek-v4-pro-Pi-Coding-Agent",
@@ -1041,7 +1286,7 @@
       "webgl": true
     },
     "preview": "assets/previews/deepseek-v4-pro-Pi-Coding-Agent.png",
-    "rank": 17
+    "rank": 21
   },
   {
     "folder": "vibe-devstral",
@@ -1102,7 +1347,7 @@
       "webgl": true
     },
     "preview": "assets/previews/vibe-devstral.png",
-    "rank": 18
+    "rank": 22
   },
   {
     "folder": "Zai-GLM-5.2-Claude-Code",
@@ -1163,6 +1408,6 @@
       "webgl": true
     },
     "preview": "assets/previews/Zai-GLM-5.2-Claude-Code.png",
-    "rank": 19
+    "rank": 23
   }
 ]

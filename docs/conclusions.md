@@ -19,7 +19,7 @@ Una elipse con el Sol centrado es trivial y *parece* correcta. Ponerlo en el **f
 
 ### Instancing — la trampa de rendimiento
 
-El cinturón de 200–260 asteroides es un caso de libro para `createInstance`/*thin instances*. Solo **GPT-5.5, los dos Opus 4.8 y Gemini** lo hicieron bien; el resto creó cientos de mallas y materiales independientes (cientos de *draw calls*), lo que explica los FPS bajos en la captura.
+El cinturón de 200–260 asteroides es un caso de libro para `createInstance`/*thin instances*. Lo hicieron bien **GPT-5.5, los dos Opus 4.8, Gemini, las entradas OpenCode/Antigravity/Zcode y las de MiMo/Fable**; buena parte del resto creó cientos de mallas y materiales independientes (cientos de *draw calls*), lo que explica los FPS bajos en la captura.
 
 ## El agente importa tanto como el modelo
 
@@ -27,7 +27,8 @@ El mismo LLM rinde distinto según su andamiaje (planificación, consulta de doc
 
 | Modelo | Con un agente | Con otro |
 |:--|:--|:--|
-| **MiniMax M3** | **92** (Claude Code) | 79 (mini-agent) |
+| **MiniMax M3** | **95** (OpenCode) · 92 (Claude Code) | 79 (mini-agent) |
+| **MiMo v2.5 Pro** | **95** (MiMoCode) · 90 (Claude Code) | 89 (OpenCode) |
 | **Kimi K2.7** | 80 (Claude Code) | 79 (Kimi Code CLI, con error de consola) |
 | **GLM 5.2** | **95** (OpenCode) · 89 (Claude Code) · 89 (Zcode·Max) | 54 (Z.ai) |
 
@@ -39,7 +40,7 @@ Las entregas que ignoraron la consulta de documentación tendieron a **inventar 
 
 ## Profundidad vs. amplitud
 
-La mejor mecánica orbital del benchmark — **Z.ai GLM 5.2**, con Kepler real resuelto por Newton-Raphson — se quedó en el **tier D** por **entregar una escena incompleta** (sin Plutón, sin asteroides, sin nebulosas, sin post-procesado, panel mínimo: 29 objetos en escena). Resolver lo difícil no compensa dejar lo fácil a medias.
+**Z.ai GLM 5.2** resolvió Kepler real por Newton-Raphson pero se quedó en el **tier D** por **entregar una escena incompleta** (sin Plutón, sin asteroides, sin nebulosas, sin post-procesado, panel mínimo: 29 objetos en escena). Resolver lo difícil no compensa dejar lo fácil a medias. El contraste lo pone **Fable 5 · Ultracode** (tier S, 95): también resuelve Kepler 1ª+2ª+3ª ley por Newton-Raphson —la mejor mecánica orbital del campo— pero **sin sacrificar la escena** (310 objetos, todo el spec cubierto). La profundidad y la amplitud no son excluyentes; separarlas fue una decisión, no una limitación.
 
 ## El caso GLM-5.2: cuando el juez-LLM alucina
 
@@ -47,7 +48,7 @@ La revisión estática declaró "pantalla negra / no arranca" a `GLM-5.2-Claude-
 
 ## Conclusiones
 
-- **El listón base es altísimo:** las **19** entregas arrancan y renderizan una escena WebGL compleja (≈1.1k líneas) en una sola pasada, y **17 de 19 con cero errores de consola**.
+- **El listón base es altísimo:** las **23** entregas arrancan y renderizan una escena WebGL compleja (≈1.1k líneas) en una sola pasada, y **21 de 23 con cero errores de consola**.
 - **La frontera ya no es "¿funciona?" sino "¿acierta los detalles difíciles?":** foco orbital, signo de un vector, *instancing*, degradación elegante.
 - **El andamiaje del agente es un multiplicador**, no un detalle.
 - **Evaluar agentes exige ejecutarlos:** la revisión estática y la ejecución real discrepan, y la verdad está en el *runtime*.
