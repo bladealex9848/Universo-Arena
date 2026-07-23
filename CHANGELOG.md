@@ -6,6 +6,25 @@ Todos los cambios notables de **Universo-Arena**. El formato sigue
 
 ## [Unreleased]
 
+### Añadido — Quinta tanda: 23 → 25 entradas (2026-07-23)
+
+- **2 entradas nuevas** integradas en el benchmark y la galería:
+  `Antigravity-Gemini-3.6-Flash-High` (Gemini 3.6 Flash (High) · Antigravity, **89**, #15)
+  y `Agy-Gemini-3.6-Flash-Antigravity-CLI` (Gemini 3.6 Flash · Antigravity CLI, **85**, #19).
+  Ambas aciertan los puntos críticos (cola opuesta al Sol sin mutación, elipses con el
+  Sol en el foco) con **0 errores de consola** (259 y 320 objetos en escena).
+- **Hallazgo:** Gemini 3.6 Flash **no supera a Gemini 3.5** con el mismo agente
+  (Antigravity 92→89, Antigravity CLI 89→85). El detalle en
+  [`docs/quinta-tanda-2026-07-23.md`](docs/quinta-tanda-2026-07-23.md).
+- **Higiene:** regenerado el preview faltante de `Mimo-V2.5-Pro-MimoCode` (#6), cuyo PNG
+  nunca se había commiteado; su nota y datos no cambian.
+- **Re-ranking completo a 25 entradas** preservando el empate de cabeza (97):
+  🥇 GPT-5.5 · Codex y 🥈 Claude Opus 4.8 · Ultracode. Ahora **23/25** sin errores.
+- Regenerados todos los artefactos derivados de `assets/benchmark.json`: galería
+  `index.html` (DATA, contadores, JSON-LD `ItemList` de 25, metas), `README.md`
+  (tablas + badges), `docs/results.md`, `docs/conclusions.md`, `docs/methodology.md`,
+  `sitemap.xml`, `llms.txt` y `llms-full.txt`.
+
 ### Añadido — Cuarta tanda: 19 → 23 entradas (2026-07-05)
 
 - **4 entradas nuevas** integradas en el benchmark y la galería:

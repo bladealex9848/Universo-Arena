@@ -218,4 +218,22 @@
       <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Mimo-V2.5-Pro-OpenCode.png</image:loc>
     </image:image>
   </url>
+  <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/Antigravity-Gemini-3.6-Flash-High/index.html</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Antigravity-Gemini-3.6-Flash-High.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/Agy-Gemini-3.6-Flash-Antigravity-CLI/index.html</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Agy-Gemini-3.6-Flash-Antigravity-CLI.png</image:loc>
+    </image:image>
+  </url>
 </urlset>

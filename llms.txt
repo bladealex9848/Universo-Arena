@@ -1,6 +1,6 @@
 # Universo-Arena
 
-> Benchmark abierto y reproducible: 23 combinaciones de **LLM + agente de código** implementan el *mismo* reto —una simulación 3D del Sistema Solar en BabylonJS, como un único `index.html` autocontenido— y se puntúan y rankean. Licencia MIT.
+> Benchmark abierto y reproducible: 25 combinaciones de **LLM + agente de código** implementan el *mismo* reto —una simulación 3D del Sistema Solar en BabylonJS, como un único `index.html` autocontenido— y se puntúan y rankean. Licencia MIT.
 
 Sitio: https://universo-arena.alexanderoviedofadul.dev/
 Repositorio: https://github.com/bladealex9848/Universo-Arena
@@ -34,18 +34,20 @@ Las dos trampas de correctitud que más discriminan el ranking:
 12. 89/100 (tier A) — GLM 5.2 · Claude Code — https://universo-arena.alexanderoviedofadul.dev/GLM-5.2-Claude-Code/index.html
 13. 89/100 (tier A) — GLM 5.2 (Max) · Zcode — https://universo-arena.alexanderoviedofadul.dev/Zcode-GML-5.2-Max/index.html
 14. 89/100 (tier A) — MiMo v2.5 Pro · OpenCode — https://universo-arena.alexanderoviedofadul.dev/Mimo-V2.5-Pro-OpenCode/index.html
-15. 88/100 (tier A) — DeepSeek V4 Pro · CodeWhale — https://universo-arena.alexanderoviedofadul.dev/codewhale-deepseek-v4-pro/index.html
-16. 88/100 (tier A) — DeepSeek V4 Pro · Pi — https://universo-arena.alexanderoviedofadul.dev/Pi-DeepSeek-v4-pro/index.html
-17. 86/100 (tier A) — Claude Sonnet 4.6 · Antigravity IDE — https://universo-arena.alexanderoviedofadul.dev/Claude-Sonnet-4.6-Antigravity-IDE/index.html
-18. 80/100 (tier B) — Kimi K2.7 · Claude Code — https://universo-arena.alexanderoviedofadul.dev/Kimi-k.7-code-Claude-Code/index.html
-19. 79/100 (tier B) — Kimi K2.7 · Kimi Code CLI — https://universo-arena.alexanderoviedofadul.dev/kimi-k2.7-code-Kimi-Code-CLI/index.html
-20. 79/100 (tier B) — MiniMax M3 · mini-agent — https://universo-arena.alexanderoviedofadul.dev/mini-agent-MiniMax-M3/index.html
-21. 78/100 (tier B) — DeepSeek V4 Pro · Pi Coding Agent — https://universo-arena.alexanderoviedofadul.dev/deepseek-v4-pro-Pi-Coding-Agent/index.html
-22. 70/100 (tier C) — Devstral · Vibe — https://universo-arena.alexanderoviedofadul.dev/vibe-devstral/index.html
-23. 54/100 (tier D) — Z.ai GLM 5.2 · Claude Code — https://universo-arena.alexanderoviedofadul.dev/Zai-GLM-5.2-Claude-Code/index.html
+15. 89/100 (tier A) — Gemini 3.6 Flash (High) · Antigravity — https://universo-arena.alexanderoviedofadul.dev/Antigravity-Gemini-3.6-Flash-High/index.html
+16. 88/100 (tier A) — DeepSeek V4 Pro · CodeWhale — https://universo-arena.alexanderoviedofadul.dev/codewhale-deepseek-v4-pro/index.html
+17. 88/100 (tier A) — DeepSeek V4 Pro · Pi — https://universo-arena.alexanderoviedofadul.dev/Pi-DeepSeek-v4-pro/index.html
+18. 86/100 (tier A) — Claude Sonnet 4.6 · Antigravity IDE — https://universo-arena.alexanderoviedofadul.dev/Claude-Sonnet-4.6-Antigravity-IDE/index.html
+19. 85/100 (tier A) — Gemini 3.6 Flash · Antigravity CLI — https://universo-arena.alexanderoviedofadul.dev/Agy-Gemini-3.6-Flash-Antigravity-CLI/index.html
+20. 80/100 (tier B) — Kimi K2.7 · Claude Code — https://universo-arena.alexanderoviedofadul.dev/Kimi-k.7-code-Claude-Code/index.html
+21. 79/100 (tier B) — Kimi K2.7 · Kimi Code CLI — https://universo-arena.alexanderoviedofadul.dev/kimi-k2.7-code-Kimi-Code-CLI/index.html
+22. 79/100 (tier B) — MiniMax M3 · mini-agent — https://universo-arena.alexanderoviedofadul.dev/mini-agent-MiniMax-M3/index.html
+23. 78/100 (tier B) — DeepSeek V4 Pro · Pi Coding Agent — https://universo-arena.alexanderoviedofadul.dev/deepseek-v4-pro-Pi-Coding-Agent/index.html
+24. 70/100 (tier C) — Devstral · Vibe — https://universo-arena.alexanderoviedofadul.dev/vibe-devstral/index.html
+25. 54/100 (tier D) — Z.ai GLM 5.2 · Claude Code — https://universo-arena.alexanderoviedofadul.dev/Zai-GLM-5.2-Claude-Code/index.html
 
 GPT-5.5 · Codex y Claude Opus 4.8 · Ultracode empatan en cabeza con 97/100.
-23/23 entregas arrancan y renderizan; 21/23 sin un solo error de consola.
+25/25 entregas arrancan y renderizan; 23/25 sin un solo error de consola.
 
 ## Datos y documentación
 
