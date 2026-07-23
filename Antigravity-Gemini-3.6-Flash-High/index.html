@@ -640,6 +640,7 @@
     function makeLabelTexture(text) {
       const texSize = 256;
       const dt = new BABYLON.DynamicTexture("LabelTex_" + text, { width: texSize, height: 64 }, scene, true);
+      dt.hasAlpha = true;
       const ctx = dt.getContext();
       ctx.clearRect(0, 0, texSize, 64);
       
@@ -648,7 +649,11 @@
       ctx.strokeStyle = "rgba(120, 160, 255, 0.5)";
       ctx.lineWidth = 2;
       ctx.beginPath();
-      ctx.roundRect(10, 8, texSize - 20, 48, 12);
+      if (ctx.roundRect) {
+        ctx.roundRect(10, 8, texSize - 20, 48, 12);
+      } else {
+        ctx.rect(10, 8, texSize - 20, 48);
+      }
       ctx.fill();
       ctx.stroke();
 
@@ -666,13 +671,14 @@
     function makeFlareTexture(colorHex) {
       const size = 128;
       const dt = new BABYLON.DynamicTexture("flareTex_" + colorHex, size, scene, false);
+      dt.hasAlpha = true;
       const ctx = dt.getContext();
       ctx.clearRect(0, 0, size, size);
 
       const grad = ctx.createRadialGradient(size/2, size/2, 0, size/2, size/2, size/2);
       grad.addColorStop(0, colorHex);
-      grad.addColorStop(0.3, colorHex.replace('1.0)', '0.5)'));
-      grad.addColorStop(1, 'rgba(0,0,0,0)');
+      grad.addColorStop(0.4, "rgba(255, 255, 255, 0.4)");
+      grad.addColorStop(1, "rgba(0, 0, 0, 0)");
 
       ctx.fillStyle = grad;
       ctx.beginPath();
@@ -686,13 +692,14 @@
     function makeNebulaTexture(colorCenter, colorEdge) {
       const size = 512;
       const dt = new BABYLON.DynamicTexture("nebulaTex", size, scene, false);
+      dt.hasAlpha = true;
       const ctx = dt.getContext();
       ctx.clearRect(0, 0, size, size);
 
       const grad = ctx.createRadialGradient(size/2, size/2, 10, size/2, size/2, size/2);
       grad.addColorStop(0, colorCenter);
       grad.addColorStop(0.5, colorEdge);
-      grad.addColorStop(1, "rgba(0,0,0,0)");
+      grad.addColorStop(1, "rgba(0, 0, 0, 0)");
 
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, size, size);
@@ -761,12 +768,14 @@
         plane.billboardMode = BABYLON.TransformNode.BILLBOARDMODE_ALL;
 
         const mat = new BABYLON.StandardMaterial("nebulaMat_" + i, scene);
-        mat.diffuseTexture = makeNebulaTexture(cfg.c1, cfg.c2);
+        const tex = makeNebulaTexture(cfg.c1, cfg.c2);
+        mat.diffuseTexture = tex;
+        mat.opacityTexture = tex;
         mat.hasAlpha = true;
         mat.useAlphaFromDiffuseTexture = true;
         mat.backFaceCulling = false;
         mat.disableLighting = true;
-        mat.emissiveColor = new BABYLON.Color3(1, 1, 1);
+        mat.emissiveColor = new BABYLON.Color3(0, 0, 0);
         plane.material = mat;
         nebulaPlanes.push(plane);
       });
@@ -861,7 +870,9 @@
         labelPlane.billboardMode = BABYLON.TransformNode.BILLBOARDMODE_ALL;
 
         const labelMat = new BABYLON.StandardMaterial("labelMat_" + data.name, scene);
-        labelMat.diffuseTexture = makeLabelTexture(data.name);
+        const labelTex = makeLabelTexture(data.name);
+        labelMat.diffuseTexture = labelTex;
+        labelMat.opacityTexture = labelTex;
         labelMat.hasAlpha = true;
         labelMat.useAlphaFromDiffuseTexture = true;
         labelMat.disableLighting = true;
