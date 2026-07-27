@@ -6,7 +6,7 @@ Documentación completa del benchmark, su metodología y cómo reproducirlo o am
 |:--|:--|
 | **[methodology.md](methodology.md)** | Cómo se evaluó: las tres señales (rúbrica, ejecución real, calibración), por qué y sus límites. |
 | **[rubric.md](rubric.md)** | La rúbrica de 100 puntos: las 10 categorías, sus máximos y criterios de puntuación. |
-| **[results.md](results.md)** | Ficha detallada de las 25 entregas: desglose, runtime, fortalezas, debilidades y veredicto. |
+| **[results.md](results.md)** | Ficha detallada de las 26 entregas: desglose, runtime, fortalezas, debilidades y veredicto. |
 | **[harness.md](harness.md)** | El arnés técnico: pipeline multi-agente, capturas con Chrome headless y reproducibilidad. |
 | **[conclusions.md](conclusions.md)** | Análisis comparativo, conclusiones y estado del arte (versión extendida). |
 | **[contributing.md](contributing.md)** | Cómo añadir una nueva entrada y regenerar el benchmark y la galería. |
@@ -14,6 +14,7 @@ Documentación completa del benchmark, su metodología y cómo reproducirlo o am
 | **[tercera-tanda-2026-06-18.md](tercera-tanda-2026-06-18.md)** | Ampliación 17→19: 2 entradas (OpenCode·MiniMax y Pi·DeepSeek), y cómo Pi·DeepSeek arregla las trampas que otra entrada DeepSeek falló. |
 | **[cuarta-tanda-2026-07-05.md](cuarta-tanda-2026-07-05.md)** | Ampliación 20→23: 3 entradas (Fable 5·Ultracode, MiMo·Claude Code, MiMo·OpenCode) y el hallazgo MiMo v2.5 Pro con tres agentes. |
 | **[quinta-tanda-2026-07-23.md](quinta-tanda-2026-07-23.md)** | Ampliación 23→25: 2 entradas Gemini 3.6 Flash (Antigravity y Antigravity CLI) y el hallazgo de que 3.6 Flash no supera a 3.5 con el mismo agente. |
+| **[sexta-tanda-2026-07-27.md](sexta-tanda-2026-07-27.md)** | Ampliación 25→26: entrada de Claude Opus 5 (Ultracode + Claude Code), con auditoría adversarial y jurado calibrado sobre el archivo final. |
 | **[deployment.md](deployment.md)** | Infraestructura de despliegue en producción y webhook de auto-despliegue continuo (CD). |
 | **[seo-geo-2026-06-15.md](seo-geo-2026-06-15.md)** | Auditoría y mejora SEO + GEO/AEO: Open Graph/Twitter por red social, `llms.txt`, `sitemap.xml`, `robots.txt` y JSON-LD. |
 | **[security-audit-2026-06-15.md](security-audit-2026-06-15.md)** | Auditoría de ciberseguridad (websec-100): redirect HTTP→HTTPS, bloqueo de paths sensibles, headers OWASP, CSP y `security.txt`. |

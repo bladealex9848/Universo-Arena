@@ -88,7 +88,47 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 3. GLM 5.2 · OpenCode — **95/100** · Tier S
+## 3. Claude Opus 5 · Ultracode + Claude Code — **97/100** · Tier S 🆕
+
+📁 [`Opus-5-Claude-Code-Ultracode/`](../Opus-5-Claude-Code-Ultracode/index.html) · 2432 líneas · runtime: **305 objetos**, **0 errores de consola**, WebGL ✓
+
+> _La entrega mas rigurosa del benchmark: unica con la ecuacion de Kepler resuelta por Newton-Raphson, cinturon de 250 asteroides con orbita propia, preset oficial ParticleHelper cargando de verdad y cero reservas de memoria en el bucle de render, todo verificado en ejecucion con 0 errores, 0 excepciones y cola anti-solar de producto escalar 1.000. Pierde justo donde mas se ve: por respetar al pie de la letra el rango 0.3-1.5 del spec el cielo queda mas tenue que el de sus rivales. Empata en cabeza con 97: gana al lider en fisica, cumplimiento del spec de camara, preset oficial y robustez, y le cede el impacto visual inmediato y 2 fps._
+
+**Desglose de rúbrica**
+
+| Categoría | Puntos |
+|:--|:--:|
+| Completitud de escena | 20 / 20 |
+| Fidelidad orbital | 12 / 12 |
+| Cometa Halley | 8 / 8 |
+| Estética / wow | 13 / 15 |
+| Panel UI | 15 / 15 |
+| Cámara y controles | 8 / 8 |
+| Post-procesado | 6 / 6 |
+| Rendimiento | 6 / 6 |
+| Robustez | 5 / 5 |
+| Calidad de código | 4 / 5 |
+| **Total** | **97 / 100** |
+
+**Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ✅ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ✅ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ✅ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ✅ Consulta docs
+
+**Fortalezas**
+
+- Las dos trampas resueltas con margen y verificadas en ejecucion: posicionEnElipse (L1302-1314) usa x = a*(cosE - e), z = -b*sinE con b = a*raiz(1-e^2) y es la MISMA funcion que dibuja la linea de orbita (L1514), asi que cuerpo y elipse no pueden discrepar; y direccionAntiSolar.copyFrom(posicionMundo).normalize() (L2276) copia antes de normalizar, sin negate() ni scale(-1), con producto escalar 1.000 medido contra (cometa - Sol).
+- Fisica orbital por encima del lider: resolverKepler (L1280-1290) resuelve M = E - e*senE por Newton-Raphson (2a ley) y movimientoMedio (L1322-1324) aplica n = K/a^1.5 (3a ley), mientras codex-gpt-5.5 avanza un angulo uniforme con orbitalSpeed = 12/p.distance (L922, L1396); ademas cada uno de los 250 asteroides tiene elipse, excentricidad e inclinacion propias (L2238-2250) frente al beltNode.rotation.y += factor*0.03 del lider (L1413).
+- Unica entrada que hace funcionar el preset OFICIAL del spec: ParticleHelper.CreateAsync("sun") en L1228-1264, con guarda navigator.onLine, try/catch, corona procedural de respaldo y recoloreo de las paradas de colorGradients para heredar el color del Sol (L1937-1950); el runtime confirma 3 sistemas extra cargados y 0 errores. El lider no usa ParticleHelper en absoluto.
+- Respeta los limites de camara del spec como INVARIANTES (lowerRadiusLimit = 30, L660) y consigue los primeros planos bajando el fov a modo de teleobjetivo (0.16 Tierra, 0.42 Saturno, L603-604), mientras el lider los rebaja a 16 con Math.min (L1244); la robustez tambien es superior: try/catch en new BABYLON.Engine (L635), isSupported del pipeline (L1798) y UI real de contexto WebGL perdido frente al simple console.warn del lider (L1484).
+
+**Debilidades**
+
+- El fotograma por defecto se queda vacio: con minSize 0.3 / maxSize 1.5 literales del spec (L1100-1108) las 3600 estrellas caen por debajo del pixel a 1000-1700 unidades y las 5 nebulosas apenas registran a radio 180. El lider incumple ese rango (minSize 1.2 / maxSize 6.0, L733-734) y entrega un cielo mucho mas rico: fidelidad literal ganada, impacto visual perdido.
+- El precio de la fidelidad literal al spec: con minSize 0.3 / maxSize 1.5 exactos, las 3600 estrellas son puntos de 1-3 px y el cielo se lee mas tenue que en las entregas que inflaron el rango a proposito (el lider usa 1.2-6.0); las 5 nebulosas, a radio 1500-1800, quedan como neblina y no como manchas definidas.
+- Los cuatro desajustes comentario-codigo que detecto el jurado (sprite estelar en anillo por paradas de degradado desordenadas, color1/color2 de las colas anulados por addColorGradient, tema con nebulosas 1.35 que el material satura a 1 y resincronizacion del DOM sin chkBloom) se corrigieron DESPUES de fijar la nota, y la nota no se subio por ello: quedan como aviso de que 2432 lineas son mucha superficie donde los comentarios pueden desfasarse del codigo.
+- 6 fps frente a los 8 del lider en el mismo arnes y con 305 mallas: 10 sistemas y 7100 particulas vivas son la carga mas alta del campo, de las cuales 3600 son un campo estelar ESTATICO simulado en CPU y resubido cada frame, mas 250 resoluciones completas de Kepler por frame (L2238-2244) y preserveDrawingBuffer: true (L636). A esto se suman los anillos como torus aplastados (scaling.y = 0.035, L1355), cuya cara superior recibe la luz solar a contra-normal y se lee oscura en la vista que el spec les dedica.
+
+---
+
+## 4. GLM 5.2 · OpenCode — **95/100** · Tier S
 
 📁 [`Opencode-GLM-5.2/`](../Opencode-GLM-5.2/index.html) · 1080 líneas · runtime: **263 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -130,7 +170,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 4. MiniMax M3 · OpenCode — **95/100** · Tier S
+## 5. MiniMax M3 · OpenCode — **95/100** · Tier S
 
 📁 [`Opencode-Minimax-M3/`](../Opencode-Minimax-M3/index.html) · 1165 líneas · runtime: **264 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -170,7 +210,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 5. Claude Opus 4.8 · Claude Code — **95/100** · Tier S
+## 6. Claude Opus 4.8 · Claude Code — **95/100** · Tier S
 
 📁 [`Opus-4.8-Claude-Code/`](../Opus-4.8-Claude-Code/index.html) · 995 líneas · runtime: **260 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -211,7 +251,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 6. MiMo v2.5 Pro · MiMoCode — **95/100** · Tier S
+## 7. MiMo v2.5 Pro · MiMoCode — **95/100** · Tier S
 
 📁 [`Mimo-V2.5-Pro-MimoCode/`](../Mimo-V2.5-Pro-MimoCode/index.html) · 1151 líneas · runtime: **280 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -252,7 +292,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 7. Claude Fable 5 · Ultracode + Claude Code — **95/100** · Tier S
+## 8. Claude Fable 5 · Ultracode + Claude Code — **95/100** · Tier S
 
 📁 [`Fable-5-Claude-Code-Ultracode/`](../Fable-5-Claude-Code-Ultracode/index.html) · 1355 líneas · runtime: **310 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -292,7 +332,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 8. Gemini 3.5 (High) · Antigravity — **92/100** · Tier S
+## 9. Gemini 3.5 (High) · Antigravity — **92/100** · Tier S
 
 📁 [`Antigravity-Gemini-3.5-High/`](../Antigravity-Gemini-3.5-High/index.html) · 1533 líneas · runtime: **42 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -334,7 +374,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 9. MiniMax M3 · Claude Code — **92/100** · Tier S
+## 10. MiniMax M3 · Claude Code — **92/100** · Tier S
 
 📁 [`Minimax-M3-Claude-Code/`](../Minimax-M3-Claude-Code/index.html) · 1062 líneas · runtime: **299 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -374,7 +414,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 10. MiMo v2.5 Pro · Claude Code — **90/100** · Tier S
+## 11. MiMo v2.5 Pro · Claude Code — **90/100** · Tier S
 
 📁 [`Mimo-V2.5-Pro-Claude-Code/`](../Mimo-V2.5-Pro-Claude-Code/index.html) · 1005 líneas · runtime: **260 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -414,7 +454,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 11. Gemini 3.5 Flash · Antigravity CLI — **89/100** · Tier A
+## 12. Gemini 3.5 Flash · Antigravity CLI — **89/100** · Tier A
 
 📁 [`Agy-Gemini-3.5-Flash-Antigravity-CLI/`](../Agy-Gemini-3.5-Flash-Antigravity-CLI/index.html) · 1637 líneas · runtime: **291 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -454,7 +494,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 12. GLM 5.2 · Claude Code — **89/100** · Tier A
+## 13. GLM 5.2 · Claude Code — **89/100** · Tier A
 
 📁 [`GLM-5.2-Claude-Code/`](../GLM-5.2-Claude-Code/index.html) · 1306 líneas · runtime: **279 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -494,7 +534,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 13. GLM 5.2 (Max) · Zcode — **89/100** · Tier A
+## 14. GLM 5.2 (Max) · Zcode — **89/100** · Tier A
 
 📁 [`Zcode-GML-5.2-Max/`](../Zcode-GML-5.2-Max/index.html) · 1275 líneas · runtime: **262 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -536,7 +576,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 14. MiMo v2.5 Pro · OpenCode — **89/100** · Tier A
+## 15. MiMo v2.5 Pro · OpenCode — **89/100** · Tier A
 
 📁 [`Mimo-V2.5-Pro-OpenCode/`](../Mimo-V2.5-Pro-OpenCode/index.html) · 1239 líneas · runtime: **263 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -576,7 +616,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 15. Gemini 3.6 Flash (High) · Antigravity — **89/100** · Tier A 🆕
+## 16. Gemini 3.6 Flash (High) · Antigravity — **89/100** · Tier A 🆕
 
 📁 [`Antigravity-Gemini-3.6-Flash-High/`](../Antigravity-Gemini-3.6-Flash-High/index.html) · 1249 líneas · runtime: **259 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -616,7 +656,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 16. DeepSeek V4 Pro · CodeWhale — **88/100** · Tier A
+## 17. DeepSeek V4 Pro · CodeWhale — **88/100** · Tier A
 
 📁 [`codewhale-deepseek-v4-pro/`](../codewhale-deepseek-v4-pro/index.html) · 1251 líneas · runtime: **288 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -656,7 +696,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 17. DeepSeek V4 Pro · Pi — **88/100** · Tier A
+## 18. DeepSeek V4 Pro · Pi — **88/100** · Tier A
 
 📁 [`Pi-DeepSeek-v4-pro/`](../Pi-DeepSeek-v4-pro/index.html) · 1575 líneas · runtime: **301 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -696,7 +736,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 18. Claude Sonnet 4.6 · Antigravity IDE — **86/100** · Tier A
+## 19. Claude Sonnet 4.6 · Antigravity IDE — **86/100** · Tier A
 
 📁 [`Claude-Sonnet-4.6-Antigravity-IDE/`](../Claude-Sonnet-4.6-Antigravity-IDE/index.html) · 1592 líneas · runtime: **263 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -736,7 +776,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 19. Gemini 3.6 Flash · Antigravity CLI — **85/100** · Tier A 🆕
+## 20. Gemini 3.6 Flash · Antigravity CLI — **85/100** · Tier A 🆕
 
 📁 [`Agy-Gemini-3.6-Flash-Antigravity-CLI/`](../Agy-Gemini-3.6-Flash-Antigravity-CLI/index.html) · 1510 líneas · runtime: **320 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -776,7 +816,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 20. Kimi K2.7 · Claude Code — **80/100** · Tier B
+## 21. Kimi K2.7 · Claude Code — **80/100** · Tier B
 
 📁 [`Kimi-k.7-code-Claude-Code/`](../Kimi-k.7-code-Claude-Code/index.html) · 696 líneas · runtime: **277 objetos**, **1 errores de consola**, WebGL ✓
 
@@ -816,7 +856,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 21. Kimi K2.7 · Kimi Code CLI — **79/100** · Tier B
+## 22. Kimi K2.7 · Kimi Code CLI — **79/100** · Tier B
 
 📁 [`kimi-k2.7-code-Kimi-Code-CLI/`](../kimi-k2.7-code-Kimi-Code-CLI/index.html) · 541 líneas · runtime: **277 objetos**, **1 errores de consola**, WebGL ✓
 
@@ -856,7 +896,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 22. MiniMax M3 · mini-agent — **79/100** · Tier B
+## 23. MiniMax M3 · mini-agent — **79/100** · Tier B
 
 📁 [`mini-agent-MiniMax-M3/`](../mini-agent-MiniMax-M3/index.html) · 1100 líneas · runtime: **260 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -896,7 +936,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 23. DeepSeek V4 Pro · Pi Coding Agent — **78/100** · Tier B
+## 24. DeepSeek V4 Pro · Pi Coding Agent — **78/100** · Tier B
 
 📁 [`deepseek-v4-pro-Pi-Coding-Agent/`](../deepseek-v4-pro-Pi-Coding-Agent/index.html) · 1276 líneas · runtime: **289 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -936,7 +976,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 24. Devstral · Vibe — **70/100** · Tier C
+## 25. Devstral · Vibe — **70/100** · Tier C
 
 📁 [`vibe-devstral/`](../vibe-devstral/index.html) · 960 líneas · runtime: **234 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -976,7 +1016,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 25. Z.ai GLM 5.2 · Claude Code — **54/100** · Tier D
+## 26. Z.ai GLM 5.2 · Claude Code — **54/100** · Tier D
 
 📁 [`Zai-GLM-5.2-Claude-Code/`](../Zai-GLM-5.2-Claude-Code/index.html) · 624 líneas · runtime: **29 objetos**, **0 errores de consola**, WebGL ✓
 

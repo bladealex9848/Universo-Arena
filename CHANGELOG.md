@@ -6,6 +6,46 @@ Todos los cambios notables de **Universo-Arena**. El formato sigue
 
 ## [Unreleased]
 
+### Añadido — Sexta tanda: 25 → 26 entradas (2026-07-27)
+
+- **1 entrada nueva**: `Opus-5-Claude-Code-Ultracode` (Claude Opus 5 · Ultracode +
+  Claude Code, **97**, #3, tier S), que **empata en cabeza** con GPT-5.5 · Codex y
+  Claude Opus 4.8 · Ultracode. Verificada en ejecución: **305 mallas**, 250
+  instancias de asteroide, ~7 100 partículas, **0 errores de consola** y cola del
+  cometa con **producto escalar 1.000** frente a (cometa − Sol).
+- **Novedades técnicas que no había en el campo:** ecuación de Kepler resuelta por
+  Newton-Raphson (2.ª ley) con `n ∝ a^(−3/2)` (3.ª ley) aplicada también a las 250
+  rocas del cinturón; límites de cámara del spec (`lowerRadiusLimit = 30`) tratados
+  como invariantes usando **teleobjetivo** (`camera.fov`) para los primeros planos;
+  cero reservas de memoria en el bucle de render; y el preset **oficial**
+  `ParticleHelper.CreateAsync("sun")` cargando de verdad (el spec lo pedía bajo un
+  nombre inexistente, `CreateSystem`).
+- **Metodología ampliada:** documentación oficial (context7) → verificación de APIs
+  por introspección en el runtime real → **auditoría adversarial** (5 auditores +
+  escépticos, 38 hallazgos) → **jurado calibrado dos veces**, repuntuando sobre el
+  archivo final. Detalle en [`docs/sexta-tanda-2026-07-27.md`](docs/sexta-tanda-2026-07-27.md).
+- **Re-ranking completo a 26 entradas**: triple empate de cabeza en 97 y ahora
+  **24/26** entregas sin un solo error de consola.
+- **Documentación ampliada** con lo aprendido en esta tanda:
+  - [`docs/methodology.md`](docs/methodology.md): nueva sección *Ampliación del
+    método* (documentación → runtime → auditoría adversarial → jurado calibrado y
+    repuntuación), su límite conocido y un **conflicto de interés declarado** para
+    las dos entradas producidas por el propio sistema evaluador.
+  - [`docs/harness.md`](docs/harness.md): señales nuevas del arnés (instancias,
+    partículas vivas, peticiones fallidas, versión del CDN y el **producto escalar**
+    que convierte la trampa del cometa en un número), verificación automática del
+    panel y las 6 vistas, comprobación en móvil y sondas de introspección de API.
+  - [`docs/rubric.md`](docs/rubric.md): documentado un **tercer discriminador**, el
+    sentido de giro en el sistema levógiro de Babylon (+X → −Z), que ninguna captura
+    delata.
+  - [`docs/conclusions.md`](docs/conclusions.md): nueva sección *Fidelidad literal
+    vs. impacto visual* y actualización del podio a triple empate.
+  - [`docs/contributing.md`](docs/contributing.md): cuándo aplicar el método ampliado.
+- Regenerados todos los artefactos derivados de `assets/benchmark.json`: galería
+  `index.html` (DATA, contadores, JSON-LD `ItemList` de 26, FAQ y metas),
+  `README.md` (tablas + badges), `docs/results.md`, `sitemap.xml`, `llms.txt`,
+  `llms-full.txt` y `assets/runtime.json`.
+
 ### Añadido — Quinta tanda: 23 → 25 entradas (2026-07-23)
 
 - **2 entradas nuevas** integradas en el benchmark y la galería:

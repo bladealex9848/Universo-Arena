@@ -22,6 +22,21 @@ El spec esconde dos detalles que separan a las entregas excelentes de las merame
 1. **El Sol en el foco de la elipse.** Posición correcta: `x = a·cosθ − a·e`, `z = b·sinθ` con `b = a·√(1−e²)`. Centrar el Sol parece correcto pero es física falsa.
 2. **La cola del cometa.** El vector "lejos del Sol" es `cometa − Sol`. Invertir el signo (`.negate()`, `.scale(-1)`, o un `normalize()` que muta la posición) hace que la cola apunte hacia el Sol — el bug más común y discriminante del benchmark.
 
+### Un tercer discriminador (hallado en la 6.ª tanda)
+
+La auditoría de la 6.ª tanda destapó un error que **ninguna captura delata** y que
+no estaba en la lista original: el **sentido de giro**. BabylonJS usa un sistema
+de coordenadas **levógiro**, donde una rotación positiva sobre Y lleva **+X → −Z**
+(comprobado en runtime). Si la elipse se recorre con `z = +b·sinE` y la rotación
+propia se aplica con `rotation.y += …`, **la revolución y la rotación van en
+sentidos opuestos**: los planetas prógrados giran retrógrados, y Venus, Urano y
+Plutón —que deberían ser retrógrados por su inclinación axial > 90°— acaban
+prógrados. El arreglo es un signo (`z = −b·sinE`), pero encontrarlo exige razonar
+sobre la convención del motor, no mirar la pantalla.
+
+No se ha reabierto la puntuación del resto del campo por este motivo: queda
+documentado como criterio disponible para futuras tandas.
+
 ## Señales objetivas complementarias
 
 Además de la rúbrica, se registran datos de **ejecución real** que ajustan o confirman la nota (ver [methodology.md](methodology.md)):

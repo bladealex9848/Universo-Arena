@@ -19,7 +19,7 @@ Un jurado-LLM por implementación lee el `index.html` **completo** y el spec, y 
 
 ### 2. Ejecución real (verdad de campo)
 
-Cada una de las 25 entregas se **abre en Chrome headless** (WebGL por SwiftShader) y se mide objetivamente:
+Cada una de las 26 entregas se **abre en Chrome headless** (WebGL por SwiftShader) y se mide objetivamente:
 
 - **Captura de pantalla** real (las que ves en la galería y los `assets/previews/`).
 - Número de **mallas en escena** (`scene.meshes.length`) — delata escenas incompletas.
@@ -44,7 +44,39 @@ Investigando: los *strings* defectuosos existen, pero (a) el navegador los toler
 
 - Cada entrega obtiene un **total 0–100** (suma de las 10 categorías).
 - Tiers: **S** (≥90) · **A** (82–89) · **B** (75–81) · **C** (60–74) · **D** (<60).
-- En empates en cabeza, se evita el auto-favoritismo: la entrada creada por el propio sistema que ejecuta el benchmark (`Opus-4.8-Ultracode-Extension-Claude-Code`) se sitúa **por debajo** de la otra con idéntica nota.
+- En empates en cabeza, se evita el auto-favoritismo: las entradas creadas por el propio sistema que ejecuta el benchmark (`Opus-4.8-Ultracode-Extension-Claude-Code` y `Opus-5-Claude-Code-Ultracode`) se sitúan **por debajo** de las demás con idéntica nota. Con el triple empate en 97 de la 6.ª tanda, el orden del podio es 🥇 GPT-5.5 · Codex, 🥈 Claude Opus 4.8 · Ultracode y 🥉 Claude Opus 5 · Ultracode.
+
+## Ampliación del método (desde la 6.ª tanda, 2026-07-27)
+
+Las entregas producidas *dentro* del propio repositorio (las de Claude Code) se
+someten además a tres fases extra, precisamente porque autor y evaluador
+comparten sistema y hay que compensar el sesgo:
+
+1. **Documentación primero, y luego el runtime.** Antes de escribir código se
+   consulta la documentación oficial de BabylonJS (context7) y, después, se
+   verifica cada firma dudosa por **introspección contra el motor real** del CDN.
+   No basta con "la doc no lo menciona": eso no prueba que no exista, ni al revés.
+   De ahí salieron hechos que cambiaron el diseño de la 6.ª tanda:
+   `ParticleHelper.CreateSystem` **no existe** (el spec lo pide),
+   `Animation.CreateAndStartAnimation` devuelve un `Animatable` sin
+   `setEasingFunction`, y con `disableLighting = true` el `StandardMaterial`
+   **ignora `emissiveTexture`**.
+2. **Auditoría adversarial antes de puntuar.** Varios auditores independientes
+   revisan dimensiones separadas (cumplimiento del spec, corrección de la API,
+   física, rendimiento, calidad) y **cada hallazgo pasa por un escéptico** cuyo
+   encargo explícito es refutarlo con código literal. Solo se corrige lo que
+   sobrevive. Es el mecanismo que atrapó el **sentido de giro invertido** de la
+   6.ª tanda, que ninguna captura delataba.
+3. **Jurado calibrado y repuntuación.** Cuatro jurados, cada uno **anclado a una
+   entrega ya calibrada distinta**, más un juez que normaliza y corrige contra el
+   runtime. Si tras la primera ronda se corrigen defectos, **se vuelve a puntuar
+   sobre el archivo final**: la nota publicada corresponde siempre al código
+   entregado, no a una versión anterior.
+
+**Límite conocido de esta ampliación:** los escépticos leen el archivo *ya
+corregido*, así que confirman el estado final más que arbitrar el hallazgo
+original. Y cuando una corrección llega **después** de fijar la nota, la nota no
+se sube: se deja el valor conservador y se hace constar en la ficha.
 
 ## Límites y honestidad metodológica
 
@@ -52,6 +84,7 @@ Investigando: los *strings* defectuosos existen, pero (a) el navegador los toler
 - **SwiftShader** rinde mucho menos que una GPU real; los **FPS medidos no son representativos** del rendimiento en hardware del usuario. Se usan solo como señal cualitativa, no se puntúa por FPS absoluto.
 - El **jurado es un LLM**: la rúbrica reduce la subjetividad, pero no la elimina. La señal de runtime es el contrapeso objetivo.
 - La identificación de modelo/agente se infiere del **nombre de la carpeta**; cualquier ambigüedad de nomenclatura se hereda de ahí.
+- **Conflicto de interés declarado:** dos entradas (`Opus-4.8-Ultracode-Extension-Claude-Code` y `Opus-5-Claude-Code-Ultracode`) fueron generadas por el mismo sistema que orquesta la evaluación. Se compensa con jurados anclados a entregas rivales, comparación código-a-código con los líderes, la regla de empate anterior y notas siempre redondeadas a la baja.
 
 ## Reproducibilidad
 

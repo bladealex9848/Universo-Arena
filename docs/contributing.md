@@ -53,6 +53,14 @@ Con Node.js y Google Chrome instalados (ver [harness.md](harness.md)):
 - [ ] La galería (`index.html` raíz) muestra la nueva ficha y su modal funciona.
 - [ ] Los enlaces de "demo en vivo" apuntan a la carpeta correcta.
 
+> Si la entrada la genera el **mismo sistema que orquesta la evaluación** (p. ej. otra
+> entrega de Claude Code), aplica además el método ampliado de la 6.ª tanda:
+> auditoría adversarial antes de puntuar, jurados anclados a entregas rivales y
+> **repuntuación sobre el archivo final**. Está descrito en
+> [`methodology.md`](methodology.md#ampliación-del-método-desde-la-6ª-tanda-2026-07-27)
+> y [`harness.md`](harness.md), con el ejemplo completo en
+> [`sexta-tanda-2026-07-27.md`](sexta-tanda-2026-07-27.md).
+
 ## Estilo y licencia
 
 - Comentarios y UI en **español** (como el resto del repo).

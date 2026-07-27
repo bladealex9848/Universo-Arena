@@ -122,6 +122,67 @@
   "rank": 2
  },
  {
+  "folder": "Opus-5-Claude-Code-Ultracode",
+  "modelo": "Claude Opus 5",
+  "agente": "Ultracode + Claude Code",
+  "color": "#bf6a4a",
+  "total": 97,
+  "tier": "S",
+  "scores": {
+   "completitudEscena": 20,
+   "fidelidadOrbital": 12,
+   "cometaHalley": 8,
+   "esteticaWow": 13,
+   "panelUI": 15,
+   "camaraControles": 8,
+   "postProcesado": 6,
+   "rendimiento": 6,
+   "robustez": 5,
+   "calidadCodigo": 4
+  },
+  "lineas": 2432,
+  "features": {
+   "sol": true,
+   "planetas8": true,
+   "plutonEnano": true,
+   "cinturonAsteroides": true,
+   "saturnoAnillos": true,
+   "halleyCola": true,
+   "colaOpuestaAlSol": true,
+   "estrellas3000": true,
+   "nebulosas": true,
+   "orbitasElipticas": true,
+   "bloomGlow": true,
+   "panelCompleto": true,
+   "vistasCamara": true,
+   "deltaTime": true,
+   "instanciasAsteroides": true,
+   "consultaContext7": true
+  },
+  "fortalezas": [
+   "Las dos trampas resueltas con margen y verificadas en ejecucion: posicionEnElipse (L1302-1314) usa x = a*(cosE - e), z = -b*sinE con b = a*raiz(1-e^2) y es la MISMA funcion que dibuja la linea de orbita (L1514), asi que cuerpo y elipse no pueden discrepar; y direccionAntiSolar.copyFrom(posicionMundo).normalize() (L2276) copia antes de normalizar, sin negate() ni scale(-1), con producto escalar 1.000 medido contra (cometa - Sol).",
+   "Fisica orbital por encima del lider: resolverKepler (L1280-1290) resuelve M = E - e*senE por Newton-Raphson (2a ley) y movimientoMedio (L1322-1324) aplica n = K/a^1.5 (3a ley), mientras codex-gpt-5.5 avanza un angulo uniforme con orbitalSpeed = 12/p.distance (L922, L1396); ademas cada uno de los 250 asteroides tiene elipse, excentricidad e inclinacion propias (L2238-2250) frente al beltNode.rotation.y += factor*0.03 del lider (L1413).",
+   "Unica entrada que hace funcionar el preset OFICIAL del spec: ParticleHelper.CreateAsync(\"sun\") en L1228-1264, con guarda navigator.onLine, try/catch, corona procedural de respaldo y recoloreo de las paradas de colorGradients para heredar el color del Sol (L1937-1950); el runtime confirma 3 sistemas extra cargados y 0 errores. El lider no usa ParticleHelper en absoluto.",
+   "Respeta los limites de camara del spec como INVARIANTES (lowerRadiusLimit = 30, L660) y consigue los primeros planos bajando el fov a modo de teleobjetivo (0.16 Tierra, 0.42 Saturno, L603-604), mientras el lider los rebaja a 16 con Math.min (L1244); la robustez tambien es superior: try/catch en new BABYLON.Engine (L635), isSupported del pipeline (L1798) y UI real de contexto WebGL perdido frente al simple console.warn del lider (L1484)."
+  ],
+  "debilidades": [
+   "El fotograma por defecto se queda vacio: con minSize 0.3 / maxSize 1.5 literales del spec (L1100-1108) las 3600 estrellas caen por debajo del pixel a 1000-1700 unidades y las 5 nebulosas apenas registran a radio 180. El lider incumple ese rango (minSize 1.2 / maxSize 6.0, L733-734) y entrega un cielo mucho mas rico: fidelidad literal ganada, impacto visual perdido.",
+   "El precio de la fidelidad literal al spec: con minSize 0.3 / maxSize 1.5 exactos, las 3600 estrellas son puntos de 1-3 px y el cielo se lee mas tenue que en las entregas que inflaron el rango a proposito (el lider usa 1.2-6.0); las 5 nebulosas, a radio 1500-1800, quedan como neblina y no como manchas definidas.",
+   "Los cuatro desajustes comentario-codigo que detecto el jurado (sprite estelar en anillo por paradas de degradado desordenadas, color1/color2 de las colas anulados por addColorGradient, tema con nebulosas 1.35 que el material satura a 1 y resincronizacion del DOM sin chkBloom) se corrigieron DESPUES de fijar la nota, y la nota no se subio por ello: quedan como aviso de que 2432 lineas son mucha superficie donde los comentarios pueden desfasarse del codigo.",
+   "6 fps frente a los 8 del lider en el mismo arnes y con 305 mallas: 10 sistemas y 7100 particulas vivas son la carga mas alta del campo, de las cuales 3600 son un campo estelar ESTATICO simulado en CPU y resubido cada frame, mas 250 resoluciones completas de Kepler por frame (L2238-2244) y preserveDrawingBuffer: true (L636). A esto se suman los anillos como torus aplastados (scaling.y = 0.035, L1355), cuya cara superior recibe la luz solar a contra-normal y se lee oscura en la vista que el spec les dedica."
+  ],
+  "riesgo": "bajo",
+  "veredicto": "La entrega mas rigurosa del benchmark: unica con la ecuacion de Kepler resuelta por Newton-Raphson, cinturon de 250 asteroides con orbita propia, preset oficial ParticleHelper cargando de verdad y cero reservas de memoria en el bucle de render, todo verificado en ejecucion con 0 errores, 0 excepciones y cola anti-solar de producto escalar 1.000. Pierde justo donde mas se ve: por respetar al pie de la letra el rango 0.3-1.5 del spec el cielo queda mas tenue que el de sus rivales. Empata en cabeza con 97: gana al lider en fisica, cumplimiento del spec de camara, preset oficial y robustez, y le cede el impacto visual inmediato y 2 fps.",
+  "runtime": {
+   "meshes": 305,
+   "fps": 7,
+   "consoleErrors": 0,
+   "webgl": true
+  },
+  "preview": "assets/previews/Opus-5-Claude-Code-Ultracode.png",
+  "rank": 3
+ },
+ {
   "folder": "Opencode-GLM-5.2",
   "modelo": "GLM 5.2",
   "agente": "OpenCode",
@@ -182,7 +243,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Opencode-GLM-5.2.png",
-  "rank": 3
+  "rank": 4
  },
  {
   "folder": "Opencode-Minimax-M3",
@@ -243,7 +304,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Opencode-Minimax-M3.png",
-  "rank": 4
+  "rank": 5
  },
  {
   "folder": "Opus-4.8-Claude-Code",
@@ -305,7 +366,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Opus-4.8-Claude-Code.png",
-  "rank": 5
+  "rank": 6
  },
  {
   "folder": "Mimo-V2.5-Pro-MimoCode",
@@ -367,7 +428,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Mimo-V2.5-Pro-MimoCode.png",
-  "rank": 6
+  "rank": 7
  },
  {
   "folder": "Fable-5-Claude-Code-Ultracode",
@@ -428,7 +489,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Fable-5-Claude-Code-Ultracode.png",
-  "rank": 7
+  "rank": 8
  },
  {
   "folder": "Antigravity-Gemini-3.5-High",
@@ -491,7 +552,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Antigravity-Gemini-3.5-High.png",
-  "rank": 8
+  "rank": 9
  },
  {
   "folder": "Minimax-M3-Claude-Code",
@@ -552,7 +613,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Minimax-M3-Claude-Code.png",
-  "rank": 9
+  "rank": 10
  },
  {
   "folder": "Mimo-V2.5-Pro-Claude-Code",
@@ -613,7 +674,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Mimo-V2.5-Pro-Claude-Code.png",
-  "rank": 10
+  "rank": 11
  },
  {
   "folder": "Agy-Gemini-3.5-Flash-Antigravity-CLI",
@@ -674,7 +735,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Agy-Gemini-3.5-Flash-Antigravity-CLI.png",
-  "rank": 11
+  "rank": 12
  },
  {
   "folder": "GLM-5.2-Claude-Code",
@@ -735,7 +796,7 @@
    "webgl": true
   },
   "preview": "assets/previews/GLM-5.2-Claude-Code.png",
-  "rank": 12
+  "rank": 13
  },
  {
   "folder": "Zcode-GML-5.2-Max",
@@ -798,7 +859,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Zcode-GML-5.2-Max.png",
-  "rank": 13
+  "rank": 14
  },
  {
   "folder": "Mimo-V2.5-Pro-OpenCode",
@@ -859,7 +920,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Mimo-V2.5-Pro-OpenCode.png",
-  "rank": 14
+  "rank": 15
  },
  {
   "folder": "Antigravity-Gemini-3.6-Flash-High",
@@ -920,7 +981,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Antigravity-Gemini-3.6-Flash-High.png",
-  "rank": 15
+  "rank": 16
  },
  {
   "folder": "codewhale-deepseek-v4-pro",
@@ -981,7 +1042,7 @@
    "webgl": true
   },
   "preview": "assets/previews/codewhale-deepseek-v4-pro.png",
-  "rank": 16
+  "rank": 17
  },
  {
   "folder": "Pi-DeepSeek-v4-pro",
@@ -1042,7 +1103,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Pi-DeepSeek-v4-pro.png",
-  "rank": 17
+  "rank": 18
  },
  {
   "folder": "Claude-Sonnet-4.6-Antigravity-IDE",
@@ -1103,7 +1164,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Claude-Sonnet-4.6-Antigravity-IDE.png",
-  "rank": 18
+  "rank": 19
  },
  {
   "folder": "Agy-Gemini-3.6-Flash-Antigravity-CLI",
@@ -1164,7 +1225,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Agy-Gemini-3.6-Flash-Antigravity-CLI.png",
-  "rank": 19
+  "rank": 20
  },
  {
   "folder": "Kimi-k.7-code-Claude-Code",
@@ -1225,7 +1286,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Kimi-k.7-code-Claude-Code.png",
-  "rank": 20
+  "rank": 21
  },
  {
   "folder": "kimi-k2.7-code-Kimi-Code-CLI",
@@ -1286,7 +1347,7 @@
    "webgl": true
   },
   "preview": "assets/previews/kimi-k2.7-code-Kimi-Code-CLI.png",
-  "rank": 21
+  "rank": 22
  },
  {
   "folder": "mini-agent-MiniMax-M3",
@@ -1347,7 +1408,7 @@
    "webgl": true
   },
   "preview": "assets/previews/mini-agent-MiniMax-M3.png",
-  "rank": 22
+  "rank": 23
  },
  {
   "folder": "deepseek-v4-pro-Pi-Coding-Agent",
@@ -1408,7 +1469,7 @@
    "webgl": true
   },
   "preview": "assets/previews/deepseek-v4-pro-Pi-Coding-Agent.png",
-  "rank": 23
+  "rank": 24
  },
  {
   "folder": "vibe-devstral",
@@ -1469,7 +1530,7 @@
    "webgl": true
   },
   "preview": "assets/previews/vibe-devstral.png",
-  "rank": 24
+  "rank": 25
  },
  {
   "folder": "Zai-GLM-5.2-Claude-Code",
@@ -1530,6 +1591,6 @@
    "webgl": true
   },
   "preview": "assets/previews/Zai-GLM-5.2-Claude-Code.png",
-  "rank": 25
+  "rank": 26
  }
 ]

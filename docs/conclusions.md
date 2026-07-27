@@ -42,13 +42,33 @@ Las entregas que ignoraron la consulta de documentación tendieron a **inventar 
 
 **Z.ai GLM 5.2** resolvió Kepler real por Newton-Raphson pero se quedó en el **tier D** por **entregar una escena incompleta** (sin Plutón, sin asteroides, sin nebulosas, sin post-procesado, panel mínimo: 29 objetos en escena). Resolver lo difícil no compensa dejar lo fácil a medias. El contraste lo pone **Fable 5 · Ultracode** (tier S, 95): también resuelve Kepler 1ª+2ª+3ª ley por Newton-Raphson —la mejor mecánica orbital del campo— pero **sin sacrificar la escena** (310 objetos, todo el spec cubierto). La profundidad y la amplitud no son excluyentes; separarlas fue una decisión, no una limitación.
 
+## Fidelidad literal vs. impacto visual (6.ª tanda)
+
+La entrada nº 26, **Claude Opus 5 · Ultracode** (97, tier S), deja el ejemplo más
+nítido de una tensión que el ranking no había explicitado: **cumplir el spec al
+pie de la letra puede costar puntos de estética**. El spec fija tamaños de
+estrella de **0.3 a 1.5**; a mil unidades de distancia eso es un punto de 1–3 px.
+Las dos entregas de cabeza se desviaron a conciencia (1.2–6.0 y 1.2–5.2) y
+entregan un cielo mucho más rico; la nueva respetó el rango y su fotograma se lee
+más tenue. Ganó la fidelidad, perdió la foto.
+
+Del otro lado, es la entrega que más lejos lleva el **razonamiento físico**: única
+con la ecuación de Kepler resuelta por Newton-Raphson aplicada también a **cada
+una de las 250 rocas** del cinturón (el resto del campo gira un aro en bloque), y
+única que trata los límites de cámara del spec (`lowerRadiusLimit = 30`) como
+invariantes, consiguiendo los primeros planos con **teleobjetivo** (`camera.fov`)
+en vez de rebajar el límite como hacen las dos entradas con las que empata.
+
+La lectura para el benchmark: cuando el spec y el resultado visual tiran en
+direcciones distintas, conviene **decir cuál se eligió** en vez de disimularlo.
+
 ## El caso GLM-5.2: cuando el juez-LLM alucina
 
 La revisión estática declaró "pantalla negra / no arranca" a `GLM-5.2-Claude-Code`. La **ejecución real** mostró 279 objetos, **0 errores** y UI completa con bloom. Los *strings* de color mal cerrados existen, pero el navegador los tolera y solo afectan a 2 de 5 nebulosas. La nota se **corrigió de 38 a 89**. Es la prueba viva de por qué un benchmark de agentes necesita **ejecución real**, no solo lectura de código.
 
 ## Conclusiones
 
-- **El listón base es altísimo:** las **25** entregas arrancan y renderizan una escena WebGL compleja (≈1.1k líneas) en una sola pasada, y **23 de 25 con cero errores de consola**.
+- **El listón base es altísimo:** las **26** entregas arrancan y renderizan una escena WebGL compleja (≈1.1k líneas) en una sola pasada, y **24 de 26 con cero errores de consola**.
 - **La frontera ya no es "¿funciona?" sino "¿acierta los detalles difíciles?":** foco orbital, signo de un vector, *instancing*, degradación elegante.
 - **El andamiaje del agente es un multiplicador**, no un detalle.
 - **Evaluar agentes exige ejecutarlos:** la revisión estática y la ejecución real discrepan, y la verdad está en el *runtime*.
@@ -57,6 +77,6 @@ La revisión estática declaró "pantalla negra / no arranca" a `GLM-5.2-Claude-
 
 La generación *one-shot* de una experiencia 3D web compleja y autocontenida ha dejado de ser una hazaña: es el comportamiento **esperable** de un agente de código frontera. La pregunta ha pasado de *"¿puede escribir 1500 líneas de WebGL que ni siquiera lancen una excepción?"* a **"¿acierta los detalles difíciles?"**.
 
-Los diferenciadores ya no son sintácticos sino **de razonamiento**: física, geometría y arquitectura de rendimiento. Y de forma reveladora, el **agente/andamiaje pesa tanto como el modelo base**. La cabeza de la tabla la comparten un *Claude Opus 4.8* y un *GPT-5.5* prácticamente empatados, con *MiniMax M3* y *Gemini 3.5 Flash* demostrando que el pelotón frontera es ancho y multi-proveedor.
+Los diferenciadores ya no son sintácticos sino **de razonamiento**: física, geometría y arquitectura de rendimiento. Y de forma reveladora, el **agente/andamiaje pesa tanto como el modelo base**. La cabeza de la tabla la comparten un *GPT-5.5*, un *Claude Opus 4.8* y un *Claude Opus 5* empatados en 97, con *MiniMax M3* y *Gemini 3.5 Flash* demostrando que el pelotón frontera es ancho y multi-proveedor.
 
 Por último, una lección sobre **cómo medir** a los agentes: el *LLM-as-judge* sobre código estático es rápido pero falible. El estándar emergente, y el que aquí se aplica, es **juzgar por ejecución**. El estado del arte de los agentes es excelente; el de su *evaluación* apenas empieza a ponerse a su altura.
