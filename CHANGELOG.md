@@ -6,6 +6,26 @@ Todos los cambios notables de **Universo-Arena**. El formato sigue
 
 ## [Unreleased]
 
+### Añadido — Séptima tanda: 26 → 28 entradas (2026-07-29)
+
+- **2 entradas nuevas** de **Kimi K3**: `Kimi-K3-Claude-Code` (Kimi K3 · Claude Code,
+  **92**, #11, tier S) y `Kimi-K3-Open-Code` (Kimi K3 · OpenCode, **87**, #20, tier A).
+  Ambas resuelven las dos trampas (cola opuesta al Sol sin mutación, elipses con el Sol
+  en el foco) y usan instancing real, con **0 errores de consola** (279 y 302 objetos).
+- **Hallazgo:** Kimi salta de **tier B** (K2.7: 80/79) a **S/A** con K3 — salto
+  generacional claro. Y el agente vuelve a pesar: la misma base K3 rinde 92 (Claude Code)
+  vs. 87 (OpenCode), esta última con el **sentido de giro invertido** confirmado (el
+  tercer discriminador) y la cola sin normalizar. Detalle en
+  [`docs/septima-tanda-2026-07-29.md`](docs/septima-tanda-2026-07-29.md).
+- **Re-ranking completo a 28 entradas** preservando el triple empate de cabeza (97):
+  🥇 GPT-5.5 · Codex, 🥈 Claude Opus 4.8 · Ultracode y 🥉 Claude Opus 5 · Ultracode.
+  Ahora **26/28** sin errores y **media 88** (subió de 87).
+- Regenerados todos los artefactos derivados de `assets/benchmark.json`: galería
+  `index.html` (DATA, contadores dinámicos, bloque "estado del arte" 28/28·26/28,
+  JSON-LD `ItemList` de 28, metas), `README.md` (tablas + badges), `docs/results.md`,
+  `docs/conclusions.md`, `docs/methodology.md`, `docs/README.md`, `sitemap.xml`,
+  `llms.txt`, `llms-full.txt` y `assets/runtime.json`.
+
 ### Añadido — Sexta tanda: 25 → 26 entradas (2026-07-27)
 
 - **1 entrada nueva**: `Opus-5-Claude-Code-Ultracode` (Claude Opus 5 · Ultracode +

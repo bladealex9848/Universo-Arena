@@ -258,5 +258,25 @@
   "consoleErrors": 0,
   "pageErrors": 0,
   "errorsSample": []
+ },
+ {
+  "folder": "Kimi-K3-Claude-Code",
+  "webgl": true,
+  "babylon": true,
+  "meshes": 279,
+  "fps": 6,
+  "consoleErrors": 0,
+  "pageErrors": 0,
+  "errorsSample": []
+ },
+ {
+  "folder": "Kimi-K3-Open-Code",
+  "webgl": true,
+  "babylon": true,
+  "meshes": 302,
+  "fps": 7,
+  "consoleErrors": 0,
+  "pageErrors": 0,
+  "errorsSample": []
  }
 ]

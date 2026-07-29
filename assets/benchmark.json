@@ -616,6 +616,66 @@
   "rank": 10
  },
  {
+  "folder": "Kimi-K3-Claude-Code",
+  "modelo": "Kimi K3",
+  "agente": "Claude Code",
+  "color": "#8b5cf6",
+  "total": 92,
+  "tier": "S",
+  "scores": {
+   "completitudEscena": 18,
+   "fidelidadOrbital": 11,
+   "cometaHalley": 8,
+   "esteticaWow": 13,
+   "panelUI": 14,
+   "camaraControles": 7,
+   "postProcesado": 6,
+   "rendimiento": 5,
+   "robustez": 5,
+   "calidadCodigo": 5
+  },
+  "lineas": 1245,
+  "features": {
+   "sol": true,
+   "planetas8": true,
+   "plutonEnano": true,
+   "cinturonAsteroides": true,
+   "saturnoAnillos": true,
+   "halleyCola": true,
+   "colaOpuestaAlSol": true,
+   "estrellas3000": true,
+   "nebulosas": true,
+   "orbitasElipticas": true,
+   "bloomGlow": true,
+   "panelCompleto": true,
+   "vistasCamara": true,
+   "deltaTime": true,
+   "instanciasAsteroides": true,
+   "consultaContext7": false
+  },
+  "fortalezas": [
+   "Las DOS trampas resueltas: foco elíptico exacto en posicionOrbita (L589-596: x=a·cosθ−a·e, z=b·sinθ, b=a·√(1−e²)) aplicado a planetas, órbitas y cometa; y cola anti-solar con normalizeToNew() sin mutación (L1184-1188), recalculada cada frame con brillo creciente en perihelio.",
+   "Instancing real del cinturón vía createInstance (L899), deltaTime correcto (L1143), movimiento medio Kepler K/a^1.5 (L820), y post-procesado completo (DefaultRenderingPipeline + bloom + GlowLayer + tone mapping) con degradación (L971-996).",
+   "Panel de 4 secciones con TODOS los controles cableados (L1003-1134): 2 sliders + pausa, 6 checkboxes + dropdown de 6 vistas + slider de tamaño, tema + bloom + color del Sol, e info FPS/objetos/ayuda; robustez con try/catch en helper, pipeline, escena y bucle de render.",
+   "Código muy limpio y modular, JSDoc y comentarios en español, sin console.log de depuración; texturas procedurales ricas (bandas de Júpiter, Gran Mancha Roja, casquetes polares, atmósferas)."
+  ],
+  "debilidades": [
+   "Tercer discriminador dudoso (sentido de giro): elipse con z=+b·sin y rotación propia +spin en la convención levógira de Babylon podrían dejar revolución y rotación en sentidos opuestos (Venus/Urano/Plutón prógrados).",
+   "Los asteroides describen círculos puros, sin inclinación ni excentricidad; el ángulo planetario avanza uniforme (no barre áreas iguales: 2.ª ley de Kepler no modelada).",
+   "Ligeras asignaciones de Vector3 por frame en el bloque del cometa (normalizeToNew/Cross/add), triviales pero evitables."
+  ],
+  "riesgo": "bajo",
+  "veredicto": "Entrega de tier S por mérito real (92): acierta las dos trampas que deciden el ranking. El Sol va en el foco (L591) aplicado a planetas, órbitas y cometa; la cola de Halley usa direccionAntiSolar = posicionCometa.normalizeToNew() (L1184) —con el Sol en el origen, cometa−Sol=cometa— sin negate/scale(-1) ni mutación in-place, recalculada cada frame. Cinturón con instancing real (base.createInstance, L899), escena completa (279 mallas, 0 errores) y panel íntegro. Queda 3-4 pts por debajo del techo por el posible desajuste de sentido de giro (3.er discriminador), asteroides circulares y avance angular uniforme.",
+  "runtime": {
+   "meshes": 279,
+   "fps": 6,
+   "consoleErrors": 0,
+   "webgl": true
+  },
+  "preview": "assets/previews/Kimi-K3-Claude-Code.png",
+  "rank": 11
+ },
+ {
   "folder": "Mimo-V2.5-Pro-Claude-Code",
   "modelo": "MiMo v2.5 Pro",
   "agente": "Claude Code",
@@ -674,7 +734,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Mimo-V2.5-Pro-Claude-Code.png",
-  "rank": 11
+  "rank": 12
  },
  {
   "folder": "Agy-Gemini-3.5-Flash-Antigravity-CLI",
@@ -735,7 +795,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Agy-Gemini-3.5-Flash-Antigravity-CLI.png",
-  "rank": 12
+  "rank": 13
  },
  {
   "folder": "GLM-5.2-Claude-Code",
@@ -796,7 +856,7 @@
    "webgl": true
   },
   "preview": "assets/previews/GLM-5.2-Claude-Code.png",
-  "rank": 13
+  "rank": 14
  },
  {
   "folder": "Zcode-GML-5.2-Max",
@@ -859,7 +919,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Zcode-GML-5.2-Max.png",
-  "rank": 14
+  "rank": 15
  },
  {
   "folder": "Mimo-V2.5-Pro-OpenCode",
@@ -920,7 +980,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Mimo-V2.5-Pro-OpenCode.png",
-  "rank": 15
+  "rank": 16
  },
  {
   "folder": "Antigravity-Gemini-3.6-Flash-High",
@@ -981,7 +1041,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Antigravity-Gemini-3.6-Flash-High.png",
-  "rank": 16
+  "rank": 17
  },
  {
   "folder": "codewhale-deepseek-v4-pro",
@@ -1042,7 +1102,7 @@
    "webgl": true
   },
   "preview": "assets/previews/codewhale-deepseek-v4-pro.png",
-  "rank": 17
+  "rank": 18
  },
  {
   "folder": "Pi-DeepSeek-v4-pro",
@@ -1103,7 +1163,68 @@
    "webgl": true
   },
   "preview": "assets/previews/Pi-DeepSeek-v4-pro.png",
-  "rank": 18
+  "rank": 19
+ },
+ {
+  "folder": "Kimi-K3-Open-Code",
+  "modelo": "Kimi K3",
+  "agente": "OpenCode",
+  "color": "#a78bfa",
+  "total": 87,
+  "tier": "A",
+  "scores": {
+   "completitudEscena": 18,
+   "fidelidadOrbital": 10,
+   "cometaHalley": 7,
+   "esteticaWow": 12,
+   "panelUI": 14,
+   "camaraControles": 7,
+   "postProcesado": 6,
+   "rendimiento": 5,
+   "robustez": 4,
+   "calidadCodigo": 4
+  },
+  "lineas": 1544,
+  "features": {
+   "sol": true,
+   "planetas8": true,
+   "plutonEnano": true,
+   "cinturonAsteroides": true,
+   "saturnoAnillos": true,
+   "halleyCola": true,
+   "colaOpuestaAlSol": true,
+   "estrellas3000": true,
+   "nebulosas": true,
+   "orbitasElipticas": true,
+   "bloomGlow": true,
+   "panelCompleto": true,
+   "vistasCamara": true,
+   "deltaTime": true,
+   "instanciasAsteroides": true,
+   "consultaContext7": true
+  },
+  "fortalezas": [
+   "Ambas trampas resueltas: Sol en el foco (posicionElipticaToRef, L1511-1517: x=a·cosθ−c, z=−b·sinθ, b=a·√(1−e²), c=a·e) y cola anti-solar con vector cometa−Sol (mundo.subtractToRef(sun.mesh.position, tmpDir), L1461) escalado positivo y recalculado cada frame, sin negate/scale(-1).",
+   "Instancing real de asteroides con createInstance y malla base oculta (L1016-1035, 260 rocas); bucle sin new usando Vector3 temporales reutilizados (L1403-1406).",
+   "Post-procesado completo: GlowLayer + DefaultRenderingPipeline con bloom, FXAA y tone mapping ACES, todo en try/catch (L1164-1190).",
+   "Panel UI de 4 secciones con TODOS los controles cableados (L1298-1390) y robustez: guarda de CDN, degradación elegante y manejadores de contexto WebGL perdido/restaurado; deltaTime acotado."
+  ],
+  "debilidades": [
+   "Sentido de giro invertido (3.er discriminador): z=−b·sin (L1516) con rotation.y −= (L1427) deja revolución y rotación propias OPUESTAS, así que planetas prógrados giran retrógrados; el comentario que lo justifica es erróneo.",
+   "normalizeToNew(tmpDir) mal invocado (L1463): ignora el argumento y descarta el vector nuevo, así que tmpDir queda sin normalizar y la velocidad de la cola se descontrola (no invierte la dirección, pero descuida la magnitud).",
+   "Velocidad orbital 12/distancia (inversa lineal, no Kepler 1/√a³); aceptable para la rúbrica pero simplificada.",
+   "Atmósferas y anillos con esferas/planos alpha simples; diseño de partículas pesado (3600 estrellas + 1500 de cola) que carga el render."
+  ],
+  "riesgo": "bajo",
+  "veredicto": "Entrega tier A sólida (87): ambas trampas nucleares pasan limpiamente —Sol en el foco (x=a·cosθ−c, z=−b·sinθ, L845-851/1511-1517) y cola del cometa anti-solar vía mundo.subtractToRef(sun.mesh.position, tmpDir) escalado positivo y recalculado cada frame (L1461-1467), sin negate/scale(-1)—, con instancing real (base.createInstance, L1024), post-procesado bloom+glow+ACES (L1164-1190), panel de 4 secciones cableado y deltaTime acotado. Se descuenta por el sentido de giro OPUESTO entre revolución y rotación (z=−b·sin con rotation.y−=, L1427/1516, el 3.er discriminador) y por el normalizeToNew(tmpDir) mal usado (L1463) que deja la cola sin normalizar aunque no la invierte.",
+  "runtime": {
+   "meshes": 302,
+   "fps": 7,
+   "consoleErrors": 0,
+   "webgl": true
+  },
+  "preview": "assets/previews/Kimi-K3-Open-Code.png",
+  "rank": 20
  },
  {
   "folder": "Claude-Sonnet-4.6-Antigravity-IDE",
@@ -1164,7 +1285,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Claude-Sonnet-4.6-Antigravity-IDE.png",
-  "rank": 19
+  "rank": 21
  },
  {
   "folder": "Agy-Gemini-3.6-Flash-Antigravity-CLI",
@@ -1225,7 +1346,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Agy-Gemini-3.6-Flash-Antigravity-CLI.png",
-  "rank": 20
+  "rank": 22
  },
  {
   "folder": "Kimi-k.7-code-Claude-Code",
@@ -1286,7 +1407,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Kimi-k.7-code-Claude-Code.png",
-  "rank": 21
+  "rank": 23
  },
  {
   "folder": "kimi-k2.7-code-Kimi-Code-CLI",
@@ -1347,7 +1468,7 @@
    "webgl": true
   },
   "preview": "assets/previews/kimi-k2.7-code-Kimi-Code-CLI.png",
-  "rank": 22
+  "rank": 24
  },
  {
   "folder": "mini-agent-MiniMax-M3",
@@ -1408,7 +1529,7 @@
    "webgl": true
   },
   "preview": "assets/previews/mini-agent-MiniMax-M3.png",
-  "rank": 23
+  "rank": 25
  },
  {
   "folder": "deepseek-v4-pro-Pi-Coding-Agent",
@@ -1469,7 +1590,7 @@
    "webgl": true
   },
   "preview": "assets/previews/deepseek-v4-pro-Pi-Coding-Agent.png",
-  "rank": 24
+  "rank": 26
  },
  {
   "folder": "vibe-devstral",
@@ -1530,7 +1651,7 @@
    "webgl": true
   },
   "preview": "assets/previews/vibe-devstral.png",
-  "rank": 25
+  "rank": 27
  },
  {
   "folder": "Zai-GLM-5.2-Claude-Code",
@@ -1591,6 +1712,6 @@
    "webgl": true
   },
   "preview": "assets/previews/Zai-GLM-5.2-Claude-Code.png",
-  "rank": 26
+  "rank": 28
  }
 ]

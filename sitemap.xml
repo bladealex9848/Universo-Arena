@@ -245,4 +245,22 @@
       <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Zai-GLM-5.2-Claude-Code.png</image:loc>
     </image:image>
   </url>
+  <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/Kimi-K3-Claude-Code/index.html</loc>
+    <lastmod>2026-07-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Kimi-K3-Claude-Code.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/Kimi-K3-Open-Code/index.html</loc>
+    <lastmod>2026-07-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Kimi-K3-Open-Code.png</image:loc>
+    </image:image>
+  </url>
 </urlset>
