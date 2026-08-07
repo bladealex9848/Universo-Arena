@@ -1532,6 +1532,65 @@
   "rank": 25
  },
  {
+  "folder": "codex-gpt-5.6-terra",
+  "modelo": "GPT-5.6 Terra",
+  "agente": "Codex",
+  "color": "#0ea47f",
+  "total": 79,
+  "tier": "B",
+  "scores": {
+   "completitudEscena": 17,
+   "fidelidadOrbital": 4,
+   "cometaHalley": 8,
+   "esteticaWow": 12,
+   "panelUI": 14,
+   "camaraControles": 7,
+   "postProcesado": 6,
+   "rendimiento": 4,
+   "robustez": 3,
+   "calidadCodigo": 4
+  },
+  "lineas": 120,
+  "features": {
+   "sol": true,
+   "planetas8": true,
+   "plutonEnano": true,
+   "cinturonAsteroides": true,
+   "saturnoAnillos": true,
+   "halleyCola": true,
+   "colaOpuestaAlSol": true,
+   "estrellas3000": true,
+   "nebulosas": true,
+   "orbitasElipticas": false,
+   "bloomGlow": true,
+   "panelCompleto": true,
+   "vistasCamara": true,
+   "deltaTime": true,
+   "instanciasAsteroides": true,
+   "consultaContext7": false
+  },
+  "fortalezas": [
+   "Escena completísima y vistosa: Sol con corona/halo, 9 planetas con atmósferas y bandas, anillos de Saturno, cinturón de 240 asteroides por createInstance, 3200 estrellas, 4 nebulosas procedurales y Halley con cola de 1200 partículas (282 mallas, 0 errores de consola).",
+   "Cometa Halley impecable: órbita polar con el foco en el Sol (r = a·(1−e²)/(1+e·cosθ)) y cola correctamente opuesta al Sol usando halley.position.clone().normalize() (clona antes de normalizar, sin negate/scale(-1)), recalculada cada frame.",
+   "Panel UI de 4 bloques con TODOS los controles cableados (2 sliders + pausa, 6 checkboxes + dropdown de 6 vistas + slider de tamaño, tema + bloom + color del Sol, HUD FPS/objetos/ayuda); post-procesado con bloom + GlowLayer + tone mapping en try/catch, deltaTime real, instancing y ArcRotateCamera con auto-rotación y 6 vistas."
+  ],
+  "debilidades": [
+   "Trampa del foco FALLADA para los planetas: la malla se ancla a radio fijo (mesh.position.x = distance·(1−e)) colgando de un pivot en el origen, y la animación solo hace pivot.rotation.y = phase → describe un CÍRCULO centrado en el Sol (física falsa). La línea de órbita dibuja una elipse CENTRADA en el origen, no con foco, y ni siquiera coincide con el movimiento circular real.",
+   "Velocidad orbital constante por planeta (no Kepleriana dentro de la elipse); sin variación de velocidad según la posición.",
+   "Sin guarda de CDN (typeof BABYLON) ni manejo de contexto WebGL perdido; código minificado a una sentencia por función (aunque con JSDoc en español y buenos nombres)."
+  ],
+  "riesgo": "bajo",
+  "veredicto": "Entrega de tier B (79). La trampa de la cola del cometa está perfectamente resuelta —órbita polar con foco r = a·(1−e²)/(1+e·cosθ) y away = halley.position.clone().normalize() (clona antes de normalizar) para orientar la cola opuesta al Sol—, pero la trampa del foco se falla de lleno para los planetas: pivot en el origen (pivot.rotation.y = phase) con la malla a radio fijo = círculos concéntricos con el Sol en el CENTRO, y la línea de órbita es una elipse centrada, no con foco. Instancing correcto vía base.createInstance. Escena espectacular y panel completo, pero incumplir el requisito nuclear del foco impide acercarse al 97 de su hermano codex-gpt-5.5; queda en 79.",
+  "runtime": {
+   "meshes": 282,
+   "fps": 8,
+   "consoleErrors": 0,
+   "webgl": true
+  },
+  "preview": "assets/previews/codex-gpt-5.6-terra.png",
+  "rank": 26
+ },
+ {
   "folder": "deepseek-v4-pro-Pi-Coding-Agent",
   "modelo": "DeepSeek V4 Pro",
   "agente": "Pi Coding Agent",
@@ -1590,7 +1649,7 @@
    "webgl": true
   },
   "preview": "assets/previews/deepseek-v4-pro-Pi-Coding-Agent.png",
-  "rank": 26
+  "rank": 27
  },
  {
   "folder": "vibe-devstral",
@@ -1651,7 +1710,7 @@
    "webgl": true
   },
   "preview": "assets/previews/vibe-devstral.png",
-  "rank": 27
+  "rank": 28
  },
  {
   "folder": "Zai-GLM-5.2-Claude-Code",
@@ -1712,6 +1771,6 @@
    "webgl": true
   },
   "preview": "assets/previews/Zai-GLM-5.2-Claude-Code.png",
-  "rank": 28
+  "rank": 29
  }
 ]

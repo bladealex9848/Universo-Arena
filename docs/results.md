@@ -414,7 +414,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 11. Kimi K3 · Claude Code — **92/100** · Tier S 🆕
+## 11. Kimi K3 · Claude Code — **92/100** · Tier S
 
 📁 [`Kimi-K3-Claude-Code/`](../Kimi-K3-Claude-Code/index.html) · 1245 líneas · runtime: **279 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -775,7 +775,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 20. Kimi K3 · OpenCode — **87/100** · Tier A 🆕
+## 20. Kimi K3 · OpenCode — **87/100** · Tier A
 
 📁 [`Kimi-K3-Open-Code/`](../Kimi-K3-Open-Code/index.html) · 1544 líneas · runtime: **302 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -1015,7 +1015,45 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 26. DeepSeek V4 Pro · Pi Coding Agent — **78/100** · Tier B
+## 26. GPT-5.6 Terra · Codex — **79/100** · Tier B 🆕
+
+📁 [`codex-gpt-5.6-terra/`](../codex-gpt-5.6-terra/index.html) · 120 líneas · runtime: **282 objetos**, **0 errores de consola**, WebGL ✓
+
+> _Entrega de tier B (79). La trampa de la cola del cometa está perfectamente resuelta —órbita polar con foco r = a·(1−e²)/(1+e·cosθ) y away = halley.position.clone().normalize() (clona antes de normalizar) para orientar la cola opuesta al Sol—, pero la trampa del foco se falla de lleno para los planetas: pivot en el origen (pivot.rotation.y = phase) con la malla a radio fijo = círculos concéntricos con el Sol en el CENTRO, y la línea de órbita es una elipse centrada, no con foco. Instancing correcto vía base.createInstance. Escena espectacular y panel completo, pero incumplir el requisito nuclear del foco impide acercarse al 97 de su hermano codex-gpt-5.5; queda en 79._
+
+**Desglose de rúbrica**
+
+| Categoría | Puntos |
+|:--|:--:|
+| Completitud de escena | 17 / 20 |
+| Fidelidad orbital | 4 / 12 |
+| Cometa Halley | 8 / 8 |
+| Estética / wow | 12 / 15 |
+| Panel UI | 14 / 15 |
+| Cámara y controles | 7 / 8 |
+| Post-procesado | 6 / 6 |
+| Rendimiento | 4 / 6 |
+| Robustez | 3 / 5 |
+| Calidad de código | 4 / 5 |
+| **Total** | **79 / 100** |
+
+**Cumplimiento:** ✅ Sol · ✅ 8 planetas · ✅ Plutón · ✅ Cinturón · ✅ Instancing · ✅ Anillos Saturno · ✅ Cola Halley · ✅ Cola opuesta al Sol · ✅ 3000+ estrellas · ✅ Nebulosas · ❌ Órbitas elípticas · ✅ Bloom/Glow · ✅ Panel completo · ✅ Vistas cámara · ✅ deltaTime · ❌ Consulta docs
+
+**Fortalezas**
+
+- Escena completísima y vistosa: Sol con corona/halo, 9 planetas con atmósferas y bandas, anillos de Saturno, cinturón de 240 asteroides por createInstance, 3200 estrellas, 4 nebulosas procedurales y Halley con cola de 1200 partículas (282 mallas, 0 errores de consola).
+- Cometa Halley impecable: órbita polar con el foco en el Sol (r = a·(1−e²)/(1+e·cosθ)) y cola correctamente opuesta al Sol usando halley.position.clone().normalize() (clona antes de normalizar, sin negate/scale(-1)), recalculada cada frame.
+- Panel UI de 4 bloques con TODOS los controles cableados (2 sliders + pausa, 6 checkboxes + dropdown de 6 vistas + slider de tamaño, tema + bloom + color del Sol, HUD FPS/objetos/ayuda); post-procesado con bloom + GlowLayer + tone mapping en try/catch, deltaTime real, instancing y ArcRotateCamera con auto-rotación y 6 vistas.
+
+**Debilidades**
+
+- Trampa del foco FALLADA para los planetas: la malla se ancla a radio fijo (mesh.position.x = distance·(1−e)) colgando de un pivot en el origen, y la animación solo hace pivot.rotation.y = phase → describe un CÍRCULO centrado en el Sol (física falsa). La línea de órbita dibuja una elipse CENTRADA en el origen, no con foco, y ni siquiera coincide con el movimiento circular real.
+- Velocidad orbital constante por planeta (no Kepleriana dentro de la elipse); sin variación de velocidad según la posición.
+- Sin guarda de CDN (typeof BABYLON) ni manejo de contexto WebGL perdido; código minificado a una sentencia por función (aunque con JSDoc en español y buenos nombres).
+
+---
+
+## 27. DeepSeek V4 Pro · Pi Coding Agent — **78/100** · Tier B
 
 📁 [`deepseek-v4-pro-Pi-Coding-Agent/`](../deepseek-v4-pro-Pi-Coding-Agent/index.html) · 1276 líneas · runtime: **289 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -1055,7 +1093,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 27. Devstral · Vibe — **70/100** · Tier C
+## 28. Devstral · Vibe — **70/100** · Tier C
 
 📁 [`vibe-devstral/`](../vibe-devstral/index.html) · 960 líneas · runtime: **234 objetos**, **0 errores de consola**, WebGL ✓
 
@@ -1095,7 +1133,7 @@ Ficha completa de cada combinación **modelo + agente**, con su desglose de rúb
 
 ---
 
-## 28. Z.ai GLM 5.2 · Claude Code — **54/100** · Tier D
+## 29. Z.ai GLM 5.2 · Claude Code — **54/100** · Tier D
 
 📁 [`Zai-GLM-5.2-Claude-Code/`](../Zai-GLM-5.2-Claude-Code/index.html) · 624 líneas · runtime: **29 objetos**, **0 errores de consola**, WebGL ✓
 

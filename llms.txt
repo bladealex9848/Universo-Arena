@@ -1,6 +1,6 @@
 # Universo-Arena
 
-> Benchmark abierto y reproducible: 28 combinaciones de **LLM + agente de código** implementan el *mismo* reto —una simulación 3D del Sistema Solar en BabylonJS, como un único `index.html` autocontenido— y se puntúan y rankean. Licencia MIT.
+> Benchmark abierto y reproducible: 29 combinaciones de **LLM + agente de código** implementan el *mismo* reto —una simulación 3D del Sistema Solar en BabylonJS, como un único `index.html` autocontenido— y se puntúan y rankean. Licencia MIT.
 
 Sitio: https://universo-arena.alexanderoviedofadul.dev/
 Repositorio: https://github.com/bladealex9848/Universo-Arena
@@ -45,12 +45,13 @@ Las dos trampas de correctitud que más discriminan el ranking:
 23. 80/100 (tier B) — Kimi K2.7 · Claude Code — https://universo-arena.alexanderoviedofadul.dev/Kimi-k.7-code-Claude-Code/index.html
 24. 79/100 (tier B) — Kimi K2.7 · Kimi Code CLI — https://universo-arena.alexanderoviedofadul.dev/kimi-k2.7-code-Kimi-Code-CLI/index.html
 25. 79/100 (tier B) — MiniMax M3 · mini-agent — https://universo-arena.alexanderoviedofadul.dev/mini-agent-MiniMax-M3/index.html
-26. 78/100 (tier B) — DeepSeek V4 Pro · Pi Coding Agent — https://universo-arena.alexanderoviedofadul.dev/deepseek-v4-pro-Pi-Coding-Agent/index.html
-27. 70/100 (tier C) — Devstral · Vibe — https://universo-arena.alexanderoviedofadul.dev/vibe-devstral/index.html
-28. 54/100 (tier D) — Z.ai GLM 5.2 · Claude Code — https://universo-arena.alexanderoviedofadul.dev/Zai-GLM-5.2-Claude-Code/index.html
+26. 79/100 (tier B) — GPT-5.6 Terra · Codex — https://universo-arena.alexanderoviedofadul.dev/codex-gpt-5.6-terra/index.html
+27. 78/100 (tier B) — DeepSeek V4 Pro · Pi Coding Agent — https://universo-arena.alexanderoviedofadul.dev/deepseek-v4-pro-Pi-Coding-Agent/index.html
+28. 70/100 (tier C) — Devstral · Vibe — https://universo-arena.alexanderoviedofadul.dev/vibe-devstral/index.html
+29. 54/100 (tier D) — Z.ai GLM 5.2 · Claude Code — https://universo-arena.alexanderoviedofadul.dev/Zai-GLM-5.2-Claude-Code/index.html
 
 GPT-5.5 · Codex, Claude Opus 4.8 · Ultracode + Claude Code y Claude Opus 5 · Ultracode + Claude Code empatan en cabeza con 97/100.
-28/28 entregas arrancan y renderizan; 26/28 sin un solo error de consola.
+29/29 entregas arrancan y renderizan; 27/29 sin un solo error de consola.
 
 ## Datos y documentación
 

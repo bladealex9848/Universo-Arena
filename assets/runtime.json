@@ -278,5 +278,15 @@
   "consoleErrors": 0,
   "pageErrors": 0,
   "errorsSample": []
+ },
+ {
+  "folder": "codex-gpt-5.6-terra",
+  "webgl": true,
+  "babylon": true,
+  "meshes": 282,
+  "fps": 8,
+  "consoleErrors": 0,
+  "pageErrors": 0,
+  "errorsSample": []
  }
 ]

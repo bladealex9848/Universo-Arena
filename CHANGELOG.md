@@ -6,6 +6,26 @@ Todos los cambios notables de **Universo-Arena**. El formato sigue
 
 ## [Unreleased]
 
+### Añadido — Octava tanda: 28 → 29 entradas (2026-08-07)
+
+- **1 entrada nueva**: `codex-gpt-5.6-terra` (GPT-5.6 Terra · Codex, **79**, #26, tier B).
+  Escena completa y vistosa (282 mallas, 0 errores, cinturón por `createInstance`, panel
+  de 4 secciones, post-procesado) con la **cola del cometa correcta** (opuesta al Sol,
+  `clone().normalize()` sin mutación), pero **falla la trampa del foco**: los planetas
+  orbitan en círculos centrados en el Sol (`pivot.rotation.y` con malla a radio fijo), no
+  en elipses con el Sol en el foco.
+- **Hallazgo:** GPT-5.6 Terra **regresa frente a GPT-5.5** (97 → 79, −18) con el mismo
+  agente Codex, por fallar el foco que la generación anterior clavó. Detalle en
+  [`docs/octava-tanda-2026-08-07.md`](docs/octava-tanda-2026-08-07.md).
+- **Re-ranking completo a 29 entradas** preservando el triple empate de cabeza (97):
+  🥇 GPT-5.5 · Codex, 🥈 Claude Opus 4.8 · Ultracode y 🥉 Claude Opus 5 · Ultracode. La
+  nueva entra en #26 (tras los 79 ya calibrados). Ahora **27/29** sin errores y media 87.
+- Regenerados todos los artefactos derivados de `assets/benchmark.json`: galería
+  `index.html` (DATA, contadores dinámicos, bloque "estado del arte" 29/29·27/29, JSON-LD
+  `ItemList` de 29, metas), `README.md` (tablas + badges), `docs/results.md`,
+  `docs/conclusions.md`, `docs/methodology.md`, `docs/README.md`, `sitemap.xml`,
+  `llms.txt`, `llms-full.txt` y `assets/runtime.json`.
+
 ### Añadido — Séptima tanda: 26 → 28 entradas (2026-07-29)
 
 - **2 entradas nuevas** de **Kimi K3**: `Kimi-K3-Claude-Code` (Kimi K3 · Claude Code,

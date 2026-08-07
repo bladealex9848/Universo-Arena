@@ -263,4 +263,13 @@
       <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Kimi-K3-Open-Code.png</image:loc>
     </image:image>
   </url>
+  <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/codex-gpt-5.6-terra/index.html</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/codex-gpt-5.6-terra.png</image:loc>
+    </image:image>
+  </url>
 </urlset>
