@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/codex-gpt-5.5/index.html</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -22,7 +22,7 @@
   </url>
   <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/Opus-4.8-Ultracode-Extension-Claude-Code/index.html</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -31,7 +31,7 @@
   </url>
   <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/Opus-5-Claude-Code-Ultracode/index.html</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -39,8 +39,17 @@
     </image:image>
   </url>
   <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/Opencode-DeepSeek-V4-Flash/index.html</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Opencode-DeepSeek-V4-Flash.png</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/Opencode-GLM-5.2/index.html</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -49,7 +58,7 @@
   </url>
   <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/Opencode-Minimax-M3/index.html</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -58,7 +67,7 @@
   </url>
   <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/Opus-4.8-Claude-Code/index.html</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -67,7 +76,7 @@
   </url>
   <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/Mimo-V2.5-Pro-MimoCode/index.html</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -76,7 +85,7 @@
   </url>
   <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/Fable-5-Claude-Code-Ultracode/index.html</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -85,7 +94,7 @@
   </url>
   <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/Antigravity-Gemini-3.5-High/index.html</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -94,7 +103,7 @@
   </url>
   <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/Minimax-M3-Claude-Code/index.html</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -102,8 +111,17 @@
     </image:image>
   </url>
   <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/Kimi-K3-Claude-Code/index.html</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Kimi-K3-Claude-Code.png</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/Mimo-V2.5-Pro-Claude-Code/index.html</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -112,7 +130,7 @@
   </url>
   <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/Agy-Gemini-3.5-Flash-Antigravity-CLI/index.html</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -121,7 +139,7 @@
   </url>
   <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/GLM-5.2-Claude-Code/index.html</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -130,7 +148,7 @@
   </url>
   <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/Zcode-GML-5.2-Max/index.html</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -139,7 +157,7 @@
   </url>
   <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/Mimo-V2.5-Pro-OpenCode/index.html</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -148,7 +166,7 @@
   </url>
   <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/Antigravity-Gemini-3.6-Flash-High/index.html</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -157,7 +175,7 @@
   </url>
   <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/codewhale-deepseek-v4-pro/index.html</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -166,7 +184,7 @@
   </url>
   <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/Pi-DeepSeek-v4-pro/index.html</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -174,8 +192,17 @@
     </image:image>
   </url>
   <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/Kimi-K3-Open-Code/index.html</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Kimi-K3-Open-Code.png</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/Claude-Sonnet-4.6-Antigravity-IDE/index.html</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -184,7 +211,7 @@
   </url>
   <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/Agy-Gemini-3.6-Flash-Antigravity-CLI/index.html</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -193,7 +220,7 @@
   </url>
   <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/Kimi-k.7-code-Claude-Code/index.html</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -202,7 +229,7 @@
   </url>
   <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/kimi-k2.7-code-Kimi-Code-CLI/index.html</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -211,56 +238,11 @@
   </url>
   <url>
     <loc>https://universo-arena.alexanderoviedofadul.dev/mini-agent-MiniMax-M3/index.html</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/mini-agent-MiniMax-M3.png</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://universo-arena.alexanderoviedofadul.dev/deepseek-v4-pro-Pi-Coding-Agent/index.html</loc>
-    <lastmod>2026-06-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/deepseek-v4-pro-Pi-Coding-Agent.png</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://universo-arena.alexanderoviedofadul.dev/vibe-devstral/index.html</loc>
-    <lastmod>2026-06-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/vibe-devstral.png</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://universo-arena.alexanderoviedofadul.dev/Zai-GLM-5.2-Claude-Code/index.html</loc>
-    <lastmod>2026-06-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Zai-GLM-5.2-Claude-Code.png</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://universo-arena.alexanderoviedofadul.dev/Kimi-K3-Claude-Code/index.html</loc>
-    <lastmod>2026-07-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Kimi-K3-Claude-Code.png</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://universo-arena.alexanderoviedofadul.dev/Kimi-K3-Open-Code/index.html</loc>
-    <lastmod>2026-07-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Kimi-K3-Open-Code.png</image:loc>
     </image:image>
   </url>
   <url>
@@ -270,6 +252,42 @@
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/codex-gpt-5.6-terra.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/deepseek-v4-pro-Pi-Coding-Agent/index.html</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/deepseek-v4-pro-Pi-Coding-Agent.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/vibe-devstral/index.html</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/vibe-devstral.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/Zai-GLM-5.2-Claude-Code/index.html</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Zai-GLM-5.2-Claude-Code.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://universo-arena.alexanderoviedofadul.dev/Antigravity-Claude-Opus-4.6/index.html</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://universo-arena.alexanderoviedofadul.dev/assets/previews/Antigravity-Claude-Opus-4.6.png</image:loc>
     </image:image>
   </url>
 </urlset>

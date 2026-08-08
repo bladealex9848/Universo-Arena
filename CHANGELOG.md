@@ -6,6 +6,37 @@ Todos los cambios notables de **Universo-Arena**. El formato sigue
 
 ## [Unreleased]
 
+### Añadido — Novena tanda: 29 → 31 entradas (2026-08-07)
+
+- **2 entradas nuevas**:
+  - `Opencode-DeepSeek-V4-Flash` (DeepSeek V4 Flash · OpenCode, **92**, #12, tier S).
+    Resuelve **las dos trampas** verificadas en runtime (elipses con el Sol en el foco con
+    el signo levógiro `z = −b·sinθ`, y cola del cometa `(cometa − Sol)` con `normalizeToNew`
+    sin mutación), el **tercer discriminador** (Venus retrógrado por quaternion) y usa la
+    **corona oficial real `ParticleHelper.CreateAsync("sun")`** con fallback, 3600 estrellas
+    en caja 2000³ e instancing (240). **Nota re-verificada de 96 a 92:** iguala a los líderes
+    en corrección pero arrastra un **bug visible** —las etiquetas de planetas se cuelgan del
+    pivot y quedan apiladas sobre el Sol— que los siete 95 limpios no tienen, así que queda
+    por debajo de los 95, no en #4. 281 objetos, 0 errores.
+  - `Antigravity-Claude-Opus-4.6` (Claude Opus 4.6 · Antigravity, **78**, #29, tier B).
+    Escena completa, panel y post-procesado sobresalientes (295 objetos, 0 errores), pero
+    **falla las dos trampas**: los 8 planetas orbitan elipses **centradas en el Sol** (sin
+    offset `−c`; solo el Halley usa el foco) y la cola del cometa usa `position.normalize()`
+    que **muta el núcleo in-place** cada frame. Además sin instancing (250 esferas sueltas).
+- **Hallazgos:** (1) la re-verificación evitó que un 96 sin calibrar adelantara a los siete
+  95 (DeepSeek queda #12, en el clúster de 92, por un bug de etiquetas). (2) Opus 4.6, pese
+  a ser modelo grande, cae a tier B por fallar el foco y mutar la posición del cometa: el
+  acabado visual no compensa los discriminadores físicos. Detalle en
+  [`docs/novena-tanda-2026-08-07.md`](docs/novena-tanda-2026-08-07.md).
+- **Re-ranking completo a 31 entradas** preservando el triple empate de cabeza (97):
+  🥇 GPT-5.5 · Codex, 🥈 Claude Opus 4.8 · Ultracode y 🥉 Claude Opus 5 · Ultracode.
+  Ahora **29/31** sin errores y media 87.
+- Regenerados todos los artefactos derivados de `assets/benchmark.json`: galería
+  `index.html` (DATA, contadores dinámicos, bloque "estado del arte" 31/31·29/31, JSON-LD
+  `ItemList` de 31, metas), `README.md` (tablas + badges), `docs/results.md`,
+  `docs/conclusions.md`, `docs/methodology.md`, `docs/README.md`, `sitemap.xml`,
+  `llms.txt`, `llms-full.txt` y `assets/runtime.json`.
+
 ### Añadido — Octava tanda: 28 → 29 entradas (2026-08-07)
 
 - **1 entrada nueva**: `codex-gpt-5.6-terra` (GPT-5.6 Terra · Codex, **79**, #26, tier B).

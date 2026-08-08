@@ -676,6 +676,66 @@
   "rank": 11
  },
  {
+  "folder": "Opencode-DeepSeek-V4-Flash",
+  "modelo": "DeepSeek V4 Flash",
+  "agente": "OpenCode",
+  "color": "#b18cff",
+  "total": 92,
+  "tier": "S",
+  "scores": {
+   "completitudEscena": 18,
+   "fidelidadOrbital": 11,
+   "cometaHalley": 8,
+   "esteticaWow": 12,
+   "panelUI": 14,
+   "camaraControles": 8,
+   "postProcesado": 6,
+   "rendimiento": 5,
+   "robustez": 5,
+   "calidadCodigo": 5
+  },
+  "lineas": 1131,
+  "features": {
+   "sol": true,
+   "planetas8": true,
+   "plutonEnano": true,
+   "cinturonAsteroides": true,
+   "saturnoAnillos": true,
+   "halleyCola": true,
+   "colaOpuestaAlSol": true,
+   "estrellas3000": true,
+   "nebulosas": true,
+   "orbitasElipticas": true,
+   "bloomGlow": true,
+   "panelCompleto": true,
+   "vistasCamara": true,
+   "deltaTime": true,
+   "instanciasAsteroides": true,
+   "consultaContext7": false
+  },
+  "fortalezas": [
+   "Ambas trampas resueltas y verificadas: Sol en el foco con la MISMA fórmula para la línea de órbita y el movimiento del cuerpo (x = a·cosθ − a·e, z = −b·sinθ, b = a·√(1−e²)), y cola del cometa por (cometa − Sol) con normalizeToNew() sin mutación, recalculada cada frame.",
+   "Pasa el tercer discriminador (sistema levógiro de Babylon): la revolución +X→−Z es coherente con la rotación axial por quaternion sobre el eje inclinado; Venus (tilt ~176°) gira retrógrado de verdad.",
+   "Claims técnicos verificados como reales (no exagerados): corona oficial ParticleHelper.CreateAsync('sun') con fallback manual, 3600 estrellas reales en caja 2000³ (emitRate = capacity), 240 asteroides por createInstance y post-procesado ACES + bloom + GlowLayer.",
+   "Panel UI completo y funcional (4 secciones, 2 sliders + pausa, 6 checkboxes, dropdown de 6 vistas, slider de tamaño, tema + bloom + color del Sol, info FPS/objetos/ayuda) y robustez sólida con try/catch por subsistema, guarda de CDN y handlers de contexto WebGL perdido/restaurado."
+  ],
+  "debilidades": [
+   "Bug visible: las etiquetas de nombres se cuelgan del pivot en posición local fija y no siguen la posición orbital del planeta; al cargar se apilan sobre el Sol, separadas de sus planetas. Es lo que la impide considerarse superior a los 95 limpios (la nota preliminar de 96 no lo detectó).",
+   "Velocidad orbital lineal 1/distancia con avance de ángulo uniforme: cumple el mínimo de la rúbrica pero no respeta la 2.ª ley de Kepler (áreas iguales).",
+   "Excentricidad de Halley fijada a 0.85 (real 0.967), simplificación aceptable por visibilidad."
+  ],
+  "riesgo": "medio",
+  "veredicto": "Tier S (92). Acierta las dos trampas decisivas —Sol en el foco con fórmula idéntica para órbita-línea y cuerpo (x = a·cosθ − a·e, z = −b·sinθ), y cola del cometa por (cometa − Sol) con normalizeToNew() sin mutación, recalculada cada frame— e incluso el tercer discriminador levógiro (Venus retrógrado por quaternion). Usa la corona oficial ParticleHelper.CreateAsync('sun') real con fallback, 3600 estrellas verificadas e instancing (240). Nota re-verificada de 96 a 92: iguala a los líderes en corrección pero arrastra un bug visible que los siete 95 limpios no tienen —las etiquetas de planetas desprendidas y apiladas sobre el Sol—, así que queda por debajo de los 95, no por encima.",
+  "runtime": {
+   "meshes": 281,
+   "fps": 6,
+   "consoleErrors": 0,
+   "webgl": true
+  },
+  "preview": "assets/previews/Opencode-DeepSeek-V4-Flash.png",
+  "rank": 12
+ },
+ {
   "folder": "Mimo-V2.5-Pro-Claude-Code",
   "modelo": "MiMo v2.5 Pro",
   "agente": "Claude Code",
@@ -734,7 +794,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Mimo-V2.5-Pro-Claude-Code.png",
-  "rank": 12
+  "rank": 13
  },
  {
   "folder": "Agy-Gemini-3.5-Flash-Antigravity-CLI",
@@ -795,7 +855,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Agy-Gemini-3.5-Flash-Antigravity-CLI.png",
-  "rank": 13
+  "rank": 14
  },
  {
   "folder": "GLM-5.2-Claude-Code",
@@ -856,7 +916,7 @@
    "webgl": true
   },
   "preview": "assets/previews/GLM-5.2-Claude-Code.png",
-  "rank": 14
+  "rank": 15
  },
  {
   "folder": "Zcode-GML-5.2-Max",
@@ -919,7 +979,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Zcode-GML-5.2-Max.png",
-  "rank": 15
+  "rank": 16
  },
  {
   "folder": "Mimo-V2.5-Pro-OpenCode",
@@ -980,7 +1040,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Mimo-V2.5-Pro-OpenCode.png",
-  "rank": 16
+  "rank": 17
  },
  {
   "folder": "Antigravity-Gemini-3.6-Flash-High",
@@ -1041,7 +1101,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Antigravity-Gemini-3.6-Flash-High.png",
-  "rank": 17
+  "rank": 18
  },
  {
   "folder": "codewhale-deepseek-v4-pro",
@@ -1102,7 +1162,7 @@
    "webgl": true
   },
   "preview": "assets/previews/codewhale-deepseek-v4-pro.png",
-  "rank": 18
+  "rank": 19
  },
  {
   "folder": "Pi-DeepSeek-v4-pro",
@@ -1163,7 +1223,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Pi-DeepSeek-v4-pro.png",
-  "rank": 19
+  "rank": 20
  },
  {
   "folder": "Kimi-K3-Open-Code",
@@ -1224,7 +1284,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Kimi-K3-Open-Code.png",
-  "rank": 20
+  "rank": 21
  },
  {
   "folder": "Claude-Sonnet-4.6-Antigravity-IDE",
@@ -1285,7 +1345,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Claude-Sonnet-4.6-Antigravity-IDE.png",
-  "rank": 21
+  "rank": 22
  },
  {
   "folder": "Agy-Gemini-3.6-Flash-Antigravity-CLI",
@@ -1346,7 +1406,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Agy-Gemini-3.6-Flash-Antigravity-CLI.png",
-  "rank": 22
+  "rank": 23
  },
  {
   "folder": "Kimi-k.7-code-Claude-Code",
@@ -1407,7 +1467,7 @@
    "webgl": true
   },
   "preview": "assets/previews/Kimi-k.7-code-Claude-Code.png",
-  "rank": 23
+  "rank": 24
  },
  {
   "folder": "kimi-k2.7-code-Kimi-Code-CLI",
@@ -1468,7 +1528,7 @@
    "webgl": true
   },
   "preview": "assets/previews/kimi-k2.7-code-Kimi-Code-CLI.png",
-  "rank": 24
+  "rank": 25
  },
  {
   "folder": "mini-agent-MiniMax-M3",
@@ -1529,7 +1589,7 @@
    "webgl": true
   },
   "preview": "assets/previews/mini-agent-MiniMax-M3.png",
-  "rank": 25
+  "rank": 26
  },
  {
   "folder": "codex-gpt-5.6-terra",
@@ -1588,7 +1648,7 @@
    "webgl": true
   },
   "preview": "assets/previews/codex-gpt-5.6-terra.png",
-  "rank": 26
+  "rank": 27
  },
  {
   "folder": "deepseek-v4-pro-Pi-Coding-Agent",
@@ -1649,7 +1709,68 @@
    "webgl": true
   },
   "preview": "assets/previews/deepseek-v4-pro-Pi-Coding-Agent.png",
-  "rank": 27
+  "rank": 28
+ },
+ {
+  "folder": "Antigravity-Claude-Opus-4.6",
+  "modelo": "Claude Opus 4.6",
+  "agente": "Antigravity",
+  "color": "#cf7d5e",
+  "total": 78,
+  "tier": "B",
+  "scores": {
+   "completitudEscena": 18,
+   "fidelidadOrbital": 6,
+   "cometaHalley": 5,
+   "esteticaWow": 12,
+   "panelUI": 14,
+   "camaraControles": 7,
+   "postProcesado": 6,
+   "rendimiento": 3,
+   "robustez": 3,
+   "calidadCodigo": 4
+  },
+  "lineas": 1824,
+  "features": {
+   "sol": true,
+   "planetas8": true,
+   "plutonEnano": true,
+   "cinturonAsteroides": true,
+   "saturnoAnillos": true,
+   "halleyCola": true,
+   "colaOpuestaAlSol": true,
+   "estrellas3000": true,
+   "nebulosas": true,
+   "orbitasElipticas": true,
+   "bloomGlow": true,
+   "panelCompleto": true,
+   "vistasCamara": true,
+   "deltaTime": true,
+   "instanciasAsteroides": false,
+   "consultaContext7": false
+  },
+  "fortalezas": [
+   "Panel UI completo y funcional: 4 secciones con todos los controles cableados (2 sliders + pausa, 6 checkboxes, dropdown de 6 vistas, slider de tamaño, tema + bloom + color del Sol, info FPS/objetos/ayuda).",
+   "Post-procesado ejemplar: DefaultRenderingPipeline con bloom, GlowLayer (addIncludedOnlyMesh para Sol y Halley), tone mapping ACES, todo en try/catch con degradación elegante.",
+   "Escena completa y pulida: 3500 estrellas por SolidParticleSystem, 5 nebulosas procedurales, atmósferas, corona solar con fallback, anillos de Saturno, cámara ArcRotate con 6 vistas animadas e inercia.",
+   "Halley con matemática de foco correcta en su propia órbita, velocidad orbital tipo Kepler (Mercurio 4.15 → Neptuno 0.006), inclinación de plano y eje axial por planeta, todo con getDeltaTime."
+  ],
+  "debilidades": [
+   "Trampa 1 FALLADA para los 8 planetas: elipses CENTRADAS en el Sol sin offset −c (updatePlanetPosition, líneas 1107-1108), física falsa; solo el Halley pone el Sol en el foco (línea 1342).",
+   "Trampa 2 defectuosa: halleyMesh.position.normalize() (línea 1351) MUTA la posición del núcleo in-place (lo reduce a magnitud 1, dentro del Sol) y corrompe el cálculo de distancia cada frame; el signo de la cola es correcto pero el núcleo queda corrupto. Debió usar normalizeToNew()/clone().",
+   "Sin instancing en el cinturón: 250 CreateSphere individuales (líneas 1230-1258), fps 7 en runtime.",
+   "Robustez parcial: sin guarda de CDN ni manejo de contexto WebGL perdido; el sentido de giro no considera la convención levógira (z = +b·sinθ con rotation.y +=)."
+  ],
+  "riesgo": "medio",
+  "veredicto": "Entrega vistosa y muy completa en UI, estética y post-procesado, pero falla los dos discriminadores nucleares: los 8 planetas orbitan elipses CENTRADAS en el Sol (líneas 1107-1108, sin −c), física falsa —solo el Halley aplica el foco (línea 1342)—, y la cola del cometa usa halleyMesh.position.normalize() (línea 1351) que muta el núcleo in-place, el signo apunta lejos del Sol pero corrompe la posición cada frame. Además el cinturón usa 250 esferas individuales sin createInstance/thinInstance (fps 7). Total 78 (tier B): cae por debajo del clúster de 92 y de los líderes de 95, penalizada por ambas trampas y la ausencia de instancing, pese a su panel y post-procesado sobresalientes.",
+  "runtime": {
+   "meshes": 295,
+   "fps": 7,
+   "consoleErrors": 0,
+   "webgl": true
+  },
+  "preview": "assets/previews/Antigravity-Claude-Opus-4.6.png",
+  "rank": 29
  },
  {
   "folder": "vibe-devstral",
@@ -1710,7 +1831,7 @@
    "webgl": true
   },
   "preview": "assets/previews/vibe-devstral.png",
-  "rank": 28
+  "rank": 30
  },
  {
   "folder": "Zai-GLM-5.2-Claude-Code",
@@ -1771,6 +1892,6 @@
    "webgl": true
   },
   "preview": "assets/previews/Zai-GLM-5.2-Claude-Code.png",
-  "rank": 29
+  "rank": 31
  }
 ]

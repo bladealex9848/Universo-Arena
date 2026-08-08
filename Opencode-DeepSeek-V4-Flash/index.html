@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Universo 3D · Sistema Solar con Cometa Halley · BabylonJS</title>
+<style>
+  /* ════════════════ RESET ════════════════ */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #05060f;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+
+  /* ════════════════ CANVAS ════════════════ */
+  #renderCanvas {
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    outline: none;
+    touch-action: none;
+  }
+
+  /* ════════════════ PANEL ════════════════ */
+  #panel {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    width: 300px;
+    max-height: calc(100vh - 24px);
+    overflow-y: auto;
+    background: rgba(10, 15, 30, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(120, 160, 255, 0.3);
+    border-radius: 12px;
+    padding: 14px 16px 16px;
+    color: #dfe6ff;
+    font-size: 13px;
+    z-index: 10;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
+  }
+
+  #panel h1 {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #9db4ff;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(120, 160, 255, 0.2);
+    padding-bottom: 8px;
+  }
+
+  #panel section {
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed rgba(120, 160, 255, 0.14);
+  }
+
+  #panel section:last-child { border-bottom: none; margin-bottom: 0; }
+
+  #panel h2 {
+    font-size: 12px;
+    font-weight: 600;
+    color: #7ee0c8;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+
+  .control { margin-bottom: 8px; }
+  .control:last-child { margin-bottom: 0; }
+  .control label { display: block; margin-bottom: 3px; color: #b9c4e8; }
+  .control .val { color: #8be9fd; font-weight: 600; }
+
+  /* Sliders */
+  input[type="range"] {
+    width: 100%;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(120, 160, 255, 0.25);
+    border-radius: 2px;
+    outline: none;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #7c9cff;
+    border: 2px solid #dfe6ff;
+    cursor: pointer;
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #7c9cff;
+    border: 2px solid #dfe6ff;
+    cursor: pointer;
+  }
+
+  /* Checkboxes */
+  .check { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; cursor: pointer; }
+  .check input { accent-color: #7c9cff; width: 15px; height: 15px; cursor: pointer; }
+  .check span { color: #c9d3f5; }
+
+  /* Select */
+  select {
+    width: 100%;
+    background: rgba(20, 30, 55, 0.9);
+    color: #dfe6ff;
+    border: 1px solid rgba(120, 160, 255, 0.35);
+    border-radius: 6px;
+    padding: 6px 8px;
+    font-size: 13px;
+    cursor: pointer;
+    outline: none;
+  }
+
+  /* Botones */
+  button {
+    width: 100%;
+    background: rgba(60, 90, 180, 0.35);
+    color: #dfe6ff;
+    border: 1px solid rgba(120, 160, 255, 0.4);
+    border-radius: 6px;
+    padding: 7px 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  button:hover { background: rgba(80, 115, 210, 0.5); }
+  button.pulsado { background: rgba(255, 140, 60, 0.45); border-color: rgba(255, 170, 90, 0.6); }
+
+  /* Scrollbar personalizado */
+  #panel::-webkit-scrollbar { width: 8px; }
+  #panel::-webkit-scrollbar-track { background: rgba(10, 15, 30, 0.3); }
+  #panel::-webkit-scrollbar-thumb { background: rgba(120, 160, 255, 0.35); border-radius: 4px; }
+  #panel::-webkit-scrollbar-thumb:hover { background: rgba(120, 160, 255, 0.55); }
+
+  /* Botón colapsar (mobile) */
+  #panelToggle {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    width: auto;
+    padding: 6px 12px;
+    display: none;
+    z-index: 11;
+  }
+
+  /* ════════════════ INFO ════════════════ */
+  #info {
+    position: fixed;
+    bottom: 12px;
+    left: 12px;
+    background: rgba(10, 15, 30, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(120, 160, 255, 0.25);
+    border-radius: 10px;
+    padding: 10px 14px;
+    color: #c9d3f5;
+    font-size: 12px;
+    z-index: 10;
+    line-height: 1.5;
+    pointer-events: none;
+    user-select: none;
+  }
+  #info .fps { font-weight: 700; font-size: 14px; }
+  #info .fps.bueno { color: #56e0a6; }
+  #info .fps.medio { color: #f5c451; }
+  #info .fps.malo  { color: #ff6b6b; }
+  #info .ayuda { margin-top: 4px; color: #8b98c9; font-size: 11px; }
+
+  /* ════════════════ MEDIA QUERY < 600px ════════════════ */
+  @media (max-width: 600px) {
+    #panel { display: none; width: calc(100vw - 24px); }
+    #panel.abierto { display: block; }
+    #panelToggle { display: block; }
+    #info { font-size: 11px; max-width: calc(100vw - 24px); }
+  }
+</style>
+</head>
+<body>
+<canvas id="renderCanvas"></canvas>
+
+<!-- ════════════════ PANEL DE CONFIGURACIÓN ════════════════ -->
+<div id="panel">
+  <h1>☀️ Universo · Configuración</h1>
+
+  <section id="seccionTiempo">
+    <h2>⏱ TIEMPO Y VELOCIDAD</h2>
+    <div class="control">
+      <label>Velocidad global: <span class="val" id="velGlobalVal">1.0x</span></label>
+      <input type="range" id="velGlobal" min="0" max="10" step="0.1" value="1" />
+    </div>
+    <div class="control">
+      <label>Velocidad orbital: <span class="val" id="velOrbitalVal">1.0x</span></label>
+      <input type="range" id="velOrbital" min="0.1" max="3" step="0.1" value="1" />
+    </div>
+    <div class="control">
+      <button id="btnPausa">⏸ Pausar</button>
+    </div>
+  </section>
+
+  <section id="seccionVisualizacion">
+    <h2>🪐 VISUALIZACIÓN</h2>
+    <div class="check"><input type="checkbox" id="chkOrbitas" checked /><span>Mostrar órbitas</span></div>
+    <div class="check"><input type="checkbox" id="chkNombres" checked /><span>Mostrar nombres de planetas</span></div>
+    <div class="check"><input type="checkbox" id="chkHalley" checked /><span>Mostrar cometa Halley</span></div>
+    <div class="check"><input type="checkbox" id="chkCola" checked /><span>Mostrar cola del cometa</span></div>
+    <div class="check"><input type="checkbox" id="chkCinturon" checked /><span>Mostrar cinturón de asteroides</span></div>
+    <div class="check"><input type="checkbox" id="chkNebulosas" checked /><span>Mostrar nebulosas de fondo</span></div>
+    <div class="control" style="margin-top:8px">
+      <label>Vista de cámara</label>
+      <select id="selVista">
+        <option value="sistema" selected>Sistema Solar</option>
+        <option value="sol">Sol cercano</option>
+        <option value="tierra">Tierra</option>
+        <option value="saturno">Saturno</option>
+        <option value="panoramica">Panorámica</option>
+        <option value="halley">Halley</option>
+      </select>
+    </div>
+    <div class="control">
+      <label>Tamaño relativo: <span class="val" id="tamanoVal">1.0x</span></label>
+      <input type="range" id="tamanoPlanetas" min="0.5" max="3" step="0.05" value="1" />
+    </div>
+  </section>
+
+  <section id="seccionEstetica">
+    <h2>🎨 ESTÉTICA</h2>
+    <div class="control">
+      <label>Tema</label>
+      <select id="selTema">
+        <option value="futurista" selected>Futurista</option>
+        <option value="clasico">Clásico</option>
+        <option value="oscuro">Oscuro</option>
+      </select>
+    </div>
+    <div class="check"><input type="checkbox" id="chkBloom" checked /><span>Activar bloom/glow post-procesado</span></div>
+    <div class="control">
+      <label>Color del sol</label>
+      <select id="selColorSol">
+        <option value="blanco">Blanco</option>
+        <option value="amarillo" selected>Amarillo</option>
+        <option value="naranja">Naranja</option>
+        <option value="rojo">Rojo</option>
+      </select>
+    </div>
+  </section>
+</div>
+
+<button id="panelToggle">⚙</button>
+
+<!-- ════════════════ INFO ════════════════ -->
+<div id="info">
+  <div><span class="fps" id="fpsInfo">FPS: --</span> · <span id="objInfo">Objetos: --</span></div>
+  <div class="ayuda">🖱 Click izq: rotar | Rueda: zoom | Click der: pan</div>
+</div>
+
+<script src="https://cdn.babylonjs.com/babylon.js"></script>
+<script>
+"use strict";
+
+/* ═══════════════════════════════════════════════════════════════
+   SIMULACIÓN 3D DE UNIVERSO CON BABYLONJS
+   Generada por DeepSeek-V4-Flash + OpenCode (Universo-Arena)
+   API validadas contra la documentación oficial de BabylonJS.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* 1. Constantes y datos -------------------------------------- */
+const CDN_FALLO = "No se pudo cargar BabylonJS desde el CDN. Verifica tu conexión.";
+
+const COLORES_SOL = {
+  blanco:   { emissive: new BABYLON.Color3(1.0, 1.0, 0.95),  luz: new BABYLON.Color3(1.0, 0.98, 0.9)  },
+  amarillo: { emissive: new BABYLON.Color3(1.0, 0.75, 0.25), luz: new BABYLON.Color3(1.0, 0.95, 0.85) },
+  naranja:  { emissive: new BABYLON.Color3(1.0, 0.5, 0.12),  luz: new BABYLON.Color3(1.0, 0.85, 0.6)  },
+  rojo:     { emissive: new BABYLON.Color3(1.0, 0.22, 0.08), luz: new BABYLON.Color3(1.0, 0.6, 0.45)  }
+};
+
+const TEMAS = {
+  futurista: { clear: new BABYLON.Color3(0.02, 0.024, 0.06), hemi: 0.12 },
+  clasico:   { clear: new BABYLON.Color3(0.01, 0.012, 0.035), hemi: 0.10 },
+  oscuro:    { clear: new BABYLON.Color3(0.005, 0.006, 0.02), hemi: 0.08 }
+};
+
+/* Datos orbitales realistas (distancias en unidades de escena).
+   La velocidad orbital NO se declara aquí: se calcula como
+   VELOCIDAD_KEPLER / distance (Kepler simplificado: inversamente
+   proporcional a la distancia, exacto por construcción). */
+const PLANETS = [
+  { name: "Mercurio", distance: 14, size: 0.45,  e: 0.2056, color: [0.62, 0.62, 0.66],
+    tilt: 0.03,  orbitTilt: 0.12, hasRings: false, atmosphere: null,
+    ringColor: null, ringInner: null, ringOuter: null },
+  { name: "Venus",   distance: 19, size: 0.85,  e: 0.0068, color: [0.96, 0.72, 0.42],
+    tilt: Math.PI * 0.98, orbitTilt: 0.06, hasRings: false, atmosphere: null,
+    ringColor: null, ringInner: null, ringOuter: null },
+  { name: "Tierra",  distance: 25, size: 0.9,   e: 0.0167, color: [0.18, 0.42, 0.85],
+    tilt: 0.41,  orbitTilt: 0.0,  hasRings: false,
+    atmosphere: [0.25, 0.55, 1.0], ringColor: null, ringInner: null, ringOuter: null },
+  { name: "Marte",   distance: 31, size: 0.65,  e: 0.0934, color: [0.85, 0.32, 0.15],
+    tilt: 0.44,  orbitTilt: 0.03, hasRings: false,
+    atmosphere: [0.85, 0.4, 0.2], ringColor: null, ringInner: null, ringOuter: null },
+  { name: "Júpiter", distance: 44, size: 2.3,   e: 0.0489, color: [0.82, 0.62, 0.42],
+    tilt: 0.05,  orbitTilt: 0.02, hasRings: false, atmosphere: null,
+    ringColor: null, ringInner: null, ringOuter: null },
+  { name: "Saturno", distance: 58, size: 2.0,   e: 0.0565, color: [0.88, 0.76, 0.5],
+    tilt: 0.47,  orbitTilt: 0.04, hasRings: true,
+    atmosphere: null, ringColor: [0.85, 0.75, 0.55], ringInner: 2.8, ringOuter: 4.4 },
+  { name: "Urano",   distance: 71, size: 1.3,   e: 0.0457, color: [0.5, 0.82, 0.8],
+    tilt: Math.PI / 2 + 0.05, orbitTilt: 0.01, hasRings: false, atmosphere: null,
+    ringColor: null, ringInner: null, ringOuter: null },
+  { name: "Neptuno", distance: 83, size: 1.25,  e: 0.0113, color: [0.2, 0.35, 0.95],
+    tilt: 0.49,  orbitTilt: 0.03, hasRings: false, atmosphere: null,
+    ringColor: null, ringInner: null, ringOuter: null },
+  { name: "Plutón",  distance: 95, size: 0.4,   e: 0.2488, color: [0.55, 0.53, 0.5],
+    tilt: 2.14,  orbitTilt: 0.3,  hasRings: false, atmosphere: null,
+    ringColor: null, ringInner: null, ringOuter: null }
+];
+
+/* Cometa Halley: excentricidad exagerada a 0.85, período ~18 s */
+const HALLEY = {
+  a: 60, e: 0.85, period: 18,
+  color: new BABYLON.Color3(0.8, 0.9, 1.0)
+};
+
+const CONSTANTES = {
+  ASTEROIDES: 240,
+  ESTRELLAS_POR_SISTEMA: 1200,
+  CAJA_ESTRELLAS: 2000,
+  NEBULOSAS: 4,
+  /* Kepler simplificado: velocidad orbital ∝ 1/distance.
+     Con K=14, Mercurio (d=14) da 1.0 rad/s y Plutón (d=95) 0.147 rad/s. */
+  VELOCIDAD_KEPLER: 14
+};
+
+/* 2. Engine + Scene ------------------------------------------- */
+const canvas = document.getElementById("renderCanvas");
+let engine = null;
+let scene = null;
+
+function crearMotor() {
+  try {
+    engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true, antialias: true });
+  } catch (err) {
+    console.error("Error creando el motor WebGL:", err);
+    document.getElementById("info").innerHTML = "<div>⚠ WebGL no disponible</div>";
+    return false;
+  }
+  scene = new BABYLON.Scene(engine);
+  scene.clearColor = TEMAS.futurista.clear;
+  return true;
+}
+
+/* 3. Cámara ---------------------------------------------------- */
+let camera = null;
+let camaraSigue = null; // planeta o null (para vistas de seguimiento)
+
+function crearCamara() {
+  camera = new BABYLON.ArcRotateCamera(
+    "camaraUniverso", -Math.PI / 3, Math.PI / 2.6, 180,
+    BABYLON.Vector3.Zero(), scene
+  );
+  camera.wheelPrecision = 60;
+  camera.wheelDeltaPercentage = 0.03;
+  camera.lowerRadiusLimit = 30;
+  camera.upperRadiusLimit = 2000;
+  camera.panningSensibility = 1000;
+  camera.attachControl(canvas, true);
+  camera.useAutoRotationBehavior = true;
+  camera.autoRotationBehavior.idleRotationSpeed = 0.03;
+  camera.autoRotationBehavior.idleRotationWaitTime = 2.0;
+  camera.autoRotationBehavior.idleRotationSpinupTime = 1.0;
+}
+
+/* 4. Luces ----------------------------------------------------- */
+let hemiLight = null;
+let solLuz = null;
+
+function crearLuces() {
+  hemiLight = new BABYLON.HemisphericLight("luzAmbiente", new BABYLON.Vector3(0, 1, 0), scene);
+  hemiLight.intensity = TEMAS.futurista.hemi;
+  hemiLight.diffuse = new BABYLON.Color3(0.6, 0.65, 0.8);
+
+  solLuz = new BABYLON.PointLight("luzSol", BABYLON.Vector3.Zero(), scene);
+  solLuz.intensity = 2.0;
+  solLuz.diffuse = COLORES_SOL.amarillo.luz;
+  solLuz.specular = new BABYLON.Color3(0.2, 0.18, 0.15);
+}
+
+/* 5. Helpers ----------------------------------------------------- */
+function makeLabelTexture(texto) {
+  const dt = new BABYLON.DynamicTexture("label_" + texto, { width: 256, height: 64 }, scene, false);
+  const ctx = dt.getContext();
+  ctx.clearRect(0, 0, 256, 64);
+  ctx.font = "bold 40px system-ui, sans-serif";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillStyle = "rgba(255, 255, 255, 0.95)";
+  ctx.shadowColor = "rgba(0, 0, 0, 0.9)";
+  ctx.shadowBlur = 8;
+  ctx.fillText(texto, 128, 32);
+  dt.update();
+  return dt;
+}
+
+function makeFlareTexture(colorInterior, colorExterior) {
+  const tam = 128;
+  const dt = new BABYLON.DynamicTexture("flare", { width: tam, height: tam }, scene, false);
+  const ctx = dt.getContext();
+  const grad = ctx.createRadialGradient(tam / 2, tam / 2, 0, tam / 2, tam / 2, tam / 2);
+  grad.addColorStop(0, colorInterior);
+  grad.addColorStop(0.35, colorExterior);
+  grad.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, tam, tam);
+  dt.hasAlpha = true;
+  dt.update();
+  return dt;
+}
+
+function makeNebulaTexture(color1, color2) {
+  const tam = 512;
+  const dt = new BABYLON.DynamicTexture("nebula", { width: tam, height: tam }, scene, false);
+  const ctx = dt.getContext();
+  ctx.clearRect(0, 0, tam, tam);
+  /* Varias capas radiales desplazadas: forma orgánica y translúcida. */
+  const rgba = (c, a) => `rgba(${c[0]},${c[1]},${c[2]},${a})`;
+  for (let i = 0; i < 6; i++) {
+    const cx = tam / 2 + (Math.random() - 0.5) * tam * 0.4;
+    const cy = tam / 2 + (Math.random() - 0.5) * tam * 0.4;
+    const r = tam * (0.25 + Math.random() * 0.3);
+    const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+    g.addColorStop(0, rgba(color1, 0.35));
+    g.addColorStop(0.5, rgba(color2, 0.18));
+    g.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, tam, tam);
+  }
+  dt.hasAlpha = true;
+  dt.update();
+  return dt;
+}
+
+/* 6. Estrellas de fondo ----------------------------------------- */
+const sistemasEstrellas = [];
+
+function createStars() {
+  const texBlanca = makeFlareTexture("rgba(255,255,255,1)", "rgba(200,215,255,0.25)");
+  const tonos = [
+    { tex: texBlanca, color1: [1, 1, 1, 1], color2: [0.75, 0.82, 1.0, 1] },
+    { tex: texBlanca, color1: [0.6, 0.72, 1.0, 1], color2: [0.9, 0.95, 1.0, 1] },
+    { tex: texBlanca, color1: [1.0, 0.95, 0.7, 1], color2: [1.0, 0.8, 0.5, 1] }
+  ];
+  const media = CONSTANTES.CAJA_ESTRELLAS / 2;
+
+  for (const tono of tonos) {
+    const sistema = new BABYLON.ParticleSystem("estrellas", CONSTANTES.ESTRELLAS_POR_SISTEMA, scene);
+    sistema.particleTexture = tono.tex;
+    sistema.emitter = BABYLON.Vector3.Zero();
+    sistema.minEmitBox = new BABYLON.Vector3(-media, -media, -media);
+    sistema.maxEmitBox = new BABYLON.Vector3(media, media, media);
+    sistema.color1 = BABYLON.Color4.FromArray(tono.color1);
+    sistema.color2 = BABYLON.Color4.FromArray(tono.color2);
+    sistema.colorDead = new BABYLON.Color4(0, 0, 0, 0);
+    sistema.minSize = 0.3;
+    sistema.maxSize = 1.5;
+    sistema.minLifeTime = 1e9;   /* casi infinito: estrellas fijas */
+    sistema.maxLifeTime = 1e9;
+    sistema.emitRate = CONSTANTES.ESTRELLAS_POR_SISTEMA; /* llenan la capacidad en el 1er frame */
+    sistema.preWarmCycles = 1;
+    sistema.blendMode = BABYLON.ParticleSystem.BLENDMODE_ADD;
+    sistema.gravity = BABYLON.Vector3.Zero();
+    sistema.direction1 = BABYLON.Vector3.Zero();
+    sistema.direction2 = BABYLON.Vector3.Zero();
+    sistema.minEmitPower = 0;
+    sistema.maxEmitPower = 0;
+    sistema.updateSpeed = 0.01;
+    sistema.start();
+    sistemasEstrellas.push(sistema);
+  }
+}
+
+/* 7. Sol ---------------------------------------------------------- */
+let solMesh = null;
+let solMat = null;
+let solCorona = null;    // ParticleSystemSet de ParticleHelper
+let coronaFallback = null; // sistema manual si el helper falla
+
+function crearCoronaManual() {
+  const sistema = new BABYLON.ParticleSystem("coronaSol", 400, scene);
+  const tex = makeFlareTexture("rgba(255,180,60,1)", "rgba(255,90,20,0.3)");
+  sistema.particleTexture = tex;
+  sistema.emitter = BABYLON.Vector3.Zero();
+  sistema.minEmitBox = new BABYLON.Vector3(-2.6, -2.6, -2.6);
+  sistema.maxEmitBox = new BABYLON.Vector3(2.6, 2.6, 2.6);
+  sistema.color1 = new BABYLON.Color4(1, 0.7, 0.2, 1);
+  sistema.color2 = new BABYLON.Color4(1, 0.35, 0.05, 0.6);
+  sistema.colorDead = new BABYLON.Color4(1, 0.2, 0.02, 0);
+  sistema.minSize = 3;
+  sistema.maxSize = 7;
+  sistema.minLifeTime = 0.6;
+  sistema.maxLifeTime = 1.4;
+  sistema.emitRate = 300;
+  sistema.blendMode = BABYLON.ParticleSystem.BLENDMODE_ADD;
+  sistema.gravity = BABYLON.Vector3.Zero();
+  sistema.direction1 = new BABYLON.Vector3(0, 0.6, 0);
+  sistema.direction2 = new BABYLON.Vector3(0, 1, 0);
+  sistema.minEmitPower = 2;
+  sistema.maxEmitPower = 5;
+  sistema.updateSpeed = 0.02;
+  sistema.start();
+  coronaFallback = sistema;
+}
+
+function crearCoronaParticleHelper() {
+  /* API validada en la documentación oficial: ParticleHelper.CreateAsync
+     carga un efecto predefinido ("sun") desde los assets oficiales. */
+  return BABYLON.ParticleHelper.CreateAsync("sun", scene)
+    .then((set) => {
+      set.start();
+      set.systems.forEach((s) => { s.emitter = BABYLON.Vector3.Zero(); });
+      return set;
+    })
+    .catch((err) => {
+      console.warn("ParticleHelper no disponible, usando corona manual:", err);
+      crearCoronaManual();
+      return null;
+    });
+}
+
+function createSun() {
+  solMesh = BABYLON.MeshBuilder.CreateSphere("sol", { diameter: 6.4, segments: 48 }, scene);
+  solMat = new BABYLON.StandardMaterial("matSol", scene);
+  solMat.emissiveColor = COLORES_SOL.amarillo.emissive;
+  solMat.specularColor = BABYLON.Color3.Black();
+  solMesh.material = solMat;
+
+  /* Halo exterior sutil para el bloom */
+  const halo = BABYLON.MeshBuilder.CreateSphere("solHalo", { diameter: 7.6, segments: 32 }, scene);
+  const haloMat = new BABYLON.StandardMaterial("matSolHalo", scene);
+  haloMat.emissiveColor = new BABYLON.Color3(1, 0.55, 0.15);
+  haloMat.alpha = 0.18;
+  haloMat.disableLighting = true;
+  halo.material = haloMat;
+  halo.isVisible = true;
+
+  crearCoronaParticleHelper();
+  return halo;
+}
+
+/* 8. Planetas ------------------------------------------------------ */
+const planetas = []; // estado por planeta para el bucle de render
+const mallasPlanetas = [];
+
+function makeBandasJupiter() {
+  /* Textura procedural de bandas horizontales (tonos crema y marrón). */
+  const tam = 512;
+  const dt = new BABYLON.DynamicTexture("bandasJupiter", { width: tam, height: tam }, scene, false);
+  const ctx = dt.getContext();
+  ctx.clearRect(0, 0, tam, tam);
+  const bandas = [
+    [0.0, 0.12, "#c9a26e"], [0.12, 0.24, "#8a5a30"], [0.24, 0.36, "#e0c291"],
+    [0.36, 0.5, "#b47a42"], [0.5, 0.62, "#e0c291"], [0.62, 0.74, "#8a5a30"],
+    [0.74, 0.86, "#c9a26e"], [0.86, 1.0, "#a06a38"]
+  ];
+  for (const [inicio, fin, color] of bandas) {
+    ctx.fillStyle = color;
+    ctx.fillRect(0, inicio * tam, tam, (fin - inicio) * tam);
+  }
+  /* Gran Mancha Roja */
+  const mancha = ctx.createRadialGradient(0.68 * tam, 0.62 * tam, 0, 0.68 * tam, 0.62 * tam, 0.1 * tam);
+  mancha.addColorStop(0, "rgba(190,60,40,0.9)");
+  mancha.addColorStop(1, "rgba(190,60,40,0)");
+  ctx.fillStyle = mancha;
+  ctx.fillRect(0, 0, tam, tam);
+  dt.update();
+  return dt;
+}
+
+function makeTexturaTierra() {
+  /* Textura procedural: océanos azules con manchas verdes (continentes). */
+  const tam = 512;
+  const dt = new BABYLON.DynamicTexture("superficieTierra", { width: tam, height: tam }, scene, false);
+  const ctx = dt.getContext();
+  ctx.fillStyle = "#1a4fae";
+  ctx.fillRect(0, 0, tam, tam);
+  const manchas = [
+    [0.2, 0.3, 0.18, "#3c8f4d"], [0.55, 0.25, 0.22, "#2f7a3e"],
+    [0.3, 0.6, 0.14, "#4aa35c"], [0.7, 0.65, 0.12, "#3c8f4d"],
+    [0.8, 0.35, 0.16, "#2f7a3e"], [0.45, 0.8, 0.1, "#4aa35c"],
+    [0.15, 0.75, 0.08, "#3c8f4d"], [0.9, 0.8, 0.09, "#2f7a3e"]
+  ];
+  for (const [cx, cy, radio, color] of manchas) {
+    const g = ctx.createRadialGradient(cx * tam, cy * tam, 0, cx * tam, cy * tam, radio * tam);
+    g.addColorStop(0, color);
+    g.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, tam, tam);
+  }
+  /* Casquetes polares */
+  ctx.fillStyle = "#e8f0ff";
+  ctx.fillRect(0, 0, tam, tam * 0.06);
+  ctx.fillRect(0, tam * 0.94, tam, tam * 0.06);
+  dt.update();
+  return dt;
+}
+
+function crearMaterialPlaneta(datos) {
+  const mat = new BABYLON.StandardMaterial("mat_" + datos.name, scene);
+  mat.diffuseColor = BABYLON.Color3.FromArray(datos.color);
+  mat.specularColor = new BABYLON.Color3(0.12, 0.12, 0.14);
+  if (datos.name === "Júpiter") {
+    mat.diffuseColor = BABYLON.Color3.White();
+    mat.diffuseTexture = makeBandasJupiter();
+  }
+  if (datos.name === "Tierra") {
+    mat.diffuseColor = BABYLON.Color3.White();
+    mat.diffuseTexture = makeTexturaTierra();
+  }
+  if (datos.atmosphere) {
+    mat.emissiveColor = BABYLON.Color3.FromArray(datos.atmosphere).scale(0.18);
+  }
+  return mat;
+}
+
+function crearAtmosfera(planeta, datos) {
+  if (!datos.atmosphere) return null;
+  const atm = BABYLON.MeshBuilder.CreateSphere("atmosfera_" + datos.name, { diameter: planeta.getBoundingInfo().boundingSphere.radius * 2.35, segments: 24 }, scene);
+  const atmMat = new BABYLON.StandardMaterial("matAtm_" + datos.name, scene);
+  atmMat.emissiveColor = BABYLON.Color3.FromArray(datos.atmosphere);
+  atmMat.alpha = 0.22;
+  atmMat.disableLighting = true;
+  atm.material = atmMat;
+  atm.isPickable = false;
+  return atm;
+}
+
+function crearAnillosSaturno(planeta, datos) {
+  if (!datos.hasRings) return null;
+  const grupo = new BABYLON.Mesh("anillos_" + datos.name, scene);
+  grupo.parent = planeta;
+
+  /* Dos anillos planos (discos) con tono ligeramente distinto */
+  const crearAnillo = (radio, color, alfa) => {
+    const anillo = BABYLON.MeshBuilder.CreateDisc("anillo_" + radio, { radius: radio, tessellation: 64 }, scene);
+    const mat = new BABYLON.StandardMaterial("matAnillo_" + radio, scene);
+    mat.diffuseColor = BABYLON.Color3.FromArray(color);
+    mat.alpha = alfa;
+    mat.emissiveColor = BABYLON.Color3.FromArray(color).scale(0.25);
+    mat.specularColor = new BABYLON.Color3(0.1, 0.1, 0.1);
+    anillo.material = mat;
+    anillo.parent = grupo;
+    anillo.rotation.x = Math.PI / 2;
+    anillo.isPickable = false;
+    return anillo;
+  };
+  crearAnillo(datos.ringInner, [0.9, 0.82, 0.62], 0.5);
+  crearAnillo(datos.ringOuter, [0.75, 0.65, 0.45], 0.3);
+  return grupo;
+}
+
+function createPlanets(PLANETS) {
+  for (const datos of PLANETS) {
+    /* Pivote ESTÁTICO en el origen: solo inclina el plano orbital respecto
+       al ecuador solar. Nunca se desplaza (las órbitas son estáticas). */
+    const pivot = new BABYLON.TransformNode("pivot_" + datos.name, scene);
+    pivot.rotation.x = datos.orbitTilt;
+
+    /* El mesh del planeta se posiciona sobre la elipse dentro del plano
+       inclinado del pivot (coordenadas locales del pivot). */
+    const planeta = BABYLON.MeshBuilder.CreateSphere("planeta_" + datos.name, { diameter: datos.size * 2, segments: 32 }, scene);
+    planeta.parent = pivot;
+    planeta.material = crearMaterialPlaneta(datos);
+
+    /* Rotación propia sobre eje axial inclinado (quaternion).
+       Para Venus/Urano/Plutón el tilt > 90° produce rotación retrógrada. */
+    planeta.rotationQuaternion = BABYLON.Quaternion.Identity();
+    const ejeAxial = new BABYLON.Vector3(Math.sin(datos.tilt), Math.cos(datos.tilt), 0);
+    planeta.metadata = { ejeAxial };
+
+    const atm = crearAtmosfera(planeta, datos);
+    const anillos = crearAnillosSaturno(planeta, datos);
+
+    /* Label billboard flotante, colgado del pivot (NO del mesh): así no
+       gira alrededor del planeta con la rotación axial. */
+    const labelMesh = BABYLON.MeshBuilder.CreatePlane("label_" + datos.name, { width: 3.4, height: 0.85 }, scene);
+    const labelMat = new BABYLON.StandardMaterial("matLabel_" + datos.name, scene);
+    labelMat.diffuseTexture = makeLabelTexture(datos.name);
+    labelMat.emissiveColor = BABYLON.Color3.White();
+    labelMat.disableLighting = true;
+    labelMat.backFaceCulling = false;
+    labelMesh.material = labelMat;
+    labelMesh.position.y = datos.size + 1.3;
+    labelMesh.billboardMode = BABYLON.Mesh.BILLBOARDMODE_ALL;
+    labelMesh.isPickable = false;
+    labelMesh.parent = pivot;
+
+    planetas.push({
+      datos,
+      pivot,
+      mesh: planeta,
+      /* Kepler simplificado: velocidad ∝ 1/distancia */
+      velocidadOrbital: CONSTANTES.VELOCIDAD_KEPLER / datos.distance,
+      angle: Math.random() * Math.PI * 2,
+      b: datos.distance * Math.sqrt(1 - datos.e * datos.e),
+      label: labelMesh,
+      atm: atm,
+      anillos: anillos
+    });
+    mallasPlanetas.push(planeta);
+  }
+}
+
+/* 9. Órbitas (líneas elípticas con el sol en el foco) -------------- */
+const orbitas = [];
+
+function createOrbits(PLANETS) {
+  const puntosPorOrbita = 128;
+  for (let i = 0; i < PLANETS.length; i++) {
+    const datos = PLANETS[i];
+    const b = datos.distance * Math.sqrt(1 - datos.e * datos.e);
+    const puntos = [];
+    for (let j = 0; j <= puntosPorOrbita; j++) {
+      const t = (j / puntosPorOrbita) * Math.PI * 2;
+      const x = datos.distance * Math.cos(t) - datos.distance * datos.e;
+      const z = -b * Math.sin(t);
+      puntos.push(new BABYLON.Vector3(x, 0, z));
+    }
+    const orbita = BABYLON.MeshBuilder.CreateLines("orbita_" + datos.name, { points: puntos }, scene);
+    orbita.color = new BABYLON.Color3(0.25, 0.35, 0.6);
+    orbita.alpha = 0.35;
+    orbita.isPickable = false;
+    /* Hereda la inclinación del plano orbital del planeta */
+    if (planetas[i] && planetas[i].pivot) {
+      orbita.parent = planetas[i].pivot;
+    }
+    orbitas.push(orbita);
+  }
+}
+
+/* 10. Cinturón de asteroides --------------------------------------- */
+let cinturonGrupo = null;
+
+function createAsteroidBelt() {
+  const base = BABYLON.MeshBuilder.CreateSphere("asteroideBase", { diameter: 0.22, segments: 6 }, scene);
+  base.isVisible = false;
+  base.material = new BABYLON.StandardMaterial("matAsteroide", scene);
+  base.material.diffuseColor = new BABYLON.Color3(0.45, 0.42, 0.38);
+  base.material.specularColor = new BABYLON.Color3(0.05, 0.05, 0.05);
+
+  cinturonGrupo = new BABYLON.TransformNode("cinturon", scene);
+  const radioMin = 34, radioMax = 39;
+
+  for (let i = 0; i < CONSTANTES.ASTEROIDES; i++) {
+    const ast = base.createInstance("asteroide_" + i);
+    const angulo = Math.random() * Math.PI * 2;
+    const radio = radioMin + Math.random() * (radioMax - radioMin);
+    const y = (Math.random() - 0.5) * 1.6;
+    ast.position = new BABYLON.Vector3(Math.cos(angulo) * radio, y, Math.sin(angulo) * radio);
+    const esc = 0.5 + Math.random() * 1.6;
+    ast.scaling = new BABYLON.Vector3(esc, esc, esc);
+    ast.rotation = new BABYLON.Vector3(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+    ast.parent = cinturonGrupo;
+  }
+}
+
+/* 11. Cometa Halley ------------------------------------------------- */
+let nucleoHalley = null;
+let colaHalley = null;
+let halleyFase = 0;
+let halleyB = 0;
+
+function createHalley() {
+  halleyB = HALLEY.a * Math.sqrt(1 - HALLEY.e * HALLEY.e);
+  nucleoHalley = BABYLON.MeshBuilder.CreateSphere("nucleoHalley", { diameter: 0.9, segments: 16 }, scene);
+  const matNucleo = new BABYLON.StandardMaterial("matNucleoHalley", scene);
+  matNucleo.emissiveColor = HALLEY.color;
+  matNucleo.diffuseColor = new BABYLON.Color3(0.5, 0.6, 0.75);
+  matNucleo.specularColor = new BABYLON.Color3(0.2, 0.2, 0.2);
+  nucleoHalley.material = matNucleo;
+
+  /* Cola: 1200 partículas que SIEMPRE apuntan en dirección opuesta al sol */
+  colaHalley = new BABYLON.ParticleSystem("colaHalley", 1200, scene);
+  const texCola = makeFlareTexture("rgba(200,235,255,1)", "rgba(60,150,255,0.2)");
+  colaHalley.particleTexture = texCola;
+  colaHalley.emitter = nucleoHalley;
+  colaHalley.minEmitBox = BABYLON.Vector3.Zero();
+  colaHalley.maxEmitBox = BABYLON.Vector3.Zero();
+  colaHalley.color1 = new BABYLON.Color4(1, 1, 1, 1);        /* blanco cerca del núcleo */
+  colaHalley.color2 = new BABYLON.Color4(0.3, 0.8, 1.0, 0.6); /* azul-cian al final */
+  colaHalley.colorDead = new BABYLON.Color4(0.1, 0.3, 1.0, 0); /* fade a transparente */
+  colaHalley.minSize = 0.6;
+  colaHalley.maxSize = 2.2;
+  colaHalley.minLifeTime = 0.8;
+  colaHalley.maxLifeTime = 2.2;
+  colaHalley.emitRate = 800;
+  colaHalley.blendMode = BABYLON.ParticleSystem.BLENDMODE_ADD;
+  colaHalley.gravity = BABYLON.Vector3.Zero();
+  colaHalley.minEmitPower = 6;
+  colaHalley.maxEmitPower = 12;
+  colaHalley.updateSpeed = 0.02;
+  colaHalley.start();
+}
+
+/* 12. Nebulosas ------------------------------------------------------- */
+const nebulosas = [];
+
+function createNebulas() {
+  const definiciones = [
+    [[255, 120, 200], [140, 70, 255]],
+    [[90, 140, 255], [70, 220, 255]],
+    [[255, 90, 140], [180, 70, 255]],
+    [[120, 90, 255], [60, 180, 255]]
+  ];
+  /* Posiciones distantes (~1500 u) repartidas alrededor; dos quedan
+     delante de la cámara inicial para verse en la vista por defecto. */
+  const posiciones = [
+    new BABYLON.Vector3(-950, 380, 1050),
+    new BABYLON.Vector3(1100, -320, 950),
+    new BABYLON.Vector3(-1100, -380, -1000),
+    new BABYLON.Vector3(1000, 420, -1100)
+  ];
+
+  for (let i = 0; i < CONSTANTES.NEBULOSAS; i++) {
+    const plano = BABYLON.MeshBuilder.CreatePlane("nebulosa_" + i, { width: 700, height: 700 }, scene);
+    const mat = new BABYLON.StandardMaterial("matNebulosa_" + i, scene);
+    const tex = makeNebulaTexture(definiciones[i][0], definiciones[i][1]);
+    mat.diffuseTexture = tex;
+    mat.emissiveTexture = tex;
+    mat.disableLighting = true;
+    mat.useAlphaFromDiffuseTexture = true;
+    mat.backFaceCulling = false;
+    mat.alpha = 0.65;
+    plano.material = mat;
+    plano.position = posiciones[i];
+    plano.billboardMode = BABYLON.Mesh.BILLBOARDMODE_ALL;
+    plano.isPickable = false;
+    nebulosas.push(plano);
+  }
+}
+
+/* 13. Post-procesado ------------------------------------------------ */
+let pipeline = null;
+let glowLayer = null;
+
+function setupPostProcessing() {
+  try {
+    pipeline = new BABYLON.DefaultRenderingPipeline(
+      "pipeline", true, scene, [camera]
+    );
+    pipeline.bloomEnabled = true;
+    pipeline.bloomThreshold = 0.55; /* umbral bajo para resaltar el sol */
+    pipeline.bloomWeight = 0.35;
+    pipeline.bloomKernel = 48;
+    pipeline.bloomScale = 0.5;
+    if (pipeline.imageProcessing) {
+      pipeline.imageProcessing.toneMappingEnabled = true;
+      pipeline.imageProcessing.toneMappingType = BABYLON.ImageProcessingConfiguration.TONEMAPPING_ACES;
+      pipeline.imageProcessing.exposure = 1.15;
+      pipeline.imageProcessing.contrast = 1.05;
+    }
+    /* GlowLayer dedicado para soles y cometa */
+    glowLayer = new BABYLON.GlowLayer("glow", scene, { mainTextureSamples: 2 });
+    glowLayer.intensity = 0.55;
+    glowLayer.blurKernelSize = 32;
+  } catch (err) {
+    console.warn("Post-procesado no disponible, degradando:", err);
+    pipeline = null;
+    glowLayer = null;
+  }
+}
+
+/* 14. Estado global de la UI ---------------------------------------- */
+const estado = {
+  pausado: false,
+  velocidadGlobal: 1,
+  velocidadOrbital: 1,
+  tamano: 1,
+  vista: "sistema",
+  bloomActivo: true
+};
+
+/* 15. UI ------------------------------------------------------------- */
+const $ = (id) => document.getElementById(id);
+
+function setVisibilidad(mesh, visible) {
+  if (mesh && mesh.isEnabled) mesh.setEnabled(visible);
+}
+
+function actualizarFPS() {
+  const fps = engine.getFps();
+  const el = $("fpsInfo");
+  el.textContent = "FPS: " + Math.round(fps);
+  el.className = "fps " + (fps >= 50 ? "bueno" : fps >= 25 ? "medio" : "malo");
+  $("objInfo").textContent = "Objetos: " + scene.meshes.length;
+}
+
+function setVista(vista) {
+  estado.vista = vista;
+  camaraSigue = null;
+  switch (vista) {
+    case "sistema":
+      camera.target = BABYLON.Vector3.Zero();
+      camera.radius = 180;
+      break;
+    case "sol":
+      camera.target = BABYLON.Vector3.Zero();
+      camera.radius = 38;
+      break;
+    case "tierra": {
+      const tierra = planetas.find((p) => p.datos.name === "Tierra");
+      if (tierra) { camaraSigue = tierra; camera.radius = 22; }
+      break;
+    }
+    case "saturno": {
+      const saturno = planetas.find((p) => p.datos.name === "Saturno");
+      if (saturno) { camaraSigue = saturno; camera.radius = 42; }
+      break;
+    }
+    case "panoramica":
+      camera.target = BABYLON.Vector3.Zero();
+      camera.radius = 900;
+      break;
+    case "halley":
+      camaraSigue = nucleoHalley ? { mesh: nucleoHalley } : null;
+      camera.radius = 30;
+      break;
+  }
+}
+
+function setupUI() {
+  /* Velocidad global */
+  $("velGlobal").addEventListener("input", (e) => {
+    estado.velocidadGlobal = parseFloat(e.target.value);
+    $("velGlobalVal").textContent = estado.velocidadGlobal.toFixed(1) + "x";
+  });
+
+  /* Velocidad orbital individual */
+  $("velOrbital").addEventListener("input", (e) => {
+    estado.velocidadOrbital = parseFloat(e.target.value);
+    $("velOrbitalVal").textContent = estado.velocidadOrbital.toFixed(1) + "x";
+  });
+
+  /* Pausa */
+  $("btnPausa").addEventListener("click", () => {
+    estado.pausado = !estado.pausado;
+    const btn = $("btnPausa");
+    btn.textContent = estado.pausado ? "▶ Reanudar" : "⏸ Pausar";
+    btn.classList.toggle("pulsado", estado.pausado);
+  });
+
+  /* Visualización */
+  $("chkOrbitas").addEventListener("change", (e) => {
+    orbitas.forEach((o) => o.setEnabled(e.target.checked));
+  });
+  $("chkNombres").addEventListener("change", (e) => {
+    planetas.forEach((p) => p.label.setEnabled(e.target.checked));
+  });
+  $("chkHalley").addEventListener("change", (e) => {
+    setVisibilidad(nucleoHalley, e.target.checked);
+    if (!e.target.checked) {
+      colaHalley.stop();
+    } else if ($("chkCola").checked) {
+      colaHalley.start();
+    }
+  });
+  $("chkCola").addEventListener("change", (e) => {
+    if (estado.pausado) return;
+    if (e.target.checked && $("chkHalley").checked) colaHalley.start();
+    else colaHalley.stop();
+  });
+  $("chkCinturon").addEventListener("change", (e) => {
+    setVisibilidad(cinturonGrupo, e.target.checked);
+  });
+  $("chkNebulosas").addEventListener("change", (e) => {
+    nebulosas.forEach((n) => n.setEnabled(e.target.checked));
+  });
+
+  /* Vistas de cámara */
+  $("selVista").addEventListener("change", (e) => setVista(e.target.value));
+
+  /* Tamaño relativo */
+  $("tamanoPlanetas").addEventListener("input", (e) => {
+    estado.tamano = parseFloat(e.target.value);
+    $("tamanoVal").textContent = estado.tamano.toFixed(2) + "x";
+    mallasPlanetas.forEach((m) => {
+      m.scaling.setAll(estado.tamano);
+    });
+    /* Los labels cuelgan del pivot: reposicionarlos sobre el planeta escalado */
+    planetas.forEach((p) => {
+      p.label.position.y = p.datos.size * estado.tamano + 1.3;
+    });
+  });
+
+  /* Estética */
+  $("selTema").addEventListener("change", (e) => {
+    const tema = TEMAS[e.target.value];
+    scene.clearColor = tema.clear;
+    hemiLight.intensity = tema.hemi;
+  });
+  $("chkBloom").addEventListener("change", (e) => {
+    estado.bloomActivo = e.target.checked;
+    if (pipeline) pipeline.bloomEnabled = e.target.checked;
+    if (glowLayer) glowLayer.isEnabled = e.target.checked;
+  });
+  $("selColorSol").addEventListener("change", (e) => {
+    const color = COLORES_SOL[e.target.value];
+    if (solMat) solMat.emissiveColor = color.emissive;
+    if (solLuz) solLuz.diffuse = color.luz;
+  });
+
+  /* Panel móvil */
+  $("panelToggle").addEventListener("click", () => {
+    const panel = $("panel");
+    panel.classList.toggle("abierto");
+    $("panelToggle").textContent = panel.classList.contains("abierto") ? "✕" : "⚙";
+  });
+}
+
+/* 16. Bucle de render ------------------------------------------------ */
+let tiempoAcumulado = 0;
+
+function actualizarPosicionEliptica(planeta, dt) {
+  /* Sol en el foco: x = a·cosθ − a·e, z = −b·sinθ (b = a·√(1−e²)).
+     El signo negativo en z respeta el sistema levógiro de BabylonJS.
+     La posición es local al pivot (el plano orbital ya está inclinado). */
+  const angulo = planeta.angle;
+  const x = planeta.datos.distance * Math.cos(angulo) - planeta.datos.distance * planeta.datos.e;
+  const z = -planeta.b * Math.sin(angulo);
+  planeta.mesh.position.set(x, 0, z);
+}
+
+function actualizarCometaHalley(dt) {
+  /* Parámetro excéntrico (ecuación de Kepler simplificada con
+     excentricidad media para una órbita excéntrica visible). */
+  halleyFase += dt * ((Math.PI * 2) / HALLEY.period);
+  const t = halleyFase;
+  const x = HALLEY.a * Math.cos(t) - HALLEY.a * HALLEY.e;
+  const z = -halleyB * Math.sin(t);
+  nucleoHalley.position = new BABYLON.Vector3(x, 0, z);
+
+  /* Cola SIEMPRE opuesta al sol: vector (cometa − Sol) normalizado.
+     normalizeToNew() evita mutar el vector original. */
+  const direccionCola = nucleoHalley.position.normalizeToNew();
+  colaHalley.direction1 = direccionCola;
+  colaHalley.direction2 = direccionCola;
+}
+
+function buclePreRender() {
+  const dt = (engine.getDeltaTime() / 1000) * estado.velocidadGlobal;
+
+  if (!estado.pausado) {
+    tiempoAcumulado += dt;
+
+    /* Sol: rotación + pulsado de escala */
+    if (solMesh) {
+      solMesh.rotation.y += dt * 0.15;
+      const pulso = 1 + 0.025 * Math.sin(tiempoAcumulado * (Math.PI * 2) / 3);
+      solMesh.scaling.setAll(pulso);
+    }
+
+    /* Planetas: órbita elíptica + rotación propia sobre eje inclinado */
+    for (const planeta of planetas) {
+      planeta.angle += dt * planeta.velocidadOrbital * estado.velocidadOrbital;
+      actualizarPosicionEliptica(planeta, dt);
+      /* Rotación axial por quaternion sobre el eje inclinado del planeta */
+      const q = BABYLON.Quaternion.RotationAxis(
+        planeta.mesh.metadata.ejeAxial, dt * 1.5 * estado.velocidadOrbital
+      );
+      planeta.mesh.rotationQuaternion = q.multiply(planeta.mesh.rotationQuaternion);
+    }
+
+    /* Cinturón: movimiento lento */
+    if (cinturonGrupo) {
+      cinturonGrupo.rotation.y += dt * 0.02;
+    }
+
+    /* Cometa + cola direccional */
+    if (nucleoHalley && colaHalley) {
+      actualizarCometaHalley(dt);
+    }
+  }
+
+  /* Seguimiento de cámara */
+  if (camaraSigue) {
+    const objetivo = camaraSigue.mesh || camaraSigue;
+    camera.target = BABYLON.Vector3.Lerp(camera.target, objetivo.getAbsolutePosition(), 0.05);
+  }
+
+  actualizarFPS();
+}
+
+function iniciar() {
+  if (!crearMotor()) return;
+  crearCamara();
+  crearLuces();
+
+  /* Cada paso aislado: un fallo degrada sin romper el resto de la escena */
+  try { createStars(); } catch (err) { console.warn("Estrellas:", err); }
+  try { createSun(); } catch (err) { console.warn("Sol:", err); }
+  try { createPlanets(PLANETS); } catch (err) { console.warn("Planetas:", err); }
+  try { createOrbits(PLANETS); } catch (err) { console.warn("Órbitas:", err); }
+  try { createAsteroidBelt(); } catch (err) { console.warn("Cinturón:", err); }
+  try { createHalley(); } catch (err) { console.warn("Cometa:", err); }
+  try { createNebulas(); } catch (err) { console.warn("Nebulosas:", err); }
+  try { setupPostProcessing(); } catch (err) { console.warn("Post-procesado:", err); }
+  try { setupUI(); } catch (err) { console.warn("UI:", err); }
+
+  scene.onBeforeRenderObservable.add(buclePreRender);
+
+  engine.runRenderLoop(() => scene.render());
+  window.addEventListener("resize", () => engine.resize());
+
+  /* Recuperación ante pérdida de contexto WebGL */
+  engine.onContextLostObservable.add(() => {
+    console.warn("Contexto WebGL perdido, intentando recuperar…");
+  });
+  engine.onContextRestoredObservable.add(() => {
+    console.info("Contexto WebGL restaurado");
+  });
+}
+
+/* 17. Arranque -------------------------------------------------------- */
+if (typeof BABYLON === "undefined") {
+  document.getElementById("info").innerHTML = "<div>⚠ " + CDN_FALLO + "</div>";
+} else {
+  iniciar();
+}
+</script>
+</body>
+</html>

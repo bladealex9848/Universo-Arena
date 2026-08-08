@@ -288,5 +288,25 @@
   "consoleErrors": 0,
   "pageErrors": 0,
   "errorsSample": []
+ },
+ {
+  "folder": "Opencode-DeepSeek-V4-Flash",
+  "webgl": true,
+  "babylon": true,
+  "meshes": 281,
+  "fps": 6,
+  "consoleErrors": 0,
+  "pageErrors": 0,
+  "errorsSample": []
+ },
+ {
+  "folder": "Antigravity-Claude-Opus-4.6",
+  "webgl": true,
+  "babylon": true,
+  "meshes": 295,
+  "fps": 7,
+  "consoleErrors": 0,
+  "pageErrors": 0,
+  "errorsSample": []
  }
 ]
